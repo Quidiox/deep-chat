@@ -14,14 +14,9 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --write",
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --single-quote --write",
       "git add"
     ]
   },
