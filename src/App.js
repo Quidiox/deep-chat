@@ -2,9 +2,13 @@ import React, { Component } from 'react'
 import io from 'socket.io-client'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.socket = io('http://localhost:3005', { path: '/server' })
+  }
   render() {
-    const socket = io.connect('http://localhost:3005')
-    console.log(socket)
+    this.socket.emit('message', 'hello world!!!111!!')
+    this.socket.on('hi', msg => console.log(msg))
     return <div>Hello World!</div>
   }
 }
