@@ -7,8 +7,11 @@ import rootSaga from '../sagas/rootSaga'
 
 export const history = createHistory()
 const sagaMiddleware = createSagaMiddleware()
-const middleware = [rootReducer, sagaMiddleware]
-const store = createStore(composeWithDevTools(applyMiddleware(...middleware)))
+const middleware = [sagaMiddleware]
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(...middleware))
+)
 sagaMiddleware.run(rootSaga)
 
 export default store
