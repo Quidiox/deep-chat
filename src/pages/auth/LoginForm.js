@@ -1,21 +1,32 @@
 import React from 'react'
 import StyledForm from '../../components/blocks/StyledForm'
 
-const LoginForm = ({ login, handleFieldChange, clearFields }) => {
+const LoginForm = ({
+  login,
+  handleFieldChange,
+  clearFields,
+  username,
+  password
+}) => {
   return (
     <StyledForm>
       <StyledForm.Input
         name="username"
         placeholder="username"
-        inputColor="blue"
+        value={username}
         onChange={handleFieldChange}
       />
       <StyledForm.Input
         name="password"
+        type="password"
+        value={password}
         placeholder="password"
         onChange={handleFieldChange}
       />
-      <StyledForm.Button onClick={login}>Submit</StyledForm.Button>
+      <div style={{ display: 'inline-block' }}>
+        <StyledForm.Button onClick={login}>Submit</StyledForm.Button>
+        <StyledForm.Button onClick={clearFields}>Clear</StyledForm.Button>
+      </div>
     </StyledForm>
   )
 }

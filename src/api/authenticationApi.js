@@ -3,7 +3,11 @@ const baseUrl = process.env.REACT_APP_BASEURL
 
 const login = async data => {
   try {
-    return await axios.post(baseUrl + 'auth/login', data)
+    const response = await axios.post(baseUrl + 'auth/login', data, {
+      withCredentials: true
+    })
+    console.log(response)
+    return response.data
   } catch (error) {
     console.log(error)
   }

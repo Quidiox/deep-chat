@@ -11,6 +11,7 @@ import {
 function* login(action) {
   try {
     const user = yield call(apiService.login, action.payload)
+    console.log(user)
     yield put(genericActionCreator(USER_LOGIN, user))
   } catch (error) {
     console.log(error)
