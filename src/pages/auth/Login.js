@@ -1,16 +1,30 @@
-import React, { Component, Fragment } from 'react'
-import StyledForm from '../../components/blocks/StyledForm'
+import React, { Component } from 'react'
+import LoginForm from './LoginForm'
 
 class Login extends Component {
+  state = { username: '', password: '' }
+
+  login = e => {
+    e.preventDefault()
+  }
+
+  handleFieldChange = (e, fieldName) => {
+    console.log(fieldName)
+    this.setState({ [e.target.name]: e.target.value })
+  }
+
+  clearFields = () => {
+    this.setState({ username: '', password: '' })
+  }
+
   render() {
+    console.log(this.state)
     return (
-      <Fragment>
-        <StyledForm>
-          <StyledForm.Input placeholder="username" />
-          <StyledForm.Input placeholder="password" />
-          <StyledForm.Button>Submit</StyledForm.Button>
-        </StyledForm>
-      </Fragment>
+      <LoginForm
+        handleFieldChange={this.handleFieldChange}
+        login={this.login}
+        clearFields={this.clearFields}
+      />
     )
   }
 }
