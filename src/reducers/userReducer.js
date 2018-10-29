@@ -11,7 +11,7 @@ import {
   USER_LOGOUT_REQUEST,
   USER_DELETE_REQUEST
 } from './actionTypes'
-/* user logout and delete are handled in rootReducer because all data becomes
+/* user logout and delete are handled in rootReducer because all state becomes
    invalid when they happen so whole state is set to undefined */
 
 const userReducer = produce((draft, action) => {

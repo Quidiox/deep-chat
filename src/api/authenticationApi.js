@@ -1,24 +1,32 @@
 import axios from 'axios'
-const baseUrl = process.env.REACT_APP_BASEURL
+const authAxios = axios.create({
+  baseURL: 'http://localhost:3005/api/auth/',
+  withCredentials: true
+})
 
 const login = async data => {
   try {
-    const response = await axios.post(baseUrl + 'auth/login', data, {
-      withCredentials: true
-    })
-    console.log(response)
+    const response = await authAxios.post('login', data)
     return response.data
   } catch (error) {
     console.log(error)
   }
 }
 
-const logout = async data => {
+const verifyUser = async () => {
   try {
-    return await axios.get(baseUrl + 'auth/logout' + data.userId)
+    return await authAxios.post('verifyUser')
   } catch (error) {
     console.log(error)
   }
 }
 
-export default { login, logout }
+const logout = async () => {
+  try {
+    return await authAxios.post('logout')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export default { login, logout, verifyUser }

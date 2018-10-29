@@ -1,9 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import Login from './pages/auth/Login'
+import Create from './pages/user/Create'
 
 class App extends Component {
   render() {
-    return <Login />
+    return (
+      <Fragment>
+        <Login />
+        <Create />
+      </Fragment>
+    )
   }
 }
 

@@ -24,7 +24,9 @@ const LoginForm = ({
         onChange={handleFieldChange}
       />
       <div style={{ display: 'inline-block' }}>
-        <StyledForm.Button onClick={login}>Submit</StyledForm.Button>
+        <StyledForm.Button onClick={login} type="submit">
+          Submit
+        </StyledForm.Button>
         <StyledForm.Button onClick={clearFields}>Clear</StyledForm.Button>
       </div>
     </StyledForm>
