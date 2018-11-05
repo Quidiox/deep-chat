@@ -4,9 +4,18 @@ const userAxios = axios.create({
   withCredentials: true
 })
 
+const find = async data => {
+  try {
+    const response = await userAxios.get(data.userId)
+    return response.data
+  } catch (error) {}
+}
+
 const create = async data => {
   try {
-    const response = await userAxios.post('create', data)
+    const response = await userAxios.post('create', data, {
+      withCredentials: false
+    })
     return response.data
   } catch (error) {
     console.log(error)
@@ -30,4 +39,4 @@ const edit = async data => {
   }
 }
 
-export default { create, edit, remove }
+export default { find, create, edit, remove }

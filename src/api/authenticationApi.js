@@ -1,7 +1,6 @@
 import axios from 'axios'
 const authAxios = axios.create({
-  baseURL: 'http://localhost:3005/api/auth/',
-  withCredentials: true
+  baseURL: 'http://localhost:3005/api/auth/'
 })
 
 const login = async data => {
@@ -15,7 +14,9 @@ const login = async data => {
 
 const verifyUser = async () => {
   try {
-    return await authAxios.post('verifyUser')
+    return await authAxios.post('verifyUser', null, {
+      withCredentials: true
+    })
   } catch (error) {
     console.log(error)
   }
@@ -23,7 +24,9 @@ const verifyUser = async () => {
 
 const logout = async () => {
   try {
-    return await authAxios.post('logout')
+    return await authAxios.post('logout', null, {
+      withCredentials: true
+    })
   } catch (error) {
     console.log(error)
   }

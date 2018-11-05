@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CreateForm from './CreateForm'
 import { requestCreateUser } from '../../reducers/userReducer'
@@ -50,7 +50,7 @@ class Create extends Component {
   render() {
     const { name, username, password, passwordConfirm, error } = this.state
     return (
-      <Fragment>
+      <>
         <CreateForm
           name={name}
           username={username}
@@ -61,7 +61,7 @@ class Create extends Component {
           clearFields={this.clearFields}
         />
         <div>{error}</div>
-      </Fragment>
+      </>
     )
   }
 }
