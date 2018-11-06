@@ -1,8 +1,6 @@
 import styled from 'styled-components'
+import H1 from '../../elements/H1'
 
-const Title = styled.div`
-  font-family: Arial;
-  font-size: 1em;
-`
+const Title = styled(H1)``
 
 export default Title

@@ -1,8 +1,7 @@
 import styled from 'styled-components'
 
 const H2 = styled.h2`
-  text-decoration: none;
-  font-family: Arial;
+  font-size: 1.2em;
 `
 
 export default H2
