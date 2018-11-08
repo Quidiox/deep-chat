@@ -15,13 +15,14 @@ class Header extends Component {
     console.log(this.state)
     return (
       <StyledHeader>
-        <FontAwesomeIcon icon="bars" onClick={this.handleClick('navMenu')} />
+        <StyledHeader.Button onClick={this.handleClick('navMenu')}>
+          <FontAwesomeIcon icon="bars" />
+        </StyledHeader.Button>
         {this.state.navMenu && <StyledHeader.DropDownMenu />}
         <StyledHeader.Title>Header</StyledHeader.Title>
-        <FontAwesomeIcon
-          icon="user-circle"
-          onClick={this.handleClick('userMenu')}
-        />
+        <StyledHeader.Button onClick={this.handleClick('userMenu')}>
+          <FontAwesomeIcon icon="user-circle" />
+        </StyledHeader.Button>
         {this.state.userMenu && (
           <StyledHeader.DropDownMenu right>
             <Link to="">hello</Link>

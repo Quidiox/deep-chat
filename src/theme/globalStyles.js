@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     font-family: Roboto, sans-serif;
   }
+  button, input, textarea {
+    font-family: Roboto, sans-serif;
+  }
   #root {
     height: 100%;
   }

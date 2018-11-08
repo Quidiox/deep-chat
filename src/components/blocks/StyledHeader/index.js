@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Title from './Title'
 import StyledMenu from '../StyledMenu'
 import DropDownMenu from './DropDownMenu'
+import Button from './Button'
 
 const StyledHeader = styled.div`
   top: ${props => props.top || '0'};
@@ -16,5 +17,6 @@ const StyledHeader = styled.div`
 StyledHeader.Title = Title
 StyledHeader.StyledMenu = StyledMenu
 StyledHeader.DropDownMenu = DropDownMenu
+StyledHeader.Button = Button
 
 export default StyledHeader
