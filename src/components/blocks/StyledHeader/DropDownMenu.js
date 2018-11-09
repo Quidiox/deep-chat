@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 
 const DropDownMenu = styled.div`
   z-index: 1200;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import Inner from './Inner'
 import Overlay from './Overlay'
 

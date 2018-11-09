@@ -11,7 +11,6 @@ class Header extends Component {
   }
 
   render() {
-    console.log(this.state)
     return (
       <StyledHeader>
         <StyledHeader.Button onClick={this.handleClick('navMenu')}>

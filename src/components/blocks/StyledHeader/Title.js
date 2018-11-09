@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import H1 from '../../elements/H1'
 
 const Title = styled(H1)`

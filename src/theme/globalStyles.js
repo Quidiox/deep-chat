@@ -1,9 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle } from 'styled-components/macro'
 
 const GlobalStyle = createGlobalStyle`
   @import url(‘https://fonts.googleapis.com/css?family=Montserrat|Roboto');
  
-  html, body {
+  body {
     height: 100vh;
     width: 100vw;
     padding: 0;
@@ -11,10 +11,11 @@ const GlobalStyle = createGlobalStyle`
     font-family: Roboto, sans-serif;
   }
   button, input, textarea {
-    font-family: Roboto, sans-serif;
+    font-family: inherit;
   }
   #root {
-    height: 100%;
+    height: inherit;
+    width: inherit;
   }
 `
 

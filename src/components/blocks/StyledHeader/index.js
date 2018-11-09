@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/macro'
 import Title from './Title'
 import DropDownMenu from './DropDownMenu'
 import Button from './Button'
