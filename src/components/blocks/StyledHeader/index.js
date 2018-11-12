@@ -4,6 +4,7 @@ import DropDownMenu from './DropDownMenu'
 import DropDownContainer from './DropDownContainer'
 import Button from './Button'
 import DropDownMenuItem from './DropDownMenuItem'
+import StyledLink from '../StyledLink'
 
 const StyledHeader = styled.div`
   top: ${props => props.top || '0'};
@@ -21,5 +22,6 @@ StyledHeader.DropDownContainer = DropDownContainer
 StyledHeader.DropDownMenu = DropDownMenu
 StyledHeader.MenuIcon = Button
 StyledHeader.MenuItem = DropDownMenuItem
+StyledHeader.Link = StyledLink
 
 export default StyledHeader

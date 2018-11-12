@@ -18,17 +18,21 @@ class Header extends Component {
           </StyledHeader.MenuIcon>
           {this.state.navMenu && (
             <StyledHeader.DropDownMenu>
-              <StyledHeader.MenuItem
-                to="/login"
-                activeClassName="nav-link-active"
-              >
-                Login
+              <StyledHeader.MenuItem>
+                <StyledHeader.Link
+                  to="/login"
+                  activeClassName="nav-link-active"
+                >
+                  Login
+                </StyledHeader.Link>
               </StyledHeader.MenuItem>
-              <StyledHeader.MenuItem
-                to="/register"
-                activeClassName="nav-link-active"
-              >
-                Register
+              <StyledHeader.MenuItem>
+                <StyledHeader.Link
+                  to="/register"
+                  activeClassName="nav-link-active"
+                >
+                  Register
+                </StyledHeader.Link>
               </StyledHeader.MenuItem>
             </StyledHeader.DropDownMenu>
           )}
@@ -40,8 +44,10 @@ class Header extends Component {
           </StyledHeader.MenuIcon>
           {this.state.userMenu && (
             <StyledHeader.DropDownMenu right>
-              <StyledHeader.MenuItem to="" activeClassName="nav-link-active">
-                hello
+              <StyledHeader.MenuItem>
+                <StyledHeader.Link to="" activeClassName="nav-link-active">
+                  hello
+                </StyledHeader.Link>
               </StyledHeader.MenuItem>
             </StyledHeader.DropDownMenu>
           )}
