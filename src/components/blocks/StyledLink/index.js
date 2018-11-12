@@ -12,6 +12,8 @@ const StyledLink = styled(NavLink).attrs({
   cursor: pointer;
   &:hover {
     text-decoration: underline;
+    background-color: lightgray;
+    color: blue;
   }
   &.${activeClassName} {
     color: green;

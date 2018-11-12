@@ -3,6 +3,7 @@ import Inner from './Inner'
 import Overlay from './Overlay'
 
 const Modal = styled.div`
+  z-index: 1010;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -11,7 +12,6 @@ const Modal = styled.div`
   max-height: 100%;
   width: 400px;
   max-width: 100%;
-  z-index: 1010;
   // display should be flex when modal is open
   display: ${props => props.display || 'none'};
   flex-direction: column;

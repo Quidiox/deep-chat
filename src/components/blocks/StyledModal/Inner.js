@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
 
 const Inner = styled.div`
+  z-index: 1100;
   position: absolute;
   top: 0;
   left: 0;

@@ -1,8 +1,9 @@
 import styled from 'styled-components/macro'
 import Title from './Title'
 import DropDownMenu from './DropDownMenu'
+import DropDownContainer from './DropDownContainer'
 import Button from './Button'
-import StyledLink from '../StyledLink'
+import DropDownMenuItem from './DropDownMenuItem'
 
 const StyledHeader = styled.div`
   top: ${props => props.top || '0'};
@@ -11,12 +12,14 @@ const StyledHeader = styled.div`
   height: 30px;
   background-color: lightblue;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
 `
 
 StyledHeader.Title = Title
+StyledHeader.DropDownContainer = DropDownContainer
 StyledHeader.DropDownMenu = DropDownMenu
-StyledHeader.Button = Button
-StyledHeader.Link = StyledLink
+StyledHeader.MenuIcon = Button
+StyledHeader.MenuItem = DropDownMenuItem
 
 export default StyledHeader

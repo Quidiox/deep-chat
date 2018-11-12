@@ -6,37 +6,46 @@ class Header extends Component {
   state = { navMenu: false, userMenu: false }
 
   handleClick = type => e => {
-    console.log(this.state[type], type)
     this.setState({ [type]: !this.state[type] })
   }
 
   render() {
     return (
       <StyledHeader>
-        <StyledHeader.Button onClick={this.handleClick('navMenu')}>
-          <FontAwesomeIcon icon="bars" />
-        </StyledHeader.Button>
-        {this.state.navMenu && (
-          <StyledHeader.DropDownMenu>
-            <StyledHeader.Link to="/login" activeClassName="nav-link-active">
-              Login
-            </StyledHeader.Link>
-            <StyledHeader.Link to="/register" activeClassName="nav-link-active">
-              Register
-            </StyledHeader.Link>
-          </StyledHeader.DropDownMenu>
-        )}
+        <StyledHeader.DropDownContainer>
+          <StyledHeader.MenuIcon onClick={this.handleClick('navMenu')}>
+            <FontAwesomeIcon icon="bars" />
+          </StyledHeader.MenuIcon>
+          {this.state.navMenu && (
+            <StyledHeader.DropDownMenu>
+              <StyledHeader.MenuItem
+                to="/login"
+                activeClassName="nav-link-active"
+              >
+                Login
+              </StyledHeader.MenuItem>
+              <StyledHeader.MenuItem
+                to="/register"
+                activeClassName="nav-link-active"
+              >
+                Register
+              </StyledHeader.MenuItem>
+            </StyledHeader.DropDownMenu>
+          )}
+        </StyledHeader.DropDownContainer>
         <StyledHeader.Title>Header</StyledHeader.Title>
-        <StyledHeader.Button onClick={this.handleClick('userMenu')}>
-          <FontAwesomeIcon icon="user-circle" />
-        </StyledHeader.Button>
-        {this.state.userMenu && (
-          <StyledHeader.DropDownMenu right>
-            <StyledHeader.Link to="" activeClassName="nav-link-active">
-              hello
-            </StyledHeader.Link>
-          </StyledHeader.DropDownMenu>
-        )}
+        <StyledHeader.DropDownContainer>
+          <StyledHeader.MenuIcon onClick={this.handleClick('userMenu')}>
+            <FontAwesomeIcon icon="user-circle" />
+          </StyledHeader.MenuIcon>
+          {this.state.userMenu && (
+            <StyledHeader.DropDownMenu right>
+              <StyledHeader.MenuItem to="" activeClassName="nav-link-active">
+                hello
+              </StyledHeader.MenuItem>
+            </StyledHeader.DropDownMenu>
+          )}
+        </StyledHeader.DropDownContainer>
       </StyledHeader>
     )
   }
