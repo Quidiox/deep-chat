@@ -6,7 +6,7 @@ const activeClassName = 'nav-link-active'
 const StyledLink = styled(NavLink).attrs({
   activeClassName
 })`
-  padding: 2px;
+  padding: 2px 2px 0 2px;
   text-decoration: none;
   cursor: pointer;
   &:hover {
@@ -16,6 +16,11 @@ const StyledLink = styled(NavLink).attrs({
   }
   &.${activeClassName} {
     color: green;
+    &::after {
+      content: '\u2713';
+      float: right;
+      height: 20px;
+    }
   }
 `
 

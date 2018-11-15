@@ -6,10 +6,10 @@ const DropDownMenu = styled(UL)`
   width: ${props => props.width || '100px'};
   height: ${props => props.height || 'auto'};
   min-height: 20px;
-  border: 1px solid black;
+  border: 1px solid lightgray;
   right: ${props => (props.right ? '0' : '')};
   margin: 5px;
-  border-radius: 5px;
+  border-radius: 2px;
   display: flex;
   flex-direction: column;
   position: absolute;

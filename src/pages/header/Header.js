@@ -45,7 +45,10 @@ class Header extends Component {
           {this.state.userMenu && (
             <StyledHeader.DropDownMenu right>
               <StyledHeader.MenuItem>
-                <StyledHeader.Link to="" activeClassName="nav-link-active">
+                <StyledHeader.Link
+                  to="/hello"
+                  activeClassName="nav-link-active"
+                >
                   hello
                 </StyledHeader.Link>
               </StyledHeader.MenuItem>
