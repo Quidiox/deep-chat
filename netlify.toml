@@ -1,4 +1,5 @@
 [Settings]
+ ID = "4ea7f193-cea9-49b0-bb0b-606dc2e36851"
 [[redirects]]
   from="/*"
   to="/index.html"
@@ -6,9 +7,9 @@
 [[headers]]
   for="/*"
   [headers.values]
-    Content-Security-Policy: "default-src 'none'; object-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'"
-    Referrer-Policy: "no-referrer, strict-origin-when-cross-origin"
-    Strict-Transport-Security: "max-age=63072000; includeSubDomains"
-    X-Content-Type-Options: "nosniff"
+    Content-Security-Policy = "default-src 'none'; connect-src 'self'; manifest-src 'self'; object-src 'none'; img-src 'self'; script-src 'self' https://storage.googleapis.com/ 'sha256-GgRxrVOKNdB4LrRsVPDSbzvfdV4UqglmviH9GoBJ5jk='; style-src 'self' https://fonts.googleapis.com/ 'sha256-HKyJq3gUj/mqMkqWq85ZNpkmNgI6n3DNsUbeRzePVR8=' 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; font-src 'self' https://fonts.gstatic.com/ 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='; frame-ancestors 'none'; form-action 'self'"
+    Referrer-Policy = "no-referrer, strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
     X-Frame-Options = "DENY"
     X-XSS-Protection = "1; mode=block"

@@ -8,15 +8,20 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import App from './App'
 import store from './reducers/store'
 import registerServiceWorker from './registerServiceWorker'
+// styled-components v4+ globalstyle
+import GlobalStyle from './theme/globalStyles'
 
 library.add(fab, fas)
 
 ReactDOM.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>,
+  <>
+    <GlobalStyle />
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </>,
   document.getElementById('root')
 )
 registerServiceWorker()
