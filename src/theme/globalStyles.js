@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components/macro'
 
 const GlobalStyle = createGlobalStyle`
-  @import url(‘https://fonts.googleapis.com/css?family=Montserrat|Roboto');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat|Roboto');
  
   body {
     height: 100vh;

@@ -1,0 +1,14 @@
+[Settings]
+[[redirects]]
+  from="/*"
+  to="/index.html"
+  status=200
+[[headers]]
+  for="/*"
+  [headers.values]
+    Content-Security-Policy: "default-src 'none'; object-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'"
+    Referrer-Policy: "no-referrer, strict-origin-when-cross-origin"
+    Strict-Transport-Security: "max-age=63072000; includeSubDomains"
+    X-Content-Type-Options: "nosniff"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
