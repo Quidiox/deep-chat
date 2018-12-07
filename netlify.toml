@@ -6,7 +6,7 @@
 [[headers]]
   for="/*"
   [headers.values]
-    Content-Security-Policy = "default-src 'none'; connect-src 'self'; object-src 'none'; img-src 'self'; script-src 'self' https://storage.googleapis.com; style-src 'self'; font-src 'self'; frame-ancestors 'none';"
+    Content-Security-Policy = "default-src 'none'; connect-src 'self'; object-src 'none'; img-src 'self'; script-src 'self' https://storage.googleapis.com; style-src 'self'; font-src 'self' https://fonts.googleapis.com/css; frame-ancestors 'none';"
     Referrer-Policy = "no-referrer, strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains"
     X-Content-Type-Options = "nosniff"
