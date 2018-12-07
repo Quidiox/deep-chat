@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import CreateUser from './pages/user/Create'
 import Header from './pages/header/Header'
