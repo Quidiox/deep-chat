@@ -5,8 +5,6 @@ import Login from './pages/auth/Login'
 import CreateUser from './pages/user/Create'
 import Header from './pages/header/Header'
 import { requestVerifyUserToken } from './reducers/userReducer'
-// styled-components v4+ globalstyle
-import GlobalStyle from './theme/globalStyles'
 
 class App extends Component {
   render() {
@@ -25,7 +23,6 @@ class App extends Component {
             <Route path="/register" component={CreateUser} />
           </Switch>
         </div>
-        <GlobalStyle />
       </>
     )
   }
