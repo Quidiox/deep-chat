@@ -15,12 +15,12 @@ library.add(fab, fas)
 
 ReactDOM.render(
   <>
+    <GlobalStyle />
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-    <GlobalStyle />
   </>,
   document.getElementById('root')
 )
