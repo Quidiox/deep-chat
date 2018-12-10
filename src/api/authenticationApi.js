@@ -5,7 +5,6 @@ const authAxios = axios.create({
 })
 
 const login = async data => {
-  console.log('hello', process.env.NODE_ENV, process.env.REACT_APP_BASEURL, url)
   try {
     const response = await authAxios.post('login', data)
     return response.data
