@@ -1,6 +1,6 @@
 import axios from 'axios'
 const userAxios = axios.create({
-  baseURL: 'http://localhost:3005/api/user/',
+  baseURL: process.env.REACT_APP_BASEURL + 'user/',
   withCredentials: true
 })
 
@@ -8,7 +8,9 @@ const find = async data => {
   try {
     const response = await userAxios.get(data.userId)
     return response.data
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 const create = async data => {

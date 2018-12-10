@@ -1,9 +1,11 @@
 import axios from 'axios'
+const url = process.env.REACT_APP_BASEURL
 const authAxios = axios.create({
-  baseURL: 'http://localhost:3005/api/auth/'
+  baseURL: process.env.REACT_APP_BASEURL + 'auth/'
 })
 
 const login = async data => {
+  console.log('hello', process.env.NODE_ENV, process.env.REACT_APP_BASEURL, url)
   try {
     const response = await authAxios.post('login', data)
     return response.data
