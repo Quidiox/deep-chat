@@ -1,5 +1,4 @@
 import axios from 'axios'
-const url = process.env.REACT_APP_BASEURL
 const authAxios = axios.create({
   baseURL: process.env.REACT_APP_BASEURL + 'auth/'
 })
