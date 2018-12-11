@@ -7,7 +7,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import App from './App'
 import store from './reducers/store'
-import registerServiceWorker from './registerServiceWorker'
+import { unregister } from './registerServiceWorker'
 
 library.add(fab, fas)
 
@@ -19,4 +19,5 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 )
-registerServiceWorker()
+unregister()
+//registerServiceWorker()

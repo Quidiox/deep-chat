@@ -8,6 +8,7 @@ const StyledLink = styled(NavLink).attrs({
 })`
   padding: 2px 2px 0 2px;
   text-decoration: none;
+  color: black;
   cursor: pointer;
   &:hover {
     text-decoration: underline;

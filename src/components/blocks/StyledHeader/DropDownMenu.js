@@ -7,7 +7,7 @@ const DropDownMenu = styled(UL)`
   height: ${props => props.height || 'auto'};
   min-height: 20px;
   border: 1px solid lightgray;
-  right: ${props => (props.right ? '0' : '')};
+  right: ${props => props.right && '0'};
   margin: 5px;
   border-radius: 2px;
   display: flex;
