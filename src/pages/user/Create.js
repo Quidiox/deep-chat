@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import CreateForm from './CreateForm'
+import StyledColumn from '../../components/blocks/StyledColumn'
+import H1 from '../../components/elements/H1'
 import { requestCreateUser } from '../../reducers/userReducer'
 
 class Create extends Component {
@@ -50,7 +52,8 @@ class Create extends Component {
   render() {
     const { name, username, password, passwordConfirm, error } = this.state
     return (
-      <>
+      <StyledColumn>
+        <H1>Register</H1>
         <CreateForm
           name={name}
           username={username}
@@ -61,7 +64,7 @@ class Create extends Component {
           clearFields={this.clearFields}
         />
         <div>{error}</div>
-      </>
+      </StyledColumn>
     )
   }
 }

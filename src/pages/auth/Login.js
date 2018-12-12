@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import LoginForm from './LoginForm'
+import StyledColumn from '../../components/blocks/StyledColumn'
+import H1 from '../../components/elements/H1'
 import { requestLoginUser } from '../../reducers/userReducer'
 
 class Login extends Component {
@@ -28,13 +30,16 @@ class Login extends Component {
   render() {
     const { username, password } = this.state
     return (
-      <LoginForm
-        handleFieldChange={this.handleFieldChange}
-        login={this.login}
-        clearFields={this.clearFields}
-        username={username}
-        password={password}
-      />
+      <StyledColumn>
+        <H1>Login</H1>
+        <LoginForm
+          handleFieldChange={this.handleFieldChange}
+          login={this.login}
+          clearFields={this.clearFields}
+          username={username}
+          password={password}
+        />
+      </StyledColumn>
     )
   }
 }
