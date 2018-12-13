@@ -64,6 +64,17 @@ class Header extends Component {
                   Register
                 </StyledHeader.Link>
               </StyledHeader.MenuItem>
+              <StyledHeader.MenuItem>
+                <StyledHeader.Link
+                  exact
+                  to="/"
+                  activeClassName="nav-link-active"
+                  onClick={this.handleLinkClick}
+                >
+                  <FontAwesomeIcon icon="info-circle" />
+                  About
+                </StyledHeader.Link>
+              </StyledHeader.MenuItem>
             </StyledHeader.DropDownMenu>
           )}
         </StyledHeader.DropDownContainer>

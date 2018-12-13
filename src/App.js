@@ -4,8 +4,8 @@ import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import CreateUser from './pages/user/Create'
 import Header from './pages/header/Header'
+import FrontPage from './pages/frontpage/FrontPage'
 import { requestVerifyUserToken } from './reducers/userReducer'
-// styled-components v4+ globalstyle
 import GlobalStyle from './theme/globalStyles'
 
 class App extends Component {
@@ -13,18 +13,11 @@ class App extends Component {
     return (
       <>
         <Header />
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={CreateUser} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={FrontPage} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={CreateUser} />
+        </Switch>
         <GlobalStyle />
       </>
     )
