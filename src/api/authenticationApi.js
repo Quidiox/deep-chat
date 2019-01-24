@@ -5,7 +5,9 @@ const authAxios = axios.create({
 
 const login = async data => {
   try {
-    const response = await authAxios.post('login', data)
+    const response = await authAxios.post('login', data, {
+      withCredentials: true
+    })
     return response.data
   } catch (error) {
     console.log(error)
