@@ -4,34 +4,22 @@ const authAxios = axios.create({
 })
 
 const login = async data => {
-  try {
-    const response = await authAxios.post('login', data, {
-      withCredentials: true
-    })
-    return response.data
-  } catch (error) {
-    console.log(error)
-  }
+  const response = await authAxios.post('login', data, {
+    withCredentials: true
+  })
+  return response.data
 }
 
 const verifyUser = async () => {
-  try {
-    return await authAxios.post('verifyUser', null, {
-      withCredentials: true
-    })
-  } catch (error) {
-    console.log(error)
-  }
+  return await authAxios.post('verifyUser', null, {
+    withCredentials: true
+  })
 }
 
 const logout = async () => {
-  try {
-    return await authAxios.post('logout', null, {
-      withCredentials: true
-    })
-  } catch (error) {
-    console.log(error)
-  }
+  return await authAxios.post('logout', null, {
+    withCredentials: true
+  })
 }
 
 export default { login, logout, verifyUser }

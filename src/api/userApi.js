@@ -5,40 +5,24 @@ const userAxios = axios.create({
 })
 
 const find = async data => {
-  try {
-    const response = await userAxios.get(data.userId)
-    return response.data
-  } catch (error) {
-    console.log(error)
-  }
+  const response = await userAxios.get(data.userId)
+  return response.data
 }
 
 const create = async data => {
-  try {
-    const response = await userAxios.post('create', data, {
-      withCredentials: false
-    })
-    return response.data
-  } catch (error) {
-    console.log(error)
-  }
+  const response = await userAxios.post('create', data, {
+    withCredentials: false
+  })
+  return response.data
 }
 
 const remove = async data => {
-  try {
-    return await userAxios.post('remove', data)
-  } catch (error) {
-    console.log(error)
-  }
+  return await userAxios.post('remove', data)
 }
 
 const edit = async data => {
-  try {
-    const response = await userAxios.put('edit', data)
-    return response.data
-  } catch (error) {
-    console.log(error)
-  }
+  const response = await userAxios.put('edit', data)
+  return response.data
 }
 
 export default { find, create, edit, remove }
