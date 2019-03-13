@@ -18,7 +18,7 @@ class App extends Component {
           <Route exact path="/" component={FrontPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={CreateUser} />
-          <Route path="chat" component={Chat} />
+          <Route path="/chat" component={Chat} />
         </Switch>
         <GlobalStyle />
       </>

@@ -40,7 +40,8 @@ class Header extends Component {
                 <StyledHeader.DropDownMenu
                   onClick={this.handleClick('navMenu')}
                 >
-                  {this.menuItem('/chat', 'Chat page')}
+                  {this.menuItem('/home', 'Home', 'home-lg-alt')}
+                  {this.menuItem('/chat', 'Chat', 'stack-exchange')}
                 </StyledHeader.DropDownMenu>
               )}
             </div>
@@ -60,7 +61,7 @@ class Header extends Component {
               onClick={this.handleClick('userMenu')}
               right
             >
-              {this.menuItem('/logout', 'Logout', 'sing-out')}
+              {this.menuItem('/logout', 'Logout', 'sign-out-alt')}
             </StyledHeader.DropDownMenu>
           ) : (
             this.state.userMenu && (
