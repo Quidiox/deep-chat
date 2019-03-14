@@ -1,18 +1,20 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import io from 'socket.io-client'
 
-class Chat extends Component {
-  constructor(props) {
-    super(props)
-    this.socket = io('http://backend.deep-chat.com', { path: '/server' })
-  }
-  render() {
-    this.socket.on('connect', () => {
-      this.socket.emit('message', 'hello world!!!111!!')
-      this.socket.on('hi', msg => console.log(msg))
+const Chat = props => {
+  const [message, setMessage] = useState('')
+
+  const initializeSocketIO = () => {
+    const socket = io('http://backend.deep-chat.com', { path: '/chat' })
+    socket.on('connect', () => {
+      socket.emit('message', 'hello world!!!111!!')
+      socket.on('hi', message => {
+        setMessage(message)
+      })
     })
-    return <div>Hello World!</div>
   }
+  initializeSocketIO()
+  return <div>{message}</div>
 }
 
 export default Chat
