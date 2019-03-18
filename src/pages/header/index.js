@@ -40,8 +40,8 @@ class Header extends Component {
                 <StyledHeader.DropDownMenu
                   onClick={this.handleClick('navMenu')}
                 >
-                  {this.menuItem('/home', 'Home', 'home-lg-alt')}
-                  {this.menuItem('/chat', 'Chat', 'stack-exchange')}
+                  {this.menuItem('/home', 'Home', 'home')}
+                  {this.menuItem('/chat', 'Chat', 'comments')}
                 </StyledHeader.DropDownMenu>
               )}
             </div>

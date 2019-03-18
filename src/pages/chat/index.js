@@ -7,8 +7,11 @@ const Chat = props => {
   const initializeSocketIO = () => {
     const socket = io('http://backend.deep-chat.com', { path: '/chat' })
     socket.on('connect', () => {
-      socket.emit('message', 'hello world!!!111!!')
-      socket.on('hi', message => {
+      socket.emit(
+        'clientConnected',
+        `Client ${socket.id} connected successfully`
+      )
+      socket.on('serverConnected', message => {
         setMessage(message)
       })
     })

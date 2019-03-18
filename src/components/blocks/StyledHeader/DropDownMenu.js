@@ -3,6 +3,7 @@ import UL from '../../elements/UL'
 
 const DropDownMenu = styled(UL)`
   z-index: 1000;
+  background-color: white;
   width: ${props => props.width || '100px'};
   height: ${props => props.height || 'auto'};
   min-height: 20px;

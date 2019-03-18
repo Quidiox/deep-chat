@@ -1,25 +1,20 @@
 import axios from 'axios'
 const authAxios = axios.create({
-  baseURL: process.env.REACT_APP_BASEURL + 'auth/'
+  baseURL: process.env.REACT_APP_BASEAPIURL + 'auth/',
+  withCredentials: true
 })
 
 const login = async data => {
-  const response = await authAxios.post('login', data, {
-    withCredentials: true
-  })
+  const response = await authAxios.post('login', data)
   return response.data
 }
 
 const verifyUser = async () => {
-  return await authAxios.post('verifyUser', null, {
-    withCredentials: true
-  })
+  return await authAxios.post('verifyUser')
 }
 
 const logout = async () => {
-  return await authAxios.post('logout', null, {
-    withCredentials: true
-  })
+  return await authAxios.post('logout')
 }
 
 export default { login, logout, verifyUser }

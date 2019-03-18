@@ -1,6 +1,6 @@
 import axios from 'axios'
 const userAxios = axios.create({
-  baseURL: process.env.REACT_APP_BASEURL + 'user/',
+  baseURL: process.env.REACT_APP_BASEAPIURL + 'user/',
   withCredentials: true
 })
 
