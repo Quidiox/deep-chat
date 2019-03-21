@@ -1,13 +1,12 @@
 import React from 'react'
-import UL from '../../../../components/elements/UL'
-import LI from '../../../../components/elements/LI'
+import StyledUsers from '../../../../components/blocks/StyledUsers'
 
-const Users = props => (
-  <UL>
-    {props.users.map(user => (
-      <LI key={user.id}>{user.name}</LI>
+const Users = ({ users }) => (
+  <StyledUsers>
+    {users.map(user => (
+      <StyledUsers.LI key={user.id}>{user.name}</StyledUsers.LI>
     ))}
-  </UL>
+  </StyledUsers>
 )
 
 export default Users

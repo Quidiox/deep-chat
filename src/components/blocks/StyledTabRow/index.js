@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro'
-import LI from './LI'
+import UL from '../../elements/UL'
 import A from './A'
+import LI from './LI'
 
-const StyledRow = styled.ul`
-  margin: 0;
-  padding: 0;
+const StyledTabRow = styled(UL)`
+  cursor: pointer;
   &::before {
     position: absolute;
     content: '';
@@ -16,7 +16,7 @@ const StyledRow = styled.ul`
   }
 `
 
-StyledRow.A = A
-StyledRow.LI = LI
+StyledTabRow.A = A
+StyledTabRow.LI = LI
 
-export default StyledRow
+export default StyledTabRow
