@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import StyledRow from '../../../components/blocks/StyledRow'
+import StyledTabRow from '../../../components/blocks/StyledTabRow'
 
 const Tabs = ({ tabs }) => {
   const [selected, setSelected] = useState(tabs[0].id)
@@ -8,19 +8,19 @@ const Tabs = ({ tabs }) => {
   }
 
   return (
-    <StyledRow>
+    <StyledTabRow>
       {tabs.map(tab => {
         return (
-          <StyledRow.LI
+          <StyledTabRow.LI
             key={tab.id}
             onClick={changeSelected(tab.id)}
             selected={tab.id === selected ? true : false}
           >
-            <StyledRow.A>{tab.title}</StyledRow.A>
-          </StyledRow.LI>
+            <StyledTabRow.A>{tab.title}</StyledTabRow.A>
+          </StyledTabRow.LI>
         )
       })}
-    </StyledRow>
+    </StyledTabRow>
   )
 }
 

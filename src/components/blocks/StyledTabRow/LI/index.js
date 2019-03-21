@@ -12,7 +12,7 @@ const LI = styled.li`
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #fff;
   text-shadow: 0 1px #fff;
   margin: 0 -5px;
-  padding: 0 30px;
+  padding: 0 12px;
 
   &::before,
   &::after {
