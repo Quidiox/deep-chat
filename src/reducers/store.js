@@ -1,11 +1,11 @@
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import createHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProduction'
 import rootReducer from './rootReducer'
 import rootSaga from '../sagas/rootSaga'
 
-export const history = createHistory()
+export const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
 const store = createStore(
   rootReducer,
