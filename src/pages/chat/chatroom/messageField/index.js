@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import StyledForm from '../../../../components/blocks/StyledForm'
+import StyledMessageField from '../../../../components/blocks/StyledMessageField'
 
-const Message = props => {
+const MessageField = props => {
   const [message, setMessage] = useState('')
 
   const handleChange = e => {
@@ -10,23 +10,23 @@ const Message = props => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    // send message to server logic here
+    // send message to server logic action called here
     console.log('message: ', message)
     setMessage('')
   }
 
   return (
-    <StyledForm>
-      <StyledForm.Input
+    <StyledMessageField>
+      <StyledMessageField.Input
         onChange={handleChange}
         placeholder="Type a new message..."
         value={message}
       />
-      <StyledForm.Button onClick={handleSubmit} type="submit">
+      <StyledMessageField.Button onClick={handleSubmit} type="submit">
         Submit
-      </StyledForm.Button>
-    </StyledForm>
+      </StyledMessageField.Button>
+    </StyledMessageField>
   )
 }
 
-export default Message
+export default MessageField

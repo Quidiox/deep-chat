@@ -33,12 +33,12 @@ const Chat = props => {
   })
 
   return (
-    <>
+    <div style={{ width: '1000px' }}>
       <Tabs tabs={tabs} />
       <Chatroom />
       <p>{message}</p>
       <p>{error}</p>
-    </>
+    </div>
   )
 }
 
