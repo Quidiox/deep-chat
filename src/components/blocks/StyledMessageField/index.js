@@ -8,11 +8,11 @@ const StyledMessageField = styled(StyledForm)`
   bottom: 0;
   flex-direction: row;
   align-items: center;
-  width: 600px;
+  width: 100%;
 `
 
 const formInput = styled(Input)`
-  width: 500px;
+  width: 100%;
 `
 
 const formButton = styled(Button)`
