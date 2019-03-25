@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import CreateForm from './CreateForm'
-import StyledColumn from '../../components/blocks/StyledColumn'
-import H1 from '../../components/elements/H1'
-import { requestCreateUser } from '../../reducers/userReducer'
+import Form from './form'
+import StyledColumn from '../../../components/blocks/StyledColumn'
+import H1 from '../../../components/elements/H1'
+import { requestCreateUser } from '../../../reducers/userReducer'
 
 class Create extends Component {
   state = {
@@ -54,7 +54,7 @@ class Create extends Component {
     return (
       <StyledColumn>
         <H1>Register</H1>
-        <CreateForm
+        <Form
           name={name}
           username={username}
           password={password}

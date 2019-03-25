@@ -62,6 +62,7 @@ const Header = props => {
         {userMenu && props.user.id ? (
           <StyledHeader.DropDownMenu onClick={handleClick('userMenu')} right>
             {menuItem('/logout', 'Logout', 'sign-out-alt')}
+            {menuItem('/profile', 'Profile', 'id-card')}
           </StyledHeader.DropDownMenu>
         ) : (
           userMenu && (

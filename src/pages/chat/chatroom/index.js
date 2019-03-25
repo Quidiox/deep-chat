@@ -17,7 +17,13 @@ const users = [
   { name: 'pont', id: 6 }
 ]
 
-const Chatroom = props => {
+const Chatroom = ({ message }) => {
+  const checkMessage = message => {
+    if (message) {
+      messages.push({ text: message, id: Math.random() * 1000 })
+    }
+  }
+  checkMessage(message)
   return (
     <StyledChatroom>
       <MessageList messages={messages} />

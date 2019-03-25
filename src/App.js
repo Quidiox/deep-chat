@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/auth/Login'
-import CreateUser from './pages/user/Create'
+import CreateUser from './pages/user/create'
+import Profile from './pages/user/profile'
 import Header from './pages/header'
 import FrontPage from './pages/frontpage'
 import Chat from './pages/chat'
@@ -19,7 +20,8 @@ class App extends Component {
           <Route exact path="/" component={FrontPage} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={CreateUser} />
-          <Route path="home" component={Home} />
+          <Route path="/profile" component={Profile} />
+          <Route path="/home" component={Home} />
           <Route path="/chat" component={Chat} />
         </Switch>
         <GlobalStyle />

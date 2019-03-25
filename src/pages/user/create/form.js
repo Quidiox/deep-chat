@@ -1,7 +1,7 @@
 import React from 'react'
-import StyledForm from '../../components/blocks/StyledForm'
+import StyledForm from '../../../components/blocks/StyledForm'
 
-const CreateForm = ({
+const Form = ({
   name,
   username,
   password,
@@ -61,4 +61,4 @@ const CreateForm = ({
   )
 }
 
-export default CreateForm
+export default Form

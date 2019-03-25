@@ -36,8 +36,7 @@ const Chat = props => {
   return (
     <StyledChatPage>
       <Tabs tabs={tabs} />
-      <Chatroom />
-      <p>{message}</p>
+      <Chatroom message={message} />
       <p>{error}</p>
     </StyledChatPage>
   )
