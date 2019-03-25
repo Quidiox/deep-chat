@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import io from 'socket.io-client'
+import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
 import Tabs from './tabs'
 
@@ -33,12 +34,12 @@ const Chat = props => {
   })
 
   return (
-    <div style={{ width: '1000px' }}>
+    <StyledChatPage>
       <Tabs tabs={tabs} />
       <Chatroom />
       <p>{message}</p>
       <p>{error}</p>
-    </div>
+    </StyledChatPage>
   )
 }
 

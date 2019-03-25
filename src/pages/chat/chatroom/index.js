@@ -1,7 +1,7 @@
 import React from 'react'
 import StyledChatroom from '../../../components/blocks/StyledChatroom'
 import MessageField from './messageField'
-import Users from './users'
+import UserList from './userList'
 import MessageList from './messageList'
 
 const messages = [
@@ -21,7 +21,7 @@ const Chatroom = props => {
   return (
     <StyledChatroom>
       <MessageList messages={messages} />
-      <Users users={users} />
+      <UserList users={users} />
       <MessageField />
     </StyledChatroom>
   )
