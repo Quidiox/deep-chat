@@ -18,8 +18,6 @@ const Form = ({
         placeholder="name"
         onChange={handleFieldChange}
         required
-        minLength={3}
-        maxLength={20}
       />
       <StyledForm.Input
         name="username"
@@ -27,8 +25,6 @@ const Form = ({
         value={username}
         onChange={handleFieldChange}
         required
-        minLength={2}
-        maxLength={150}
       />
       <StyledForm.Input
         name="password"
@@ -37,8 +33,6 @@ const Form = ({
         placeholder="password"
         onChange={handleFieldChange}
         required
-        minLength={6}
-        maxLength={30}
       />
       <StyledForm.Input
         name="passwordConfirm"
@@ -47,8 +41,6 @@ const Form = ({
         placeholder="password confirm"
         onChange={handleFieldChange}
         required
-        minLength={6}
-        maxLength={30}
       />
 
       <div style={{ display: 'inline-block' }}>
