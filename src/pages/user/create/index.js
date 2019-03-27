@@ -19,15 +19,15 @@ class Create extends Component {
   inputsAreValid = (name, username, password, passwordConfirm) => {
     const errors = []
     if (!validator.isAlpha(name))
-      errors.push('Name should contain only alphabetic characters.')
+      errors.push('Name must contain only alphabetic characters.')
     if (!validator.isLength(name, { min: 3, max: 30 }))
-      errors.push('Name should be between 3-30 characters long.')
-    if (!validator.isAlpha(username))
-      errors.push('Username should contain only alphabetic characters.')
+      errors.push('Name must be between 3-30 characters long.')
+    if (!validator.isAlphanumeric(username))
+      errors.push('Username must contain only alphanumeric characters.')
     if (!validator.isLength(username, { min: 3, max: 30 }))
-      errors.push('Username should be between 3-30 characters long.')
+      errors.push('Username must be between 3-30 characters long.')
     if (!validator.isLength(password, { min: 3, max: 30 }))
-      errors.push('Password should be between 3-30 characters long.')
+      errors.push('Password must be between 3-30 characters long.')
     if (!validator.equals(password, passwordConfirm))
       errors.push('Passwords do not match.')
     return errors
