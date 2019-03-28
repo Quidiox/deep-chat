@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import validator from 'validator'
 import Form from './form'
-import StyledColumn from '../../../components/blocks/StyledColumn'
-import H1 from '../../../components/elements/H1'
-import P from '../../../components/elements/P'
-import { requestEditUser } from '../../../reducers/userReducer'
+import StyledColumn from '../../../../components/blocks/StyledColumn'
+import H1 from '../../../../components/elements/H1'
+import P from '../../../../components/elements/P'
+import { requestEditUser } from '../../../../reducers/userReducer'
 
 const inputValidation = (name, username, password, passwordConfirm) => {
   const errors = []

@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import CreateUser from './pages/user/create'
+import EditUser from './pages/user/profile/edit'
+import DeleteUser from './pages/user/profile/delete'
 import Profile from './pages/user/profile'
 import Header from './pages/header'
 import About from './pages/about'
@@ -23,6 +25,8 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/home" component={Home} />
           <Route path="/chat" component={Chat} />
+          <Route path="/user/edit" component={EditUser} />
+          <Route path="/user/delete" component={DeleteUser} />
         </Switch>
         <GlobalStyle />
       </>

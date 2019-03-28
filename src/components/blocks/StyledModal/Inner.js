@@ -1,14 +1,15 @@
 import styled from 'styled-components/macro'
 
 const Inner = styled.div`
-  z-index: 1100;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  padding: 20px 50px 20px 20px;
   overflow: auto;
+  background: white;
+  color: black;
+  z-index: 1020;
 `
 
 export default Inner

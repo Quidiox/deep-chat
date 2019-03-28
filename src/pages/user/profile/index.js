@@ -9,10 +9,9 @@ const Profile = () => {
     <StyledColumn>
       <H1>User profile page</H1>
       <P>
-        This is your user account managements page where you can{' '}
-        <Link to="/user/edit">edit</Link> or{' '}
-        <Link to="/user/delete">delete</Link>
-        your user account.
+        This is your user account managements page where <br />
+        you can <Link to="/user/edit">edit</Link> or{' '}
+        <Link to="/user/delete">delete</Link> your user account.
       </P>
     </StyledColumn>
   )
