@@ -1,5 +1,5 @@
 import React from 'react'
 
-const Edit = props => {}
+const Edit = props => <div />
 
 export default Edit

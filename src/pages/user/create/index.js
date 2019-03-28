@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import validator from 'validator'
 import Form from './form'
@@ -7,16 +7,14 @@ import H1 from '../../../components/elements/H1'
 import P from '../../../components/elements/P'
 import { requestCreateUser } from '../../../reducers/userReducer'
 
-class Create extends Component {
-  state = {
-    name: '',
-    username: '',
-    password: '',
-    passwordConfirm: '',
-    errors: []
-  }
+const Create = props => {
+  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const [errors, setErrors] = useState([])
 
-  inputsAreValid = (name, username, password, passwordConfirm) => {
+  const inputValidation = (name, username, password, passwordConfirm) => {
     const errors = []
     if (!validator.isAlpha(name))
       errors.push('Name must contain only alphabetic characters.')
@@ -33,69 +31,60 @@ class Create extends Component {
     return errors
   }
 
-  create = e => {
+  const create = e => {
     e.preventDefault()
-    const { name, username, password, passwordConfirm } = this.state
-    const errors = this.inputsAreValid(
-      name,
-      username,
-      password,
-      passwordConfirm
-    )
+    const errors = inputValidation(name, username, password, passwordConfirm)
     if (errors.length !== 0) {
-      this.setState({ errors })
+      setErrors(errors)
     } else {
-      this.props.requestCreateUser({
+      props.requestCreateUser({
         name,
         username,
         password
       })
-      this.setState({
-        name: '',
-        username: '',
-        password: '',
-        passwordConfirm: '',
-        errors: []
-      })
+      setName('')
+      setUsername('')
+      setPassword('')
+      setPasswordConfirm('')
+      setErrors([])
     }
   }
 
-  handleFieldChange = e => {
-    this.setState({ [e.target.name]: e.target.value, error: '' })
+  const handleFieldChange = e => {
+    if (e.target.name === 'name') setName(e.target.value)
+    else if (e.target.name === 'username') setUsername(e.target.value)
+    else if (e.target.name === 'password') setPassword(e.target.value)
+    else if (e.target.name === 'passwordConfirm')
+      setPasswordConfirm(e.target.value)
   }
 
-  clearFields = e => {
-    this.setState({
-      name: '',
-      username: '',
-      password: '',
-      passwordConfirm: '',
-      errors: []
-    })
+  const clearFields = () => {
+    setName('')
+    setUsername('')
+    setPassword('')
+    setPasswordConfirm('')
+    setErrors([])
   }
 
-  render() {
-    const { name, username, password, passwordConfirm, errors } = this.state
-    return (
-      <StyledColumn>
-        <H1>Register</H1>
-        <Form
-          name={name}
-          username={username}
-          password={password}
-          passwordConfirm={passwordConfirm}
-          create={this.create}
-          handleFieldChange={this.handleFieldChange}
-          clearFields={this.clearFields}
-        />
-        <div>
-          {errors.map(error => (
-            <P key={error}>{error}</P>
-          ))}
-        </div>
-      </StyledColumn>
-    )
-  }
+  return (
+    <StyledColumn>
+      <H1>Register</H1>
+      <Form
+        name={name}
+        username={username}
+        password={password}
+        passwordConfirm={passwordConfirm}
+        create={create}
+        handleFieldChange={handleFieldChange}
+        clearFields={clearFields}
+      />
+      <div>
+        {errors.map(error => (
+          <P key={error}>{error}</P>
+        ))}
+      </div>
+    </StyledColumn>
+  )
 }
 
 const mapDispatchToProps = { requestCreateUser }
