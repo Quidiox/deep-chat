@@ -5,7 +5,7 @@ import Login from './pages/auth/Login'
 import CreateUser from './pages/user/create'
 import Profile from './pages/user/profile'
 import Header from './pages/header'
-import FrontPage from './pages/frontpage'
+import About from './pages/about'
 import Chat from './pages/chat'
 import Home from './pages/home'
 import { requestVerifyUserToken } from './reducers/userReducer'
@@ -17,7 +17,7 @@ class App extends Component {
       <>
         <Header />
         <Switch>
-          <Route exact path="/" component={FrontPage} />
+          <Route exact path="/" component={About} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={CreateUser} />
           <Route path="/profile" component={Profile} />
