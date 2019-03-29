@@ -30,7 +30,7 @@ const Delete = ({ user, requestDeleteUser }) => {
         <StyledModal.PopUp>
           <H1>I am modal!</H1>
           <button onClick={handleModal}>close</button>
-          <button onClick={remove} />
+          <button onClick={remove}>delete user</button>
         </StyledModal.PopUp>
       </StyledModal>
     </>

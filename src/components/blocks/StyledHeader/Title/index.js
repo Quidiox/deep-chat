@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
-import H1 from '../../elements/H1'
 
-const Title = styled(H1)`
+const Title = styled.h1`
+  font-size: 1.5em;
   margin: 0;
   justify-content: center;
 `

@@ -4,7 +4,7 @@ import DropDownMenu from './DropDownMenu'
 import DropDownContainer from './DropDownContainer'
 import Button from './Button'
 import DropDownMenuItem from './DropDownMenuItem'
-import StyledLink from '../StyledLink'
+import StyledLink from './StyledLink'
 
 const StyledHeader = styled.div`
   top: ${props => props.top || '0'};

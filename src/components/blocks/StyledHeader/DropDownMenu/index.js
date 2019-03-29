@@ -1,7 +1,9 @@
 import styled from 'styled-components/macro'
-import UL from '../../elements/UL'
 
-const DropDownMenu = styled(UL)`
+const DropDownMenu = styled.ul`
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
   z-index: 1000;
   background-color: white;
   width: ${props => props.width || '100px'};
