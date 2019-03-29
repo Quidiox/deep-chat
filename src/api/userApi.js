@@ -17,7 +17,7 @@ const create = async data => {
 }
 
 const remove = async data => {
-  return await userAxios.post('remove', data)
+  return await userAxios.post('delete', data)
 }
 
 const edit = async data => {
