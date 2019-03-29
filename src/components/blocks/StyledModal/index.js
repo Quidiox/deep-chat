@@ -1,8 +1,7 @@
 import styled from 'styled-components/macro'
-import Inner from './Inner'
-import Overlay from './Overlay'
+import PopUp from './PopUp'
 
-const Modal = styled.div`
+const StyledModal = styled.div`
   display: ${props => (props.open ? 'block' : 'none')};
   width: 100%;
   height: 100%;
@@ -13,7 +12,6 @@ const Modal = styled.div`
   background-color: rgba(0, 0, 255, 0.5);
 `
 
-Modal.Inner = Inner
-Modal.Overlay = Overlay
+StyledModal.PopUp = PopUp
 
-export default Modal
+export default StyledModal

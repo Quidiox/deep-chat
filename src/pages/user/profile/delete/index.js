@@ -27,11 +27,9 @@ const Delete = ({ user, requestDeleteUser }) => {
         </P>
       </StyledColumn>
       <StyledModal open={open}>
-        <StyledModal.Overlay>
-          <StyledModal.Inner>
-            <H1>I am modal!</H1>
-          </StyledModal.Inner>
-        </StyledModal.Overlay>
+        <StyledModal.PopUp>
+          <H1>I am modal!</H1>
+        </StyledModal.PopUp>
       </StyledModal>
     </>
   )
