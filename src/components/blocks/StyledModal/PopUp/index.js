@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
 
 const PopUp = styled.div`
+  padding: 5px;
   position: fixed;
   width: 300px;
   height: 200px;
