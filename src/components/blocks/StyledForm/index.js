@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro'
 import Input from './Input'
 import Button from './Button'
+import Label from './Label'
 
 const StyledForm = styled.form`
   display: flex;
@@ -10,5 +11,6 @@ const StyledForm = styled.form`
 
 StyledForm.Input = Input
 StyledForm.Button = Button
+StyledForm.Label = Label
 
 export default StyledForm

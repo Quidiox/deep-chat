@@ -9,44 +9,72 @@ import { requestEditUser } from '../../../../reducers/userReducer'
 
 const inputValidation = (name, username, password, passwordConfirm) => {
   const errors = []
-  if (!validator.isAlpha(name))
+  if (name && !validator.isEmpty(name) && !validator.isAlpha(name))
     errors.push('Name must contain only alphabetic characters.')
-  if (!validator.isLength(name, { min: 3, max: 30 }))
+  if (
+    name &&
+    !validator.isEmpty(name) &&
+    !validator.isLength(name, { min: 3, max: 30 })
+  )
     errors.push('Name must be between 3-30 characters long.')
-  if (!validator.isAlphanumeric(username))
+  if (
+    username &&
+    !validator.isEmpty(username) &&
+    !validator.isAlphanumeric(username)
+  )
     errors.push('Username must contain only alphanumeric characters.')
-  if (!validator.isLength(username, { min: 3, max: 30 }))
+  if (
+    username &&
+    !validator.isEmpty(username) &&
+    !validator.isLength(username, { min: 3, max: 30 })
+  )
     errors.push('Username must be between 3-30 characters long.')
-  if (!validator.isLength(password, { min: 3, max: 30 }))
-    errors.push('Password must be between 3-30 characters long.')
-  if (!validator.equals(password, passwordConfirm))
+  if (
+    password &&
+    passwordConfirm &&
+    !validator.equals(password, passwordConfirm)
+  )
     errors.push('Passwords do not match.')
+  if (
+    password &&
+    !validator.isEmpty(password) &&
+    !validator.isLength(password, { min: 3, max: 30 })
+  )
+    errors.push('Password must be between 3-30 characters long.')
   return errors
 }
 
-const Edit = props => {
-  const [name, setName] = useState('')
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+const Edit = ({ requestEditUser, user }) => {
+  const [name, setName] = useState(user.name)
+  const [username, setUsername] = useState(user.username)
+  const [password, setPassword] = useState(undefined)
+  const [passwordConfirm, setPasswordConfirm] = useState(undefined)
   const [errors, setErrors] = useState([])
 
-  const edit = e => {
+  const edit = async e => {
     e.preventDefault()
-    const errors = inputValidation(name, username, password, passwordConfirm)
+    const nameToValidate = name !== user.name ? name : undefined
+    const usernameToValidate = username !== user.username ? username : undefined
+    const errors = inputValidation(
+      nameToValidate,
+      usernameToValidate,
+      password,
+      passwordConfirm
+    )
     if (errors.length !== 0) {
       setErrors(errors)
     } else {
-      props.requestEditUser({
-        name,
-        username,
+      await requestEditUser({
+        id: user.id,
+        name: nameToValidate,
+        username: usernameToValidate,
         password
       })
-      setName('')
-      setUsername('')
-      setPassword('')
-      setPasswordConfirm('')
-      setErrors([])
+      // setName('')
+      // setUsername('')
+      // setPassword('')
+      // setPasswordConfirm('')
+      // setErrors([])
     }
   }
 
@@ -69,6 +97,11 @@ const Edit = props => {
   return (
     <StyledColumn>
       <H1>Edit user details</H1>
+      <P>
+        Fill in the user details you wish
+        <br /> to change and leave other fields
+        <br /> unmodified.
+      </P>
       <Form
         name={name}
         username={username}
@@ -87,9 +120,13 @@ const Edit = props => {
   )
 }
 
+const mapStateToProps = state => ({
+  user: state.user
+})
+
 const mapDispatchToProps = { requestEditUser }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Edit)

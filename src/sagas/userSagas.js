@@ -5,14 +5,18 @@ import { genericActionCreator } from '../reducers/rootReducer'
 import {
   USER_LOGIN,
   USER_LOGIN_REQUEST,
+  USER_LOGIN_ERROR,
   USER_LOGOUT,
   USER_LOGOUT_REQUEST,
   USER_CREATE,
   USER_CREATE_REQUEST,
-  USER_DELETE_REQUEST,
+  USER_CREATE_ERROR,
   USER_DELETE,
+  USER_DELETE_REQUEST,
+  USER_DELETE_ERROR,
+  USER_EDIT,
   USER_EDIT_REQUEST,
-  USER_EDIT
+  USER_EDIT_ERROR
 } from '../reducers/actionTypes'
 
 function* login(action) {
@@ -21,6 +25,7 @@ function* login(action) {
     yield put(genericActionCreator(USER_LOGIN, user))
   } catch (error) {
     console.log(error)
+    yield put(genericActionCreator(USER_LOGIN_ERROR, error))
   }
 }
 
@@ -46,6 +51,7 @@ function* createUser(action) {
     yield put(genericActionCreator(USER_CREATE, user))
   } catch (error) {
     console.log(error)
+    yield put(genericActionCreator(USER_CREATE_ERROR, error))
   }
 }
 
@@ -59,6 +65,7 @@ function* editUser(action) {
     yield put(genericActionCreator(USER_EDIT, user))
   } catch (error) {
     console.log(error)
+    yield put(genericActionCreator(USER_EDIT_ERROR, error))
   }
 }
 
@@ -72,6 +79,7 @@ function* deleteUser(action) {
     yield put(genericActionCreator(USER_DELETE))
   } catch (error) {
     console.log(error)
+    yield put(genericActionCreator(USER_DELETE_ERROR, error))
   }
 }
 
