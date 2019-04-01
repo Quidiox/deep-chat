@@ -9,7 +9,11 @@ import { requestEditUser } from '../../../../reducers/userReducer'
 
 const inputValidation = (name, username, password, passwordConfirm) => {
   const errors = []
-  if (name && !validator.isEmpty(name) && !validator.isAlpha(name))
+  if (
+    name &&
+    !validator.isEmpty(name) &&
+    !validator.matches(name, /^[a-zA-Z\s]+$/)
+  )
     errors.push('Name must contain only alphabetic characters.')
   if (
     name &&
@@ -30,8 +34,7 @@ const inputValidation = (name, username, password, passwordConfirm) => {
   )
     errors.push('Username must be between 3-30 characters long.')
   if (
-    password &&
-    passwordConfirm &&
+    (password || passwordConfirm) &&
     !validator.equals(password, passwordConfirm)
   )
     errors.push('Passwords do not match.')
@@ -47,19 +50,22 @@ const inputValidation = (name, username, password, passwordConfirm) => {
 const Edit = ({ requestEditUser, user }) => {
   const [name, setName] = useState(user.name)
   const [username, setUsername] = useState(user.username)
-  const [password, setPassword] = useState(undefined)
-  const [passwordConfirm, setPasswordConfirm] = useState(undefined)
+  const [password, setPassword] = useState('')
+  const [passwordConfirm, setPasswordConfirm] = useState('')
   const [errors, setErrors] = useState([])
 
   const edit = async e => {
     e.preventDefault()
     const nameToValidate = name !== user.name ? name : undefined
     const usernameToValidate = username !== user.username ? username : undefined
+    const passwordToValidate = password.length > 0 ? password : undefined
+    const passwordConfirmToValidate =
+      passwordConfirm.length > 0 ? passwordConfirm : undefined
     const errors = inputValidation(
       nameToValidate,
       usernameToValidate,
-      password,
-      passwordConfirm
+      passwordToValidate,
+      passwordConfirmToValidate
     )
     if (errors.length !== 0) {
       setErrors(errors)
@@ -68,7 +74,7 @@ const Edit = ({ requestEditUser, user }) => {
         id: user.id,
         name: nameToValidate,
         username: usernameToValidate,
-        password
+        password: passwordToValidate
       })
       // setName('')
       // setUsername('')
