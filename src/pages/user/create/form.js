@@ -44,10 +44,12 @@ const Form = ({
       />
 
       <div style={{ display: 'inline-block' }}>
-        <StyledForm.Button onClick={create} type="submit">
+        <StyledForm.Button name="submit" onClick={create} type="submit">
           Submit
         </StyledForm.Button>
-        <StyledForm.Button onClick={clearFields}>Clear</StyledForm.Button>
+        <StyledForm.Button name="clear" onClick={clearFields}>
+          Clear
+        </StyledForm.Button>
       </div>
     </StyledForm>
   )

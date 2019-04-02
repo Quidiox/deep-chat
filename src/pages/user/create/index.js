@@ -16,7 +16,7 @@ const Create = props => {
 
   const inputValidation = (name, username, password, passwordConfirm) => {
     const errors = []
-    if (!validator.isAlpha(name))
+    if (!validator.matches(name, /^[a-zA-Z\s]+$/))
       errors.push('Name must contain only alphabetic characters.')
     if (!validator.isLength(name, { min: 3, max: 30 }))
       errors.push('Name must be between 3-30 characters long.')
