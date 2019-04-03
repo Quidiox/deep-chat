@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import StyledColumn from '../../components/blocks/StyledColumn'
 import H1 from '../../components/elements/H1'
@@ -8,15 +9,17 @@ import { requestLoginUser } from '../../reducers/userReducer'
 const Login = props => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [success, setSuccess] = useState(false)
 
-  const login = e => {
+  const login = async e => {
     e.preventDefault()
-    props.requestLoginUser({
+    await props.requestLoginUser({
       username,
       password
     })
     setUsername('')
     setPassword('')
+    setSuccess(true)
   }
 
   const handleFieldChange = e => {
@@ -31,16 +34,19 @@ const Login = props => {
   }
 
   return (
-    <StyledColumn>
-      <H1>Login</H1>
-      <LoginForm
-        handleFieldChange={handleFieldChange}
-        login={login}
-        clearFields={clearFields}
-        username={username}
-        password={password}
-      />
-    </StyledColumn>
+    <>
+      {success && <Redirect to="/home" />}
+      <StyledColumn>
+        <H1>Login</H1>
+        <LoginForm
+          handleFieldChange={handleFieldChange}
+          login={login}
+          clearFields={clearFields}
+          username={username}
+          password={password}
+        />
+      </StyledColumn>
+    </>
   )
 }
 

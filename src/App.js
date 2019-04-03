@@ -11,6 +11,7 @@ import Header from './pages/header'
 import About from './pages/about'
 import Chat from './pages/chat'
 import Home from './pages/home'
+import NotFound from './NotFound'
 import { requestVerifyUserToken } from './reducers/userReducer'
 import GlobalStyle from './theme/globalStyles'
 
@@ -29,6 +30,7 @@ class App extends Component {
           <Route path="/chat" component={Chat} />
           <Route path="/user/edit" component={EditUser} />
           <Route path="/user/delete" component={DeleteUser} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <GlobalStyle />
       </>
