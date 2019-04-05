@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, withRouter } from 'react-router-dom'
 import Login from './pages/auth/Login'
@@ -11,36 +11,44 @@ import Header from './pages/header'
 import About from './pages/about'
 import Chat from './pages/chat'
 import Home from './pages/home'
+import Error from './pages/error'
 import NotFound from './NotFound'
-import { requestVerifyUserToken } from './reducers/userReducer'
 import GlobalStyle from './theme/globalStyles'
+import { requestVerifyAuthCookie } from './reducers/userReducer'
 
-class App extends Component {
-  render() {
-    return (
-      <>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={About} />
-          <Route path="/login" component={Login} />
-          <Route path="/logout" component={Logout} />
-          <Route path="/register" component={CreateUser} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/home" component={Home} />
-          <Route path="/chat" component={Chat} />
-          <Route path="/user/edit" component={EditUser} />
-          <Route path="/user/delete" component={DeleteUser} />
-          <Route path="*" component={NotFound} />
-        </Switch>
-        <GlobalStyle />
-      </>
-    )
-  }
+const App = ({ user, error, requestVerifyAuthCookie }) => {
+  useEffect(() => {
+    requestVerifyAuthCookie()
+  }, [])
+  return (
+    <>
+      <Header />
+      {error && <Error error={error} />}
+      <Switch>
+        <Route exact path="/" component={About} />
+        <Route
+          path="/login"
+          render={props => <Login {...props} user={user} />}
+        />
+        <Route
+          path="/register"
+          render={props => <CreateUser {...props} user={user} />}
+        />
+        <Route path="/logout" component={Logout} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/home" component={Home} />
+        <Route path="/chat" component={Chat} />
+        <Route path="/user/edit" component={EditUser} />
+        <Route path="/user/delete" component={DeleteUser} />
+        <Route path="*" component={NotFound} />
+      </Switch>
+      <GlobalStyle />
+    </>
+  )
 }
 
-const mapDispatchToProps = { requestVerifyUserToken }
-
-const mapStateToProps = state => ({ user: state.user })
+const mapStateToProps = state => ({ user: state.user, error: state.error })
+const mapDispatchToProps = { requestVerifyAuthCookie }
 
 export default withRouter(
   connect(

@@ -9,12 +9,13 @@ const login = async data => {
   return response.data
 }
 
-const verifyUser = async () => {
-  return await authAxios.post('verifyUser')
-}
-
 const logout = async () => {
-  return await authAxios.post('logout')
+  await authAxios.post('logout')
 }
 
-export default { login, logout, verifyUser }
+const verifyAuthCookie = async () => {
+  const response = await authAxios.post('verifyAuthCookie')
+  return response.data
+}
+
+export default { login, logout, verifyAuthCookie }

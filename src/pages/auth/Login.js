@@ -6,20 +6,22 @@ import StyledColumn from '../../components/blocks/StyledColumn'
 import H1 from '../../components/elements/H1'
 import { requestLoginUser } from '../../reducers/userReducer'
 
-const Login = props => {
+const Login = ({ user, requestLoginUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [success, setSuccess] = useState(false)
 
-  const login = async e => {
+  const login = e => {
     e.preventDefault()
-    await props.requestLoginUser({
+    requestLoginUser({
       username,
       password
     })
-    setUsername('')
-    setPassword('')
-    setSuccess(true)
+    if (user.id) {
+      setUsername('')
+      setPassword('')
+      setSuccess(true)
+    }
   }
 
   const handleFieldChange = e => {

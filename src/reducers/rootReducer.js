@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
 import userReducer from './userReducer'
+import errorReducer from './errorReducer'
 import { USER_DELETE, USER_LOGOUT } from './actionTypes'
 
-const appReducer = combineReducers({ user: userReducer })
+const appReducer = combineReducers({ user: userReducer, error: errorReducer })
 
 const rootReducer = (state, action) => {
   if (action.type === USER_LOGOUT) {
