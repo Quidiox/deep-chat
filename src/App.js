@@ -20,6 +20,7 @@ const App = ({ user, error, requestVerifyAuthCookie }) => {
   useEffect(() => {
     requestVerifyAuthCookie()
   }, [])
+
   return (
     <>
       <Header />

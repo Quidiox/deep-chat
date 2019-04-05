@@ -9,7 +9,6 @@ import { requestLoginUser } from '../../reducers/userReducer'
 const Login = ({ user, requestLoginUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [success, setSuccess] = useState(false)
 
   const login = e => {
     e.preventDefault()
@@ -20,7 +19,6 @@ const Login = ({ user, requestLoginUser }) => {
     if (user.id) {
       setUsername('')
       setPassword('')
-      setSuccess(true)
     }
   }
 
@@ -37,7 +35,7 @@ const Login = ({ user, requestLoginUser }) => {
 
   return (
     <>
-      {success && <Redirect to="/home" />}
+      {user && user.id && <Redirect to="/home" />}
       <StyledColumn>
         <H1>Login</H1>
         <LoginForm
