@@ -46,7 +46,8 @@
     "lint-staged": "7.3.0",
     "prettier": "1.14.3",
     "redux-devtools-extension": "2.13.5",
-    "redux-saga-devtools": "0.3.0"
+    "redux-saga-devtools": "0.3.0",
+    "typescript": "3.5.0-dev.20190407"
   },
   "browserslist": [
     ">0.2%",

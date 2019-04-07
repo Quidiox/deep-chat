@@ -33,6 +33,10 @@ const Chat = props => {
     socket.disconnect()
   })
 
+  const createChannel = name => {}
+
+  const loadChannels = async () => {}
+
   return (
     <StyledChatPage>
       <Tabs tabs={tabs} />

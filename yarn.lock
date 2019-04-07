@@ -10595,6 +10595,11 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
+typescript@3.5.0-dev.20190407:
+  version "3.5.0-dev.20190407"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.0-dev.20190407.tgz#5b5f9e2031c8ddf5bb9d9be36e70bc77327b0d0c"
+  integrity sha512-bm99LTk3/h7Hx0/GkiLhXEzg6ryWEHa0yTFzMVpUNI9RzFn2AGvrPVlnsIlqNrFwTmA8/GPbr7f8hanlk1kyiQ==
+
 ua-parser-js@^0.7.18:
   version "0.7.19"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.19.tgz#94151be4c0a7fb1d001af7022fdaca4642659e4b"
