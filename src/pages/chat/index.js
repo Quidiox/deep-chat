@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import io from 'socket.io-client'
 import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
-import Tabs from './tabs'
+import Channels from './channels'
+import Error from '../error'
 
-const tabs = [
+const channels = [
   { title: 'time', id: 11 },
   { title: 'new age', id: 22 },
   { title: 'I, me and myself', id: 33 },
@@ -13,16 +15,19 @@ const tabs = [
   { title: 'impossible', id: 66 }
 ]
 
-const Chat = props => {
+const Chat = ({ user }) => {
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
-
+  useEffect(() => {
+    //load channels and messages from server
+  }, [])
   const socket = io('http://backend.deep-chat.com', { path: '/chat' })
   socket.on('connect', () => {
     socket.emit(
       'clientConnected',
       `Client with id: ${socket.id} connected successfully`
     )
+    socket.emit('user', user)
     socket.on('serverConnected', message => {
       setMessage(message)
     })
@@ -33,17 +38,19 @@ const Chat = props => {
     socket.disconnect()
   })
 
-  const createChannel = name => {}
-
-  const loadChannels = async () => {}
-
   return (
     <StyledChatPage>
-      <Tabs tabs={tabs} />
-      <Chatroom message={message} />
+      {error && <Error error={error} />}
+      <Channels channels={channels} />
+      <Chatroom message={message} socket={socket} />
       <p>{error}</p>
     </StyledChatPage>
   )
 }
 
-export default Chat
+const mapDispatchToProps = {}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Chat)

@@ -38,7 +38,7 @@ const App = ({ user, error, requestVerifyAuthCookie }) => {
         <Route path="/logout" component={Logout} />
         <Route path="/profile" component={Profile} />
         <Route path="/home" component={Home} />
-        <Route path="/chat" component={Chat} />
+        <Route path="/chat" render={props => <Chat {...props} user={user} />} />
         <Route path="/user/edit" component={EditUser} />
         <Route path="/user/delete" component={DeleteUser} />
         <Route path="*" component={NotFound} />

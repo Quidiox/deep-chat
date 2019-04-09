@@ -17,7 +17,7 @@ const users = [
   { name: 'pont', id: 6 }
 ]
 
-const Chatroom = ({ message }) => {
+const Chatroom = ({ message, socket }) => {
   const checkMessage = message => {
     if (message) {
       messages.push({ text: message, id: Math.random() * 1000 })

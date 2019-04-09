@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 const LI = styled.li`
   border: 1px solid #aaa;
   background: #d1d1d1;
-  background: linear-gradient(top, #ececec 50%, #d1d1d1 100%);
+  //background: linear-gradient(top, #ececec 50%, #d1d1d1 100%);
   display: inline-block;
   position: relative;
   z-index: 0;
@@ -56,6 +56,12 @@ const LI = styled.li`
     `&::after {
     box-shadow: -2px 0px 0 #fff;
   }`};
+  ${props =>
+    props.join &&
+    `
+    background: lightblue;
+    text-shadow: unset;
+  `};
 `
 
 export default LI

@@ -47,7 +47,7 @@
     "prettier": "1.14.3",
     "redux-devtools-extension": "2.13.5",
     "redux-saga-devtools": "0.3.0",
-    "typescript": "3.5.0-dev.20190407"
+    "typescript": "3.3.3333"
   },
   "browserslist": [
     ">0.2%",
