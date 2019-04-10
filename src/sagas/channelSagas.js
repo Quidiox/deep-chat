@@ -53,7 +53,6 @@ function* watchEvents() {
   while (true) {
     try {
       const event = yield take(socketChannel)
-      console.log('hmm: ', event)
       switch (event.type) {
         case USER_JOIN_CHANNEL_RESPONSE:
           yield put(genericActionCreator(USER_JOIN_CHANNEL, event.payload))
@@ -78,22 +77,22 @@ function* watchEvents() {
 }
 
 function* watchActions() {
-  const requests = yield actionChannel('*')
+  const requestChannel = yield actionChannel('*')
   while (true) {
     try {
-      const action = yield take(requests)
+      const action = yield take(requestChannel)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST:
           yield socket.emit(LOAD_ALL_CHANNELS_REQUEST)
           break
         case NEW_MESSAGE_REQUEST:
-          yield socket.emit(NEW_MESSAGE_REQUEST)
+          yield socket.emit(NEW_MESSAGE_REQUEST, action.payload)
           break
         case USER_JOIN_CHANNEL_REQUEST:
-          yield socket.emit(USER_JOIN_CHANNEL_REQUEST)
+          yield socket.emit(USER_JOIN_CHANNEL_REQUEST, action.payload)
           break
         case USER_LEAVE_CHANNEL_REQUEST:
-          yield socket.emit(USER_LEAVE_CHANNEL_REQUEST)
+          yield socket.emit(USER_LEAVE_CHANNEL_REQUEST, action.payload)
           break
         default:
           break

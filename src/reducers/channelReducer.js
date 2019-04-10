@@ -14,7 +14,6 @@ const channelReducer = produce((draft, action) => {
   // eslint-disable-next-line
   switch (action.type) {
     case LOAD_ALL_CHANNELS: {
-      console.log('hello')
       return action.payload
     }
     case USER_JOIN_CHANNEL: {
