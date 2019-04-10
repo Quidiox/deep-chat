@@ -17,7 +17,8 @@ const channelReducer = produce((draft, action) => {
       return action.payload
     }
     case USER_JOIN_CHANNEL: {
-      return action.payload
+      draft.push(action.payload)
+      return
     }
     case USER_LEAVE_CHANNEL: {
       return action.payload

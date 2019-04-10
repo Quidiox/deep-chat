@@ -46,7 +46,7 @@ function createSocketChannel(socket) {
     return unsubscribe
   })
 }
-
+// from server
 function* watchEvents() {
   socket = yield call(createWebSocketConnection)
   const socketChannel = yield call(createSocketChannel, socket)
@@ -54,46 +54,54 @@ function* watchEvents() {
     try {
       const event = yield take(socketChannel)
       switch (event.type) {
-        case USER_JOIN_CHANNEL_RESPONSE:
+        case USER_JOIN_CHANNEL_RESPONSE: {
           yield put(genericActionCreator(USER_JOIN_CHANNEL, event.payload))
           break
-        case USER_LEAVE_CHANNEL_RESPONSE:
+        }
+        case USER_LEAVE_CHANNEL_RESPONSE: {
           yield put(genericActionCreator(USER_LEAVE_CHANNEL, event.payload))
           break
-        case NEW_MESSAGE_RESPONSE:
+        }
+        case NEW_MESSAGE_RESPONSE: {
           yield put(genericActionCreator(NEW_MESSAGE, event.payload))
           break
-        case LOAD_ALL_CHANNELS_RESPONSE:
+        }
+        case LOAD_ALL_CHANNELS_RESPONSE: {
           yield put(genericActionCreator(LOAD_ALL_CHANNELS, event.payload))
           break
+        }
         default:
           break
       }
     } catch (error) {
       console.error('socket error:', error)
-      socketChannel.unsubscribe()
+      // socketChannel.close()
     }
   }
 }
-
+// to server
 function* watchActions() {
   const requestChannel = yield actionChannel('*')
   while (true) {
     try {
       const action = yield take(requestChannel)
       switch (action.type) {
-        case LOAD_ALL_CHANNELS_REQUEST:
+        case LOAD_ALL_CHANNELS_REQUEST: {
           yield socket.emit(LOAD_ALL_CHANNELS_REQUEST)
           break
-        case NEW_MESSAGE_REQUEST:
+        }
+        case NEW_MESSAGE_REQUEST: {
           yield socket.emit(NEW_MESSAGE_REQUEST, action.payload)
           break
-        case USER_JOIN_CHANNEL_REQUEST:
+        }
+        case USER_JOIN_CHANNEL_REQUEST: {
           yield socket.emit(USER_JOIN_CHANNEL_REQUEST, action.payload)
           break
-        case USER_LEAVE_CHANNEL_REQUEST:
+        }
+        case USER_LEAVE_CHANNEL_REQUEST: {
           yield socket.emit(USER_LEAVE_CHANNEL_REQUEST, action.payload)
           break
+        }
         default:
           break
       }

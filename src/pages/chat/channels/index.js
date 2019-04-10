@@ -27,7 +27,7 @@ const Channels = ({ channels }) => {
                 onClick={changeSelected(channel.id)}
                 selected={channel.id === selected ? true : false}
               >
-                <StyledTabRow.A>{channel.title}</StyledTabRow.A>
+                <StyledTabRow.A>{channel.name}</StyledTabRow.A>
               </StyledTabRow.LI>
             )
           })}
