@@ -4,9 +4,13 @@ import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
 import Channels from './channels'
 import { requestLoadAllChannels } from '../../reducers/channelReducer'
+import { watchEvents, watchActions } from '../../sagas/channelSagas'
+import { runSaga } from '../../reducers/store'
 
 const Chat = ({ requestLoadAllChannels, channels }) => {
   useEffect(() => {
+    runSaga(watchActions)
+    runSaga(watchEvents)
     requestLoadAllChannels()
   }, [])
   return (

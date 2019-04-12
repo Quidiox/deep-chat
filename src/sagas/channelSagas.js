@@ -17,7 +17,8 @@ import {
   LOAD_ALL_CHANNELS
 } from '../reducers/actionTypes'
 
-let socket
+let socket = createWebSocketConnection()
+let socketChannel = createSocketChannel(socket)
 
 function createSocketChannel(socket) {
   return eventChannel(emit => {
@@ -47,13 +48,16 @@ function createSocketChannel(socket) {
   })
 }
 // from server
-function* watchEvents() {
-  socket = yield call(createWebSocketConnection)
-  const socketChannel = yield call(createSocketChannel, socket)
+export function* watchEvents() {
+  socketChannel = yield call(createSocketChannel, socket)
   while (true) {
     try {
       const event = yield take(socketChannel)
       switch (event.type) {
+        case LOAD_ALL_CHANNELS_RESPONSE: {
+          yield put(genericActionCreator(LOAD_ALL_CHANNELS, event.payload))
+          break
+        }
         case USER_JOIN_CHANNEL_RESPONSE: {
           yield put(genericActionCreator(USER_JOIN_CHANNEL, event.payload))
           break
@@ -66,10 +70,6 @@ function* watchEvents() {
           yield put(genericActionCreator(NEW_MESSAGE, event.payload))
           break
         }
-        case LOAD_ALL_CHANNELS_RESPONSE: {
-          yield put(genericActionCreator(LOAD_ALL_CHANNELS, event.payload))
-          break
-        }
         default:
           break
       }
@@ -80,7 +80,8 @@ function* watchEvents() {
   }
 }
 // to server
-function* watchActions() {
+export function* watchActions() {
+  socket = yield call(createWebSocketConnection)
   const requestChannel = yield actionChannel('*')
   while (true) {
     try {
@@ -110,5 +111,3 @@ function* watchActions() {
     }
   }
 }
-
-export const channelSagas = [call(watchEvents), call(watchActions)]

@@ -5,12 +5,14 @@ import { composeWithDevTools } from 'redux-devtools-extension/logOnlyInProductio
 import rootReducer from './rootReducer'
 import rootSaga from '../sagas/rootSaga'
 
-export const history = createBrowserHistory()
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore(
+
+let store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(sagaMiddleware))
 )
 sagaMiddleware.run(rootSaga)
 
+export const runSaga = sagaMiddleware.run
+export const history = createBrowserHistory()
 export default store
