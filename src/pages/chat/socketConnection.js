@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 const createWebSocketConnection = () => {
   const socket = io('http://backend.deep-chat.com', {
     path: '/chat',
-    reconnect: true
+    reconnection: false
   })
   socket.on('connect', () => {
     socket.emit(

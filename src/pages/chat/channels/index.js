@@ -4,9 +4,12 @@ import Join from './join'
 
 const Channels = ({ channels }) => {
   const [selected, setSelected] = useState()
-  useEffect(() => {
-    if (channels && channels[0]) setSelected(channels[0].id)
-  }, [])
+  useEffect(
+    () => {
+      setSelected(channels && channels[0] ? channels[0].id : '')
+    },
+    [channels]
+  )
   const [open, setOpen] = useState(false)
   const changeSelected = id => () => {
     setSelected(id)

@@ -17,6 +17,7 @@ const channelReducer = produce((draft, action) => {
       return action.payload
     }
     case USER_JOIN_CHANNEL: {
+      if (action.payload.error) return
       draft.push(action.payload)
       return
     }
