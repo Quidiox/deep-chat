@@ -17,8 +17,7 @@ import {
   LOAD_ALL_CHANNELS
 } from '../reducers/actionTypes'
 
-let socket = createWebSocketConnection()
-let socketChannel = createSocketChannel(socket)
+let socket
 
 function createSocketChannel(socket) {
   return eventChannel(emit => {
@@ -49,7 +48,7 @@ function createSocketChannel(socket) {
 }
 // from server
 export function* watchEvents() {
-  socketChannel = yield call(createSocketChannel, socket)
+  const socketChannel = yield call(createSocketChannel, socket)
   while (true) {
     try {
       const event = yield take(socketChannel)
