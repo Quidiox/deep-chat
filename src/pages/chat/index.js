@@ -7,7 +7,7 @@ import { requestLoadAllChannels } from '../../reducers/channelReducer'
 import { watchEvents, watchActions } from '../../sagas/channelSagas'
 import { runSaga } from '../../reducers/store'
 
-const Chat = ({ requestLoadAllChannels, channels, user }) => {
+const Chat = ({ requestLoadAllChannels, channels }) => {
   useEffect(() => {
     runSaga(watchActions)
     runSaga(watchEvents)
@@ -22,8 +22,7 @@ const Chat = ({ requestLoadAllChannels, channels, user }) => {
 }
 
 const mapStateToProps = state => ({
-  channels: state.channels,
-  user: state.user
+  channels: state.channels
 })
 const mapDispatchToProps = { requestLoadAllChannels }
 

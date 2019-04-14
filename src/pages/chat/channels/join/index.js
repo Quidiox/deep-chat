@@ -1,17 +1,15 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
 import StyledForm from '../../../../components/blocks/StyledForm'
 import StyledModal from '../../../../components/blocks/StyledModal'
-import { requestUserJoinChannel } from '../../../../reducers/channelReducer'
 
-const Join = ({ requestUserJoinChannel, joinModalOpen, open }) => {
+const Join = ({ joinChannel, joinModalOpen, open }) => {
   const [name, setName] = useState('')
   const handleChange = e => {
     setName(e.target.value)
   }
-  const handleSubmit = async e => {
+  const handleSubmit = e => {
     e.preventDefault()
-    await requestUserJoinChannel(name)
+    joinChannel(name)
     setName('')
     joinModalOpen()
   }
@@ -34,9 +32,4 @@ const Join = ({ requestUserJoinChannel, joinModalOpen, open }) => {
   )
 }
 
-const mapDispatchToProps = { requestUserJoinChannel }
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Join)
+export default Join

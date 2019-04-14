@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from 'react'
+import { connect } from 'react-redux'
 import StyledTabRow from '../../../components/blocks/StyledTabRow'
 import Join from './join'
+import { requestUserJoinChannel } from '../../../reducers/channelReducer'
 
-const Channels = ({ channels }) => {
+const Channels = ({ requestUserJoinChannel, channels }) => {
   const [selected, setSelected] = useState()
-  useEffect(
-    () => {
-      setSelected(channels && channels[0] ? channels[0].id : '')
-    },
-    [channels]
-  )
+  useEffect(() => {
+    setSelected(channels && channels[0] ? channels[0].id : '')
+  }, [])
   const [open, setOpen] = useState(false)
   const changeSelected = id => () => {
     setSelected(id)
   }
   const joinModalOpen = () => {
     setOpen(!open)
+  }
+  const joinChannel = name => {
+    requestUserJoinChannel(name)
   }
   return (
     <>
@@ -38,9 +40,18 @@ const Channels = ({ channels }) => {
           <StyledTabRow.A>Join channel</StyledTabRow.A>
         </StyledTabRow.LI>
       </StyledTabRow>
-      <Join open={open} joinModalOpen={joinModalOpen} />
+      <Join
+        open={open}
+        joinModalOpen={joinModalOpen}
+        joinChannel={joinChannel}
+      />
     </>
   )
 }
 
-export default Channels
+const mapDispatchToProps = { requestUserJoinChannel }
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Channels)
