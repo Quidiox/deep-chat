@@ -9,18 +9,27 @@ import {
   USER_LEAVE_CHANNEL_REQUEST,
   USER_LEAVE_CHANNEL_RESPONSE,
   USER_LEAVE_CHANNEL,
+  LOAD_ALL_CHANNELS_REQUEST,
+  LOAD_ALL_CHANNELS_RESPONSE,
+  LOAD_ALL_CHANNELS,
   NEW_MESSAGE_REQUEST,
   NEW_MESSAGE_RESPONSE,
   NEW_MESSAGE,
-  LOAD_ALL_CHANNELS_REQUEST,
-  LOAD_ALL_CHANNELS_RESPONSE,
-  LOAD_ALL_CHANNELS
+  LOAD_CHANNEL_MESSAGES_REQUEST,
+  LOAD_CHANNEL_MESSAGES_RESPONSE,
+  LOAD_CHANNEL_MESSAGES,
+  LOAD_CHANNEL_USERS_REQUEST,
+  LOAD_CHANNEL_USERS_RESPONSE,
+  LOAD_CHANNEL_USERS
 } from '../reducers/actionTypes'
 
 let socket
 
 function createSocketChannel(socket) {
   return eventChannel(emit => {
+    const loadAllChannelsHandler = event => {
+      emit(event)
+    }
     const userJoinChannelHandler = event => {
       emit(event)
     }
@@ -30,18 +39,25 @@ function createSocketChannel(socket) {
     const newMessageHandler = event => {
       emit(event)
     }
-    const loadAllChannelsHandler = event => {
+    const loadChannelMessagesHandler = event => {
       emit(event)
     }
+    const loadChannelUsersHandler = event => {
+      emit(event)
+    }
+    socket.on(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
     socket.on(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
     socket.on(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
     socket.on(NEW_MESSAGE_RESPONSE, newMessageHandler)
-    socket.on(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
+    socket.on(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
+    socket.on(LOAD_CHANNEL_USERS_RESPONSE, loadChannelUsersHandler)
     const unsubscribe = () => {
+      socket.off(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
       socket.off(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
       socket.off(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
       socket.off(NEW_MESSAGE_RESPONSE, newMessageHandler)
-      socket.off(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
+      socket.off(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
+      socket.off(LOAD_CHANNEL_USERS_RESPONSE, loadChannelUsersHandler)
     }
     return unsubscribe
   })
@@ -69,6 +85,14 @@ export function* watchEvents() {
           yield put(genericActionCreator(NEW_MESSAGE, event.payload))
           break
         }
+        case LOAD_CHANNEL_MESSAGES_RESPONSE: {
+          yield put(genericActionCreator(LOAD_CHANNEL_MESSAGES, event.payload))
+          break
+        }
+        case LOAD_CHANNEL_USERS_RESPONSE: {
+          yield put(genericActionCreator(LOAD_CHANNEL_USERS, event.payload))
+          break
+        }
         default:
           break
       }
@@ -90,16 +114,24 @@ export function* watchActions() {
           yield socket.emit(LOAD_ALL_CHANNELS_REQUEST)
           break
         }
-        case NEW_MESSAGE_REQUEST: {
-          yield socket.emit(NEW_MESSAGE_REQUEST, action.payload)
-          break
-        }
         case USER_JOIN_CHANNEL_REQUEST: {
           yield socket.emit(USER_JOIN_CHANNEL_REQUEST, action.payload)
           break
         }
         case USER_LEAVE_CHANNEL_REQUEST: {
           yield socket.emit(USER_LEAVE_CHANNEL_REQUEST, action.payload)
+          break
+        }
+        case NEW_MESSAGE_REQUEST: {
+          yield socket.emit(NEW_MESSAGE_REQUEST, action.payload)
+          break
+        }
+        case LOAD_CHANNEL_MESSAGES_REQUEST: {
+          yield socket.emit(LOAD_CHANNEL_MESSAGES_REQUEST, action.payload)
+          break
+        }
+        case LOAD_CHANNEL_USERS_REQUEST: {
+          yield socket.emit(LOAD_CHANNEL_USERS_REQUEST, action.payload)
           break
         }
         default:

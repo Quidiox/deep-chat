@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux'
 import userReducer from './userReducer'
 import errorReducer from './errorReducer'
-import channelReducer from './channelReducer'
+import channelsReducer from './channelsReducer'
+import channelMessagesReducer from './channelMessagesReducer'
+import channelUsersReducer from './channelUsersReducer'
 import { USER_DELETE, USER_LOGOUT } from './actionTypes'
 
 const appReducer = combineReducers({
   user: userReducer,
   error: errorReducer,
-  channels: channelReducer
+  channelTabs: channelsReducer,
+  messages: channelMessagesReducer,
+  users: channelUsersReducer
 })
 
 const rootReducer = (state, action) => {

@@ -4,8 +4,6 @@ import {
   USER_JOIN_CHANNEL,
   USER_LEAVE_CHANNEL_REQUEST,
   USER_LEAVE_CHANNEL,
-  NEW_MESSAGE_REQUEST,
-  NEW_MESSAGE,
   LOAD_ALL_CHANNELS_REQUEST,
   LOAD_ALL_CHANNELS
 } from './actionTypes'
@@ -17,15 +15,13 @@ const channelReducer = produce((draft, action) => {
       return action.payload
     }
     case USER_JOIN_CHANNEL: {
-      if (action.payload.error) return
+      if (action.payload.notice) return
       draft.push(action.payload)
       return
     }
     case USER_LEAVE_CHANNEL: {
-      return action.payload
-    }
-    case NEW_MESSAGE: {
-      return action.payload
+      if (action.payload.notice) return
+      return draft.filter(channel => channel.name !== action.payload.name)
     }
   }
 }, [])
@@ -37,11 +33,6 @@ export const requestUserJoinChannel = payload => ({
 
 export const requestUserLeaveChannel = payload => ({
   type: USER_LEAVE_CHANNEL_REQUEST,
-  payload
-})
-
-export const requestNewMessage = payload => ({
-  type: NEW_MESSAGE_REQUEST,
   payload
 })
 

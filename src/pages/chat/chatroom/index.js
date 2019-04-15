@@ -1,36 +1,51 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import StyledChatroom from '../../../components/blocks/StyledChatroom'
 import MessageField from './messageField'
 import UserList from './userList'
 import MessageList from './messageList'
+import {
+  requestLoadChannelMessages,
+  requestNewMessage
+} from '../../../reducers/channelMessagesReducer'
+import { requestLoadChannelUsers } from '../../../reducers/channelUsersReducer'
 
-const messages = [
-  { text: 'hello', id: 1 },
-  { text: 'world', id: 99 },
-  { text: 'java is great', id: 7 },
-  { text: 'java is not great', id: 2 }
-]
-const users = [
-  { name: 'uui', id: 1 },
-  { name: 'jarjar', id: 2 },
-  { name: 'hehe', id: 4 },
-  { name: 'pont', id: 6 }
-]
-
-const Chatroom = ({ message, socket }) => {
-  const checkMessage = message => {
-    if (message) {
-      messages.push({ text: message, id: Math.random() * 1000 })
-    }
+const Chatroom = ({
+  requestLoadChannelMessages,
+  requestLoadChannelUsers,
+  requestNewMessage,
+  messages,
+  users,
+  channelId
+}) => {
+  useEffect(() => {
+    requestLoadChannelMessages(channelId)
+    requestLoadChannelUsers(channelId)
+  }, [])
+  const newMessage = name => {
+    requestNewMessage(name)
   }
-  checkMessage(message)
   return (
     <StyledChatroom>
-      <MessageList messages={messages} />
-      <UserList users={users} />
-      <MessageField />
+      <MessageList messages={messages} channelId={channelId} />
+      <UserList users={users} channelId={channelId} />
+      <MessageField newMessage={newMessage} channelId={channelId} />
     </StyledChatroom>
   )
 }
 
-export default Chatroom
+const mapStateToProps = state => ({
+  messages: state.messages,
+  users: state.users
+})
+
+const mapDispatchToProps = {
+  requestLoadChannelMessages,
+  requestLoadChannelUsers,
+  requestNewMessage
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Chatroom)

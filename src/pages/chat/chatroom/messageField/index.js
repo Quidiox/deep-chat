@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
 import StyledMessageField from '../../../../components/blocks/StyledMessageField'
 
-const MessageField = props => {
-  const [message, setMessage] = useState('')
+const MessageField = ({ newMessage, channelId }) => {
+  const [text, setText] = useState('')
 
   const handleChange = e => {
-    setMessage(e.target.value)
+    setText(e.target.value)
   }
 
   const handleSubmit = e => {
     e.preventDefault()
-    // send message to server logic action called here
-    console.log('message: ', message)
-    setMessage('')
+    newMessage({ channelId, text })
+    setText('')
   }
 
   return (
@@ -20,7 +19,7 @@ const MessageField = props => {
       <StyledMessageField.Input
         onChange={handleChange}
         placeholder="Type a new message..."
-        value={message}
+        value={text}
       />
       <StyledMessageField.Button onClick={handleSubmit} type="submit">
         Submit
