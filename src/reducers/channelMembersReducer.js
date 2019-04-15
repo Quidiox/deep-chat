@@ -1,11 +1,18 @@
 import produce from 'immer'
-import { LOAD_CHANNEL_USERS_REQUEST, LOAD_CHANNEL_USERS } from './actionTypes'
+import {
+  LOAD_CHANNEL_MEMBERS_REQUEST,
+  LOAD_CHANNEL_MEMBERS
+} from './actionTypes'
 
-const channelUsersReducer = produce((draft, action) => {
+const channelMembersReducer = produce((draft, action) => {
   // eslint-disable-next-line
   switch (action.type) {
-    case LOAD_CHANNEL_USERS: {
-      draft[action.payload.channelId] = action.payload.users
+    case LOAD_CHANNEL_MEMBERS: {
+      if (draft[action.payload.channelId]) {
+        draft[action.payload.channelId].push(action.payload.members)
+        return
+      }
+      draft[action.payload.channelId] = action.payload.members
       return
     }
     // no actiontype yet for these:
@@ -24,9 +31,9 @@ const channelUsersReducer = produce((draft, action) => {
   }
 }, [])
 
-export const requestLoadChannelUsers = payload => ({
-  type: LOAD_CHANNEL_USERS_REQUEST,
+export const requestLoadChannelMembers = payload => ({
+  type: LOAD_CHANNEL_MEMBERS_REQUEST,
   payload
 })
 
-export default channelUsersReducer
+export default channelMembersReducer

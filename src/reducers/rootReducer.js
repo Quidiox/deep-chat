@@ -3,7 +3,7 @@ import userReducer from './userReducer'
 import errorReducer from './errorReducer'
 import channelsReducer from './channelsReducer'
 import channelMessagesReducer from './channelMessagesReducer'
-import channelUsersReducer from './channelUsersReducer'
+import channelMembersReducer from './channelMembersReducer'
 import { USER_DELETE, USER_LOGOUT } from './actionTypes'
 
 const appReducer = combineReducers({
@@ -11,7 +11,7 @@ const appReducer = combineReducers({
   error: errorReducer,
   channels: channelsReducer,
   messages: channelMessagesReducer,
-  users: channelUsersReducer
+  members: channelMembersReducer
 })
 
 const rootReducer = (state, action) => {

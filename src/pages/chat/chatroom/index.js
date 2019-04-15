@@ -2,26 +2,26 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import StyledChatroom from '../../../components/blocks/StyledChatroom'
 import MessageField from './messageField'
-import UserList from './userList'
+import MemberList from './memberList'
 import MessageList from './messageList'
 import {
   requestLoadChannelMessages,
   requestNewMessage
 } from '../../../reducers/channelMessagesReducer'
-import { requestLoadChannelUsers } from '../../../reducers/channelUsersReducer'
+import { requestLoadChannelMembers } from '../../../reducers/channelMembersReducer'
 
 const Chatroom = ({
   requestLoadChannelMessages,
-  requestLoadChannelUsers,
+  requestLoadChannelMembers,
   requestNewMessage,
   messages,
-  users,
+  members,
   channelId
 }) => {
   useEffect(
     () => {
       requestLoadChannelMessages({ channelId })
-      requestLoadChannelUsers(channelId)
+      requestLoadChannelMembers({ channelId })
     },
     [channelId]
   )
@@ -31,7 +31,7 @@ const Chatroom = ({
   return (
     <StyledChatroom>
       <MessageList messages={messages} channelId={channelId} />
-      <UserList users={users} channelId={channelId} />
+      <MemberList members={members} channelId={channelId} />
       <MessageField newMessage={newMessage} channelId={channelId} />
     </StyledChatroom>
   )
@@ -39,12 +39,12 @@ const Chatroom = ({
 
 const mapStateToProps = state => ({
   messages: state.messages,
-  users: state.users
+  members: state.members
 })
 
 const mapDispatchToProps = {
   requestLoadChannelMessages,
-  requestLoadChannelUsers,
+  requestLoadChannelMembers,
   requestNewMessage
 }
 

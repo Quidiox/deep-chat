@@ -18,9 +18,9 @@ import {
   LOAD_CHANNEL_MESSAGES_REQUEST,
   LOAD_CHANNEL_MESSAGES_RESPONSE,
   LOAD_CHANNEL_MESSAGES,
-  LOAD_CHANNEL_USERS_REQUEST,
-  LOAD_CHANNEL_USERS_RESPONSE,
-  LOAD_CHANNEL_USERS
+  LOAD_CHANNEL_MEMBERS_REQUEST,
+  LOAD_CHANNEL_MEMBERS_RESPONSE,
+  LOAD_CHANNEL_MEMBERS
 } from '../reducers/actionTypes'
 
 let socket
@@ -42,7 +42,7 @@ function createSocketChannel(socket) {
     const loadChannelMessagesHandler = event => {
       emit(event)
     }
-    const loadChannelUsersHandler = event => {
+    const loadChannelMembersHandler = event => {
       emit(event)
     }
     socket.on(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
@@ -50,14 +50,14 @@ function createSocketChannel(socket) {
     socket.on(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
     socket.on(NEW_MESSAGE_RESPONSE, newMessageHandler)
     socket.on(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
-    socket.on(LOAD_CHANNEL_USERS_RESPONSE, loadChannelUsersHandler)
+    socket.on(LOAD_CHANNEL_MEMBERS_RESPONSE, loadChannelMembersHandler)
     const unsubscribe = () => {
       socket.off(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
       socket.off(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
       socket.off(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
       socket.off(NEW_MESSAGE_RESPONSE, newMessageHandler)
       socket.off(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
-      socket.off(LOAD_CHANNEL_USERS_RESPONSE, loadChannelUsersHandler)
+      socket.off(LOAD_CHANNEL_MEMBERS_RESPONSE, loadChannelMembersHandler)
     }
     return unsubscribe
   })
@@ -89,8 +89,8 @@ export function* watchEvents() {
           yield put(genericActionCreator(LOAD_CHANNEL_MESSAGES, event.payload))
           break
         }
-        case LOAD_CHANNEL_USERS_RESPONSE: {
-          yield put(genericActionCreator(LOAD_CHANNEL_USERS, event.payload))
+        case LOAD_CHANNEL_MEMBERS_RESPONSE: {
+          yield put(genericActionCreator(LOAD_CHANNEL_MEMBERS, event.payload))
           break
         }
         default:
@@ -130,8 +130,8 @@ export function* watchActions() {
           yield socket.emit(LOAD_CHANNEL_MESSAGES_REQUEST, action.payload)
           break
         }
-        case LOAD_CHANNEL_USERS_REQUEST: {
-          yield socket.emit(LOAD_CHANNEL_USERS_REQUEST, action.payload)
+        case LOAD_CHANNEL_MEMBERS_REQUEST: {
+          yield socket.emit(LOAD_CHANNEL_MEMBERS_REQUEST, action.payload)
           break
         }
         default:

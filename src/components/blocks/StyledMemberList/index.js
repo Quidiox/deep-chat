@@ -1,7 +1,8 @@
 import styled from 'styled-components/macro'
 import LI from './LI'
 
-const StyledUserList = styled.ul`
+const StyledMemberList = styled.ul`
+  width: 50px;
   list-style-type: none;
   padding: 0 10px 0 5px;
   margin: 1px 0 1px 0;
@@ -9,6 +10,6 @@ const StyledUserList = styled.ul`
   right: 0;
 `
 
-StyledUserList.LI = LI
+StyledMemberList.LI = LI
 
-export default StyledUserList
+export default StyledMemberList
