@@ -6,18 +6,18 @@ import { requestUserJoinChannel } from '../../../reducers/channelsReducer'
 
 const Channels = ({
   requestUserJoinChannel,
-  channelTabs,
+  channels,
   selected,
   changeSelected
 }) => {
   const [open, setOpen] = useState(false)
   useEffect(
     () => {
-      if (channelTabs && channelTabs[0]) {
-        changeSelected(channelTabs[0].id)()
+      if (channels && channels[0]) {
+        changeSelected(channels[0].id)()
       }
     },
-    [channelTabs]
+    [channels]
   )
   const joinModalOpen = () => {
     setOpen(!open)
@@ -28,10 +28,10 @@ const Channels = ({
   return (
     <>
       <StyledTabRow>
-        {channelTabs &&
-          channelTabs[0] &&
-          channelTabs[0].id &&
-          channelTabs.map(channel => {
+        {channels &&
+          channels[0] &&
+          channels[0].id &&
+          channels.map(channel => {
             return (
               <StyledTabRow.LI
                 key={channel.id}

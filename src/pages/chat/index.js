@@ -7,7 +7,7 @@ import { requestLoadAllChannels } from '../../reducers/channelsReducer'
 import { watchEvents, watchActions } from '../../sagas/chatSagas'
 import { runSaga } from '../../reducers/store'
 
-const Chat = ({ requestLoadAllChannels, channelTabs }) => {
+const Chat = ({ requestLoadAllChannels, channels }) => {
   const [selected, setSelected] = useState('')
   useEffect(() => {
     runSaga(watchActions)
@@ -20,7 +20,7 @@ const Chat = ({ requestLoadAllChannels, channelTabs }) => {
   return (
     <StyledChatPage>
       <Channels
-        channelTabs={channelTabs}
+        channels={channels}
         selected={selected}
         changeSelected={changeSelected}
       />
@@ -30,7 +30,7 @@ const Chat = ({ requestLoadAllChannels, channelTabs }) => {
 }
 
 const mapStateToProps = state => ({
-  channelTabs: state.channelTabs
+  channels: state.channels
 })
 const mapDispatchToProps = { requestLoadAllChannels }
 

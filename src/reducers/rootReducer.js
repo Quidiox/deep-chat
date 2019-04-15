@@ -9,7 +9,7 @@ import { USER_DELETE, USER_LOGOUT } from './actionTypes'
 const appReducer = combineReducers({
   user: userReducer,
   error: errorReducer,
-  channelTabs: channelsReducer,
+  channels: channelsReducer,
   messages: channelMessagesReducer,
   users: channelUsersReducer
 })
