@@ -127,7 +127,6 @@ export function* watchActions() {
           break
         }
         case LOAD_CHANNEL_MESSAGES_REQUEST: {
-          console.log('hi', action.payload)
           yield socket.emit(LOAD_CHANNEL_MESSAGES_REQUEST, action.payload)
           break
         }

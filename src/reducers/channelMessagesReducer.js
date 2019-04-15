@@ -18,6 +18,7 @@ const channelMessagesReducer = produce((draft, action) => {
       return
     }
     case LOAD_CHANNEL_MESSAGES: {
+      console.log(action.payload)
       draft[action.payload.channelId] = action.payload.messages
       return
     }

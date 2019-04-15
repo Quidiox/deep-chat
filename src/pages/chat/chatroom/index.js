@@ -18,10 +18,13 @@ const Chatroom = ({
   users,
   channelId
 }) => {
-  useEffect(() => {
-    requestLoadChannelMessages(channelId)
-    requestLoadChannelUsers(channelId)
-  }, [])
+  useEffect(
+    () => {
+      requestLoadChannelMessages({ channelId })
+      requestLoadChannelUsers(channelId)
+    },
+    [channelId]
+  )
   const newMessage = name => {
     requestNewMessage(name)
   }
