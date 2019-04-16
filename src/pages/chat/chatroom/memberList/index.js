@@ -20,7 +20,9 @@ const MemberList = ({ members, channelId }) => {
   }
   return (
     <StyledMemberList>
-      <StyledMemberList.LI>no members</StyledMemberList.LI>
+      <StyledMemberList.LI>
+        <StyledMemberList.P>no members</StyledMemberList.P>
+      </StyledMemberList.LI>
     </StyledMemberList>
   )
 }

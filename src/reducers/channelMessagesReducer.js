@@ -10,7 +10,11 @@ const channelMessagesReducer = produce((draft, action) => {
   // eslint-disable-next-line
   switch (action.type) {
     case NEW_MESSAGE: {
-      draft[action.payload.channelId].messages.push(action.payload.message)
+      if (
+        draft[action.payload.channelId] &&
+        draft[action.payload.channelId].messages
+      )
+        draft[action.payload.channelId].messages.push(action.payload.message)
       return
     }
     case LOAD_CHANNEL_MESSAGES: {

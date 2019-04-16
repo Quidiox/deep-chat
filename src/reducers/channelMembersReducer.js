@@ -8,8 +8,11 @@ const channelMembersReducer = produce((draft, action) => {
   // eslint-disable-next-line
   switch (action.type) {
     case LOAD_CHANNEL_MEMBERS: {
-      if (draft[action.payload.channelId]) {
-        draft[action.payload.channelId].push(action.payload.members)
+      if (
+        draft[action.payload.channelId] &&
+        draft[action.payload.channelId].members
+      ) {
+        draft[action.payload.channelId].members.push(action.payload.members)
         return
       }
       draft[action.payload.channelId] = action.payload.members
