@@ -12,7 +12,7 @@ const MemberList = ({ members, channelId }) => {
       <StyledMemberList>
         {members[channelId].members.map(member => (
           <StyledMemberList.LI key={member.id}>
-            {member.name}
+            <StyledMemberList.P>{member.name}</StyledMemberList.P>
           </StyledMemberList.LI>
         ))}
       </StyledMemberList>

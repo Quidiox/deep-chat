@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import LI from './LI'
+import P from './P'
 
 const StyledMemberList = styled.ul`
   width: 50px;
@@ -11,5 +12,6 @@ const StyledMemberList = styled.ul`
 `
 
 StyledMemberList.LI = LI
+StyledMemberList.P = P
 
 export default StyledMemberList

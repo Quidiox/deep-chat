@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import LI from './LI'
+import P from './P'
 
 const StyledMessageList = styled.ul`
   list-style-type: none;
@@ -10,5 +11,6 @@ const StyledMessageList = styled.ul`
 `
 
 StyledMessageList.LI = LI
+StyledMessageList.P = P
 
 export default StyledMessageList
