@@ -10,7 +10,6 @@ const MessageList = ({ messages, channelId }) => {
     messages[channelId].messages &&
     messages[channelId].messages.length > 0
   ) {
-    console.log(messages[channelId].messages[0])
     return (
       <StyledMessageList>
         {messages[channelId].messages.map(message => (
