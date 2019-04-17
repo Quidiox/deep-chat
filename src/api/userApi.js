@@ -10,9 +10,7 @@ const find = async data => {
 }
 
 const create = async data => {
-  const response = await userAxios.post('create', data, {
-    withCredentials: false
-  })
+  const response = await userAxios.post('create', data)
   return response.data
 }
 
