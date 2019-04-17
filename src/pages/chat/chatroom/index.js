@@ -20,8 +20,11 @@ const Chatroom = ({
 }) => {
   useEffect(
     () => {
-      requestLoadChannelMessages({ channelId })
-      requestLoadChannelMembers({ channelId })
+      // console.log('here we go: ', channelId, messages, members)
+      if (channelId) {
+        requestLoadChannelMessages({ channelId })
+        requestLoadChannelMembers({ channelId })
+      }
     },
     [channelId]
   )

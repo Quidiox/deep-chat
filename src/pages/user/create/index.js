@@ -31,7 +31,6 @@ const Create = ({ user, requestCreateUser }) => {
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
   const [errors, setErrors] = useState([])
-  const [success, setSuccess] = useState(false)
 
   const create = e => {
     e.preventDefault()
@@ -50,7 +49,6 @@ const Create = ({ user, requestCreateUser }) => {
         setPassword('')
         setPasswordConfirm('')
         setErrors([])
-        setSuccess(true)
       }
     }
   }
@@ -73,7 +71,7 @@ const Create = ({ user, requestCreateUser }) => {
 
   return (
     <>
-      {success && <Redirect to="/home" />}
+      {user && user.id && <Redirect to="/home" />}
       <StyledColumn>
         <H1>Register</H1>
         <Form

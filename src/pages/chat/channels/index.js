@@ -13,7 +13,7 @@ const Channels = ({
   const [open, setOpen] = useState(false)
   useEffect(
     () => {
-      if (channels && channels[0]) {
+      if (channels && channels[0] && channels[0].id) {
         changeSelected(channels[0].id)()
       }
     },
@@ -32,6 +32,7 @@ const Channels = ({
           channels[0] &&
           channels[0].id &&
           channels.map(channel => {
+            // console.log(channel.id)
             return (
               <StyledTabRow.LI
                 key={channel.id}

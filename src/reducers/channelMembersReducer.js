@@ -8,13 +8,17 @@ const channelMembersReducer = produce((draft, action) => {
   // eslint-disable-next-line
   switch (action.type) {
     case LOAD_CHANNEL_MEMBERS: {
-      if (
-        draft[action.payload.channelId] &&
-        draft[action.payload.channelId].members
-      ) {
-        draft[action.payload.channelId].members.push(action.payload.members)
-        return
-      }
+      // if (
+      //   draft[action.payload.channelId] &&
+      //   draft[action.payload.channelId].members
+      // ) {
+      //   draft[action.payload.channelId].members.push(action.payload.members)
+      //   return
+      // }
+      // to prevent error message when user has not joined any channels yet.
+      // if no channel is selected then requests should not be made
+      // console.log(action.payload.members)
+      if (action.payload.members.error) return
       draft[action.payload.channelId] = action.payload.members
       return
     }
@@ -32,7 +36,7 @@ const channelMembersReducer = produce((draft, action) => {
     //   return
     // }
   }
-}, [])
+}, {})
 
 export const requestLoadChannelMembers = payload => ({
   type: LOAD_CHANNEL_MEMBERS_REQUEST,

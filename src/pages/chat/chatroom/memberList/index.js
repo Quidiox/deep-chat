@@ -2,11 +2,13 @@ import React from 'react'
 import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 
 const MemberList = ({ members, channelId }) => {
+  // console.log(members, channelId)
   if (
     members &&
     channelId &&
     members[channelId] &&
-    members[channelId].members
+    members[channelId].members &&
+    members[channelId].members.length > 0
   ) {
     return (
       <StyledMemberList>

@@ -26,7 +26,7 @@
     "axios": "0.18.0",
     "date-fns": "2.0.0-alpha.27",
     "history": "4.9.0",
-    "immer": "1.7.2",
+    "immer": "2.1.5",
     "react": "16.8.4",
     "react-dom": "16.8.4",
     "react-redux": "7.0.0-beta.0",

@@ -13,11 +13,20 @@ const channelMessagesReducer = produce((draft, action) => {
       if (
         draft[action.payload.channelId] &&
         draft[action.payload.channelId].messages
-      )
+      ) {
         draft[action.payload.channelId].messages.push(action.payload.message)
+      } else {
+        draft[action.payload.channelId].messages = []
+        draft[action.payload.channelId].messages.push(action.payload.message)
+      }
+      // console.log(action.payload.message)
       return
     }
     case LOAD_CHANNEL_MESSAGES: {
+      // console.log(action.payload.messages)
+      // to prevent error message when user has not joined any channels yet.
+      // if no channel is selected then requests should not be made
+      if (action.payload.messages.error) return
       draft[action.payload.channelId] = action.payload.messages
       return
     }
