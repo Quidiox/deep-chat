@@ -15,7 +15,7 @@ const MessageList = ({ messages, channelId }) => {
         {messages[channelId].messages.map(message => (
           <StyledMessageList.LI key={message.id}>
             <StyledMessageList.P>
-              {format(parseISO(message.created), 'kk:mm:ss')} &lt;
+              {format(parseISO(message.created), 'kk:mm:ss dd/MM')} &lt;
               {message.author.name}
               &gt; {message.text}
             </StyledMessageList.P>
@@ -24,7 +24,13 @@ const MessageList = ({ messages, channelId }) => {
       </StyledMessageList>
     )
   }
-  return <div>no messages</div>
+  return (
+    <StyledMessageList>
+      <StyledMessageList.LI>
+        <StyledMessageList.P>no messages yet</StyledMessageList.P>
+      </StyledMessageList.LI>
+    </StyledMessageList>
+  )
 }
 
 export default MessageList
