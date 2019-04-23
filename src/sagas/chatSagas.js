@@ -109,7 +109,7 @@ export function* watchActions() {
   while (true) {
     try {
       const action = yield take(requestChannel)
-      console.log(action)
+      console.log(action, socket)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
           yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])

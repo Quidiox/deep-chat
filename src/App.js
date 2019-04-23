@@ -15,15 +15,25 @@ import Error from './pages/error'
 import NotFound from './NotFound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
+import { requestLoadAllChannels } from './reducers/channelsReducer'
 import { watchEvents, watchActions } from './sagas/chatSagas'
 import { runSaga } from './reducers/store'
 
-const App = ({ user, error, requestVerifyAuthCookie }) => {
+const App = ({
+  user,
+  error,
+  requestVerifyAuthCookie,
+  requestLoadAllChannels
+}) => {
   useEffect(
     () => {
-      requestVerifyAuthCookie()
+      async function init() {
+        await requestVerifyAuthCookie()
+        await requestLoadAllChannels()
+      }
+      init()
     },
-    [requestVerifyAuthCookie]
+    [requestVerifyAuthCookie, requestLoadAllChannels]
   )
   useEffect(() => {
     runSaga(watchActions)
@@ -57,7 +67,7 @@ const App = ({ user, error, requestVerifyAuthCookie }) => {
 }
 
 const mapStateToProps = state => ({ user: state.user, error: state.error })
-const mapDispatchToProps = { requestVerifyAuthCookie }
+const mapDispatchToProps = { requestVerifyAuthCookie, requestLoadAllChannels }
 
 export default withRouter(
   connect(
