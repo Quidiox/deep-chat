@@ -4,17 +4,24 @@ import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
 import Channels from './channels'
 import { requestLoadAllChannels } from '../../reducers/channelsReducer'
-import { watchEvents, watchActions } from '../../sagas/chatSagas'
-import { runSaga } from '../../reducers/store'
 
 const Chat = ({ requestLoadAllChannels, channels }) => {
-  const [selected, setSelected] = useState('')
-  useEffect(() => {
-    runSaga(watchActions)
-    runSaga(watchEvents)
-    requestLoadAllChannels()
-  }, [])
-  const changeSelected = id => () => {
+  const [selected, setSelected] = useState()
+  useEffect(
+    () => {
+      requestLoadAllChannels()
+    },
+    [requestLoadAllChannels]
+  )
+  useEffect(
+    () => {
+      setSelected(
+        channels && channels[0] && channels[0].id ? channels[0].id : ''
+      )
+    },
+    [channels]
+  )
+  const changeSelected = id => {
     setSelected(id)
   }
   return (

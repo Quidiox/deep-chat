@@ -4,38 +4,30 @@ import StyledChatroom from '../../../components/blocks/StyledChatroom'
 import MessageField from './messageField'
 import MemberList from './memberList'
 import MessageList from './messageList'
-import {
-  requestLoadChannelMessages,
-  requestNewMessage
-} from '../../../reducers/channelMessagesReducer'
+import { requestLoadChannelMessages } from '../../../reducers/channelMessagesReducer'
 import { requestLoadChannelMembers } from '../../../reducers/channelMembersReducer'
 
 const Chatroom = ({
   requestLoadChannelMessages,
   requestLoadChannelMembers,
-  requestNewMessage,
   messages,
   members,
   channelId
 }) => {
   useEffect(
     () => {
-      // console.log('here we go: ', channelId, messages, members)
-      if (channelId) {
+      if (channelId && channelId.length > 10) {
         requestLoadChannelMessages({ channelId })
         requestLoadChannelMembers({ channelId })
       }
     },
-    [channelId]
+    [channelId, requestLoadChannelMessages, requestLoadChannelMembers]
   )
-  const newMessage = name => {
-    requestNewMessage(name)
-  }
   return (
     <StyledChatroom>
       <MessageList messages={messages} channelId={channelId} />
       <MemberList members={members} channelId={channelId} />
-      <MessageField newMessage={newMessage} channelId={channelId} />
+      <MessageField channelId={channelId} />
     </StyledChatroom>
   )
 }
@@ -47,8 +39,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   requestLoadChannelMessages,
-  requestLoadChannelMembers,
-  requestNewMessage
+  requestLoadChannelMembers
 }
 
 export default connect(

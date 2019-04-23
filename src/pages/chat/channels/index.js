@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import StyledTabRow from '../../../components/blocks/StyledTabRow'
 import Join from './join'
@@ -11,19 +11,14 @@ const Channels = ({
   changeSelected
 }) => {
   const [open, setOpen] = useState(false)
-  useEffect(
-    () => {
-      if (channels && channels[0] && channels[0].id) {
-        changeSelected(channels[0].id)()
-      }
-    },
-    [channels]
-  )
   const joinModalOpen = () => {
     setOpen(!open)
   }
   const joinChannel = name => {
     requestUserJoinChannel(name)
+  }
+  const handleChannelChange = id => e => {
+    changeSelected(id)
   }
   return (
     <>
@@ -36,7 +31,7 @@ const Channels = ({
             return (
               <StyledTabRow.LI
                 key={channel.id}
-                onClick={changeSelected(channel.id)}
+                onClick={handleChannelChange(channel.id)}
                 selected={channel.id === selected ? true : false}
               >
                 <StyledTabRow.A>{channel.name}</StyledTabRow.A>

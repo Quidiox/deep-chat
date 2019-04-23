@@ -4,7 +4,7 @@ import errorReducer from './errorReducer'
 import channelsReducer from './channelsReducer'
 import channelMessagesReducer from './channelMessagesReducer'
 import channelMembersReducer from './channelMembersReducer'
-import { USER_DELETE, USER_LOGOUT } from './actionTypes'
+import { USER_DELETE, USER_LOGOUT, AUTH_COOKIE_NOT_VALID } from './actionTypes'
 
 const appReducer = combineReducers({
   user: userReducer,
@@ -18,6 +18,8 @@ const rootReducer = (state, action) => {
   if (action.type === USER_LOGOUT) {
     state = undefined
   } else if (action.type === USER_DELETE) {
+    state = undefined
+  } else if (action.type === AUTH_COOKIE_NOT_VALID) {
     state = undefined
   }
 

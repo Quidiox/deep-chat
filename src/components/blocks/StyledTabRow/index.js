@@ -19,6 +19,7 @@ const StyledTabRow = styled.ul`
     border-top: 1px solid #aaa;
     z-index: 1;
   }
+  flex-shrink: 0;
 `
 
 StyledTabRow.A = A

@@ -9,11 +9,11 @@ import {
   USER_LOGOUT_REQUEST,
   USER_DELETE_REQUEST,
   AUTH_COOKIE_VERIFY_REQUEST,
-  AUTH_COOKIE_VERIFY,
-  AUTH_COOKIE_NOT_VALID
+  AUTH_COOKIE_VERIFY
 } from './actionTypes'
-/* user logout and delete are handled in rootReducer because all state becomes
-   invalid when they happen so whole state is set to undefined */
+/* user logout, user delete and invalid auth cookie are handled in rootReducer 
+   because all state becomes invalid when they happen so whole state is set to 
+   undefined */
 
 const userReducer = produce((draft, action) => {
   // eslint-disable-next-line
@@ -29,9 +29,6 @@ const userReducer = produce((draft, action) => {
     }
     case AUTH_COOKIE_VERIFY: {
       return action.payload
-    }
-    case AUTH_COOKIE_NOT_VALID: {
-      return {}
     }
   }
 }, {})

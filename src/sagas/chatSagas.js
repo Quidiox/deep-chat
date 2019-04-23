@@ -1,4 +1,4 @@
-import { take, put, call, actionChannel } from 'redux-saga/effects'
+import { take, put, call, apply, actionChannel } from 'redux-saga/effects'
 import { eventChannel } from 'redux-saga'
 import createWebSocketConnection from '../pages/chat/socketConnection'
 import { genericActionCreator } from '../reducers/rootReducer'
@@ -109,29 +109,45 @@ export function* watchActions() {
   while (true) {
     try {
       const action = yield take(requestChannel)
+      console.log(action)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
-          yield socket.emit(LOAD_ALL_CHANNELS_REQUEST)
+          yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
           break
         }
         case USER_JOIN_CHANNEL_REQUEST: {
-          yield socket.emit(USER_JOIN_CHANNEL_REQUEST, action.payload)
+          yield apply(socket, socket.emit, [
+            USER_JOIN_CHANNEL_REQUEST,
+            action.payload
+          ])
           break
         }
         case USER_LEAVE_CHANNEL_REQUEST: {
-          yield socket.emit(USER_LEAVE_CHANNEL_REQUEST, action.payload)
+          yield apply(socket, socket.emit, [
+            USER_LEAVE_CHANNEL_REQUEST,
+            action.payload
+          ])
           break
         }
         case NEW_MESSAGE_REQUEST: {
-          yield socket.emit(NEW_MESSAGE_REQUEST, action.payload)
+          yield apply(socket, socket.emit, [
+            NEW_MESSAGE_REQUEST,
+            action.payload
+          ])
           break
         }
         case LOAD_CHANNEL_MESSAGES_REQUEST: {
-          yield socket.emit(LOAD_CHANNEL_MESSAGES_REQUEST, action.payload)
+          yield apply(socket, socket.emit, [
+            LOAD_CHANNEL_MESSAGES_REQUEST,
+            action.payload
+          ])
           break
         }
         case LOAD_CHANNEL_MEMBERS_REQUEST: {
-          yield socket.emit(LOAD_CHANNEL_MEMBERS_REQUEST, action.payload)
+          yield apply(socket, socket.emit, [
+            LOAD_CHANNEL_MEMBERS_REQUEST,
+            action.payload
+          ])
           break
         }
         default:
@@ -142,3 +158,5 @@ export function* watchActions() {
     }
   }
 }
+
+export const chatSagas = [call(watchActions), call(watchEvents)]

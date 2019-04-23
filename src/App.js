@@ -15,12 +15,20 @@ import Error from './pages/error'
 import NotFound from './NotFound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
+import { watchEvents, watchActions } from './sagas/chatSagas'
+import { runSaga } from './reducers/store'
 
 const App = ({ user, error, requestVerifyAuthCookie }) => {
+  useEffect(
+    () => {
+      requestVerifyAuthCookie()
+    },
+    [requestVerifyAuthCookie]
+  )
   useEffect(() => {
-    requestVerifyAuthCookie()
+    runSaga(watchActions)
+    runSaga(watchEvents)
   }, [])
-
   return (
     <>
       <Header />

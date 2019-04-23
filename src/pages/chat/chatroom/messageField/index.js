@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
 import StyledMessageField from '../../../../components/blocks/StyledMessageField'
+import { requestNewMessage } from '../../../../reducers/channelMessagesReducer'
 
-const MessageField = ({ newMessage, channelId }) => {
+const MessageField = ({ requestNewMessage, channelId }) => {
   const [text, setText] = useState('')
 
   const handleChange = e => {
@@ -10,7 +12,7 @@ const MessageField = ({ newMessage, channelId }) => {
 
   const handleSubmit = e => {
     e.preventDefault()
-    newMessage({ channelId, text })
+    requestNewMessage({ channelId, text })
     setText('')
   }
 
@@ -28,4 +30,9 @@ const MessageField = ({ newMessage, channelId }) => {
   )
 }
 
-export default MessageField
+const mapDispatchToProps = { requestNewMessage }
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(MessageField)

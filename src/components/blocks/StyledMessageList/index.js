@@ -8,6 +8,8 @@ const StyledMessageList = styled.ul`
   margin: 1px 0 1px 0;
   position: fixed;
   bottom: 40px;
+  z-index: 2;
+  overflow-y: auto;
 `
 
 StyledMessageList.LI = LI
