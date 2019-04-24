@@ -9,7 +9,10 @@ const Chat = ({ requestLoadAllChannels, channels }) => {
   const [selected, setSelected] = useState()
   useEffect(
     () => {
-      requestLoadAllChannels()
+      async function init() {
+        await requestLoadAllChannels()
+      }
+      init()
     },
     [requestLoadAllChannels]
   )

@@ -16,7 +16,7 @@ import NotFound from './NotFound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
 import { requestLoadAllChannels } from './reducers/channelsReducer'
-import { watchEvents, watchActions } from './sagas/chatSagas'
+import { watchActions } from './sagas/chatSagas'
 import { runSaga } from './reducers/store'
 
 const App = ({
@@ -29,16 +29,25 @@ const App = ({
     () => {
       async function init() {
         await requestVerifyAuthCookie()
+      }
+      init()
+    },
+    [requestVerifyAuthCookie]
+  )
+  useEffect(
+    () => {
+      async function init() {
+        await runSaga(watchActions)
         await requestLoadAllChannels()
       }
       init()
     },
-    [requestVerifyAuthCookie, requestLoadAllChannels]
+    [requestLoadAllChannels]
   )
-  useEffect(() => {
-    runSaga(watchActions)
-    runSaga(watchEvents)
-  }, [])
+  // useEffect(() => {
+  //   runSaga(watchActions)
+  //   runSaga(watchEvents)
+  // }, [])
   return (
     <>
       <Header />

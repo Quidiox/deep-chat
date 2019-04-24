@@ -13,6 +13,7 @@ const createWebSocketConnection = () => {
   })
   socket.on('disconnect', reason => {
     console.log('socket.io disconnected: ', reason)
+    socket.close()
   })
   socket.on('error', error => {
     console.log('error: ', error)
