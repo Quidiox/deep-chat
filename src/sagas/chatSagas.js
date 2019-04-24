@@ -109,7 +109,7 @@ function* watchEvents() {
 export function* watchActions() {
   socket = yield call(createWebSocketConnection)
   const requestChannel = yield actionChannel('*')
-  yield runSaga(watchEvents)
+  yield call(runSaga, watchEvents)
   while (true) {
     try {
       const action = yield take(requestChannel)
@@ -172,4 +172,8 @@ export function* watchActions() {
       console.log(error)
     }
   }
+}
+
+export function* createSocketSagas() {
+  yield call(runSaga, watchActions)
 }
