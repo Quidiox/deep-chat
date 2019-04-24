@@ -44,10 +44,6 @@ const App = ({
     },
     [requestLoadAllChannels]
   )
-  // useEffect(() => {
-  //   runSaga(watchActions)
-  //   runSaga(watchEvents)
-  // }, [])
   return (
     <>
       <Header />

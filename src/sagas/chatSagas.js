@@ -116,15 +116,12 @@ export function* watchActions() {
       console.log(action, socket)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
-          if (socket.connected) {
-            yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
-            break
-          } else {
+          if (!socket.connected) {
             socket = yield call(createWebSocketConnection)
             yield call(runSaga, watchEvents)
-            yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
-            break
           }
+          yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
+          break
         }
         case USER_JOIN_CHANNEL_REQUEST: {
           yield apply(socket, socket.emit, [
