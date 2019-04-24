@@ -25,8 +25,20 @@ const Chatroom = ({
   )
   return (
     <StyledChatroom>
-      <MessageList messages={messages} channelId={channelId} />
-      <MemberList members={members} channelId={channelId} />
+      <MessageList
+        messages={
+          channelId && messages && messages[channelId]
+            ? messages[channelId].messages
+            : []
+        }
+      />
+      <MemberList
+        members={
+          channelId && members && members[channelId]
+            ? members[channelId].members
+            : []
+        }
+      />
       <MessageField channelId={channelId} />
     </StyledChatroom>
   )

@@ -1,18 +1,12 @@
 import React from 'react'
 import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 
-const MemberList = React.memo(({ members, channelId }) => {
+const MemberList = React.memo(({ members }) => {
   // console.log(members, channelId)
-  if (
-    members &&
-    channelId &&
-    members[channelId] &&
-    members[channelId].members &&
-    members[channelId].members.length > 0
-  ) {
+  if (members && members.length > 0) {
     return (
       <StyledMemberList>
-        {members[channelId].members.map(member => (
+        {members.map(member => (
           <StyledMemberList.LI key={member.id}>
             <StyledMemberList.P>{member.name}</StyledMemberList.P>
           </StyledMemberList.LI>
