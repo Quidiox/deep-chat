@@ -1,7 +1,7 @@
 import React from 'react'
 import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 
-const MemberList = ({ members, channelId }) => {
+const MemberList = React.memo(({ members, channelId }) => {
   // console.log(members, channelId)
   if (
     members &&
@@ -27,6 +27,6 @@ const MemberList = ({ members, channelId }) => {
       </StyledMemberList.LI>
     </StyledMemberList>
   )
-}
+})
 
 export default MemberList

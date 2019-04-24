@@ -2,7 +2,7 @@ import React from 'react'
 import { format, parseISO } from 'date-fns'
 import StyledMessageList from '../../../../components/blocks/StyledMessageList'
 
-const MessageList = ({ messages, channelId }) => {
+const MessageList = React.memo(({ messages, channelId }) => {
   if (
     channelId &&
     messages &&
@@ -31,6 +31,6 @@ const MessageList = ({ messages, channelId }) => {
       </StyledMessageList.LI>
     </StyledMessageList>
   )
-}
+})
 
 export default MessageList

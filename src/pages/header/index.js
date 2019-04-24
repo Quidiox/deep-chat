@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import StyledHeader from '../../components/blocks/StyledHeader'
 
-const Header = props => {
+const Header = React.memo(props => {
   const [navMenu, setNavMenu] = useState(false)
   const [userMenu, setUserMenu] = useState(false)
 
@@ -76,7 +76,7 @@ const Header = props => {
       </StyledHeader.DropDownContainer>
     </StyledHeader>
   )
-}
+})
 
 const mapStateToProps = state => ({ user: state.user })
 

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Logout from './pages/auth/Logout'
 import CreateUser from './pages/user/create'
@@ -46,8 +46,8 @@ const App = ({
   )
   return (
     <>
-      <Header />
       {error && <Error error={error} />}
+      <Header />
       <Switch>
         <Route exact path="/" component={About} />
         <Route
@@ -74,9 +74,7 @@ const App = ({
 const mapStateToProps = state => ({ user: state.user, error: state.error })
 const mapDispatchToProps = { requestVerifyAuthCookie, requestLoadAllChannels }
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)

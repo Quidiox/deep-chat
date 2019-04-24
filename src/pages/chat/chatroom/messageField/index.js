@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import StyledMessageField from '../../../../components/blocks/StyledMessageField'
 import { requestNewMessage } from '../../../../reducers/channelMessagesReducer'
 
-const MessageField = ({ requestNewMessage, channelId }) => {
+const MessageField = React.memo(({ requestNewMessage, channelId }) => {
   const [text, setText] = useState('')
 
   const handleChange = e => {
@@ -28,7 +28,7 @@ const MessageField = ({ requestNewMessage, channelId }) => {
       </StyledMessageField.Button>
     </StyledMessageField>
   )
-}
+})
 
 const mapDispatchToProps = { requestNewMessage }
 
