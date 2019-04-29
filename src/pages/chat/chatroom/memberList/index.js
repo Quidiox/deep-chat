@@ -14,13 +14,6 @@ const MemberList = React.memo(({ members }) => {
       </StyledMemberList>
     )
   }
-  return (
-    <StyledMemberList>
-      <StyledMemberList.LI>
-        <StyledMemberList.P>no members</StyledMemberList.P>
-      </StyledMemberList.LI>
-    </StyledMemberList>
-  )
 })
 
 export default MemberList

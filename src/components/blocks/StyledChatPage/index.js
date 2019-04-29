@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 
 const StyledChatPage = styled.div`
-  max-width: 800px;
+  max-width: 1000px;
   min-width: 300px;
 `
 
