@@ -101,7 +101,8 @@ function* watchEvents() {
       }
     } catch (error) {
       console.error('socket error:', error)
-      // socketChannel.close()
+      socket.close()
+      socketChannel.close()
     }
   }
 }
@@ -113,7 +114,6 @@ export function* watchActions() {
   while (true) {
     try {
       const action = yield take(requestChannel)
-      console.log(action, socket)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
           if (!socket.connected) {
@@ -167,10 +167,7 @@ export function* watchActions() {
       }
     } catch (error) {
       console.log(error)
+      socket.close()
     }
   }
-}
-
-export function* createSocketSagas() {
-  yield call(runSaga, watchActions)
 }
