@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import { format, parseISO } from 'date-fns'
 import {
   InfiniteLoader,
@@ -9,17 +9,9 @@ import {
 import StyledMessageList from '../../../../components/blocks/StyledMessageList'
 
 const MessageList = React.memo(({ messages }) => {
-  const listRef = useRef(null)
-  useEffect(
-    () => {
-      console.log(listRef)
-      listRef.current.scrollToRow(messages.length)
-    },
-    [messages.length]
-  )
   const cache = new CellMeasurerCache({
-    minHeight: '17',
-    defaultHeight: '30',
+    minHeight: 17,
+    defaultHeight: 17,
     fixedWidth: true
   })
   const renderRow = ({ index, key, style, parent }) => {
@@ -44,7 +36,7 @@ const MessageList = React.memo(({ messages }) => {
       <AutoSizer>
         {({ width, height }) => (
           <StyledMessageList
-            ref={listRef}
+            scrollToIndex={messages.length - 1}
             width={width}
             height={height}
             deferredMeasurementCache={cache}

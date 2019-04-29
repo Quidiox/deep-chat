@@ -33,7 +33,6 @@ const Channels = React.memo(
             channels[0] &&
             channels[0].id &&
             channels.map(channel => {
-              // console.log(channel.id)
               return (
                 <StyledTabRow.LI
                   key={channel.id}
