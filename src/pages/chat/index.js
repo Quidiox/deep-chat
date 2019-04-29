@@ -7,6 +7,10 @@ import { requestLoadAllChannels } from '../../reducers/channelsReducer'
 
 const Chat = ({ requestLoadAllChannels, channels }) => {
   const [selected, setSelected] = useState()
+  const [tabRowHeight, setTabRowHeight] = useState(21)
+  const getTabRowHeight = height => {
+    setTabRowHeight(height)
+  }
   useEffect(
     () => {
       requestLoadAllChannels()
@@ -27,11 +31,12 @@ const Chat = ({ requestLoadAllChannels, channels }) => {
   return (
     <StyledChatPage>
       <Channels
+        getTabRowHeight={getTabRowHeight}
         channels={channels}
         selected={selected}
         changeSelected={changeSelected}
       />
-      <Chatroom channelId={selected} />
+      <Chatroom channelId={selected} tabRowHeight={tabRowHeight} />
     </StyledChatPage>
   )
 }

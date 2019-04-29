@@ -12,22 +12,14 @@ const MessageList = React.memo(({ messages }) => {
   const listRef = useRef(null)
   useEffect(
     () => {
-      console.log(
-        listRef.current,
-        listRef.current.props.rowCount,
-        messages.length
-      )
-      console.log(
-        listRef.current.getBoundingClientRect(),
-        listRef.current.scrollTop
-      )
+      console.log(listRef)
       listRef.current.scrollToRow(messages.length)
     },
     [messages.length]
   )
-
   const cache = new CellMeasurerCache({
-    defaultHeight: '30px',
+    minHeight: '17',
+    defaultHeight: '30',
     fixedWidth: true
   })
   const renderRow = ({ index, key, style, parent }) => {

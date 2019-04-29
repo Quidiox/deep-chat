@@ -1,12 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import StyledTabRow from '../../../components/blocks/StyledTabRow'
 import Join from './join'
 import { requestUserJoinChannel } from '../../../reducers/channelsReducer'
 
 const Channels = React.memo(
-  ({ requestUserJoinChannel, channels, selected, changeSelected }) => {
+  ({
+    requestUserJoinChannel,
+    channels,
+    selected,
+    changeSelected,
+    getTabRowHeight
+  }) => {
     const [open, setOpen] = useState(false)
+    const tabRowRef = useRef(null)
+    useEffect(() => {
+      getTabRowHeight(tabRowRef.current.clientHeight)
+    })
     const joinModalOpen = () => {
       setOpen(!open)
     }
@@ -18,7 +28,7 @@ const Channels = React.memo(
     }
     return (
       <>
-        <StyledTabRow>
+        <StyledTabRow ref={tabRowRef}>
           {channels &&
             channels[0] &&
             channels[0].id &&

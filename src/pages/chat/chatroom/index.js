@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { connect } from 'react-redux'
 import StyledChatroom from '../../../components/blocks/StyledChatroom'
 import MessageField from './messageField'
@@ -12,8 +12,14 @@ const Chatroom = ({
   requestLoadChannelMembers,
   messages,
   members,
-  channelId
+  channelId,
+  tabRowHeight
 }) => {
+  const messageFieldHeight = 44
+  const headerHeight = 30
+  const messageListHeightModifier =
+    messageFieldHeight + tabRowHeight + headerHeight
+  console.log(messageListHeightModifier)
   useEffect(
     () => {
       if (channelId && channelId.length > 10) {
@@ -24,7 +30,7 @@ const Chatroom = ({
     [channelId, requestLoadChannelMessages, requestLoadChannelMembers]
   )
   return (
-    <StyledChatroom>
+    <StyledChatroom messageListHeightModifier={messageListHeightModifier}>
       <MessageList
         messages={
           channelId && messages && messages[channelId]
