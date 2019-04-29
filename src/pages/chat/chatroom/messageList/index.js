@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { format, parseISO } from 'date-fns'
 import {
-  InfiniteLoader,
+  // InfiniteLoader,
   AutoSizer,
   CellMeasurer,
   CellMeasurerCache
@@ -9,6 +9,17 @@ import {
 import StyledMessageList from '../../../../components/blocks/StyledMessageList'
 
 const MessageList = React.memo(({ messages }) => {
+  const listRef = useRef(null)
+  useEffect(
+    () => {
+      async function scrollToBottom() {
+        if (messages.length > 0) await listRef.current.measureAllRows()
+        await listRef.current.scrollToRow(messages.length - 1)
+      }
+      scrollToBottom()
+    },
+    [messages]
+  )
   const cache = new CellMeasurerCache({
     minHeight: 17,
     defaultHeight: 17,
@@ -36,6 +47,8 @@ const MessageList = React.memo(({ messages }) => {
       <AutoSizer>
         {({ width, height }) => (
           <StyledMessageList
+            ref={listRef}
+            estimatedRowSize={17}
             scrollToIndex={messages.length - 1}
             width={width}
             height={height}
