@@ -15,4 +15,5 @@ sagaMiddleware.run(rootSaga)
 
 export const runSaga = sagaMiddleware.run
 export const history = createBrowserHistory()
+export const dispatch = store.dispatch
 export default store

@@ -1,5 +1,13 @@
 import styled from 'styled-components/macro'
 
-const LI = styled.li``
+const LI = styled.li`
+  font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-all;
+  border-bottom: 1px solid black;
+  &:last-child {
+    border-bottom: none;
+  }
+`
 
 export default LI

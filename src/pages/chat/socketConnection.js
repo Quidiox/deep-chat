@@ -1,4 +1,5 @@
 import io from 'socket.io-client'
+// import { dispatch } from '../../reducers/store'
 
 const createWebSocketConnection = () => {
   const socket = io('http://backend.deep-chat.com', {
@@ -13,6 +14,7 @@ const createWebSocketConnection = () => {
   })
   socket.on('disconnect', reason => {
     console.log('socket.io disconnected: ', reason)
+    // dispatch({ type: 'AUTH_COOKIE_VERIFY_REQUEST' })
     socket.close()
   })
   socket.on('error', error => {
