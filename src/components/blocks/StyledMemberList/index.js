@@ -4,8 +4,8 @@ import P from './P'
 
 const StyledMemberList = styled.ul`
   width: 75px;
-  min-height: 100px;
-  height: auto;
+  min-height: 50px;
+  max-height: 100vh;
   list-style-type: none;
   padding: 0 10px 1px 5px;
   margin: 21px 0 0 0;
@@ -14,6 +14,7 @@ const StyledMemberList = styled.ul`
   background: lightblue;
   z-index: 5;
   cursor: pointer;
+  overflow-y: auto;
 `
 
 StyledMemberList.LI = LI
