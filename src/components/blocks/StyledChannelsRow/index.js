@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro'
-import A from '../StyledTabRow/A'
-import LI from '../StyledTabRow/LI'
+import A from './A'
+import LI from './LI'
 
 const StyledChannelsRow = styled.ul`
   margin-inline-end: 6px;

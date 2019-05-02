@@ -1,5 +1,5 @@
 import React from 'react'
-import StyledForm from '../../../components/blocks/StyledForm'
+import StyledForm from '../../../../components/blocks/StyledForm'
 
 const Form = ({
   name,
