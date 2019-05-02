@@ -46,8 +46,22 @@ const Chatroom = ({
   return (
     <StyledChatroom messageListHeightModifier={messageListHeightModifier}>
       <MemberBar
-        activeMembers={5}
-        totalMembers={12}
+        activeMembers={
+          channelId &&
+          members &&
+          members[channelId] &&
+          members[channelId].activeMembers
+            ? members[channelId].activeMembers.length
+            : 0
+        }
+        totalMembers={
+          channelId &&
+          members &&
+          members[channelId] &&
+          members[channelId].members
+            ? members[channelId].members.length
+            : 0
+        }
         changeMemberListVisibility={changeMemberListVisibility}
       />
       <MessageList
@@ -62,6 +76,11 @@ const Chatroom = ({
           members={
             channelId && members && members[channelId]
               ? members[channelId].members
+              : []
+          }
+          activeMembers={
+            channelId && members && members[channelId]
+              ? members[channelId].activeMembers
               : []
           }
           changeMemberListVisibility={changeMemberListVisibility}
