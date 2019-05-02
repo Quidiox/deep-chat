@@ -18,17 +18,20 @@ const Chatroom = ({
   messages,
   members,
   channelId,
-  tabRowHeight
+  channelsRowHeight
 }) => {
   const [messageListHeightModifier, setMessageListHeightModifier] = useState(0)
   const [memberListVisible, setMemberListVisible] = useState(false)
   useEffect(
     () => {
       setMessageListHeightModifier(
-        MESSAGE_FIELD_HEIGHT + HEADER_HEIGHT + MEMBERSTAB_HEIGHT + tabRowHeight
+        MESSAGE_FIELD_HEIGHT +
+          HEADER_HEIGHT +
+          MEMBERSTAB_HEIGHT +
+          channelsRowHeight
       )
     },
-    [tabRowHeight]
+    [channelsRowHeight]
   )
   useEffect(
     () => {
@@ -40,7 +43,6 @@ const Chatroom = ({
     [channelId, requestLoadChannelMessages, requestLoadChannelMembers]
   )
   const changeMemberListVisibility = () => {
-    console.log('yes')
     setMemberListVisible(!memberListVisible)
   }
   return (

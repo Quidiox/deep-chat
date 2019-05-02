@@ -6,6 +6,7 @@ const ICON = styled(FontAwesomeIcon)`
   right: 10px;
   position: fixed;
   cursor: pointer;
+  user-select: none;
 `
 
 export default ICON

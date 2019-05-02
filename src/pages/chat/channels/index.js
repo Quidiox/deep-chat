@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
-import StyledTabRow from '../../../components/blocks/StyledTabRow'
+import StyledChannelsRow from '../../../components/blocks/StyledChannelsRow'
 import Join from './join'
 import { requestUserJoinChannel } from '../../../reducers/channelsReducer'
 
@@ -10,12 +10,12 @@ const Channels = React.memo(
     channels,
     selected,
     changeSelected,
-    getTabRowHeight
+    getChannelsRowHeight
   }) => {
     const [open, setOpen] = useState(false)
-    const tabRowRef = useRef(null)
+    const channelsRowRef = useRef(null)
     useEffect(() => {
-      getTabRowHeight(tabRowRef.current.clientHeight)
+      getChannelsRowHeight(channelsRowRef.current.clientHeight)
     })
     const joinModalOpen = () => {
       setOpen(!open)
@@ -28,25 +28,25 @@ const Channels = React.memo(
     }
     return (
       <>
-        <StyledTabRow ref={tabRowRef}>
+        <StyledChannelsRow ref={channelsRowRef}>
           {channels &&
             channels[0] &&
             channels[0].id &&
             channels.map(channel => {
               return (
-                <StyledTabRow.LI
+                <StyledChannelsRow.LI
                   key={channel.id}
                   onClick={handleChannelChange(channel.id)}
                   selected={channel.id === selected ? true : false}
                 >
-                  <StyledTabRow.A>{channel.name}</StyledTabRow.A>
-                </StyledTabRow.LI>
+                  <StyledChannelsRow.A>{channel.name}</StyledChannelsRow.A>
+                </StyledChannelsRow.LI>
               )
             })}
-          <StyledTabRow.LI key="join" join onClick={joinModalOpen}>
-            <StyledTabRow.A>Join channel</StyledTabRow.A>
-          </StyledTabRow.LI>
-        </StyledTabRow>
+          <StyledChannelsRow.LI key="join" join onClick={joinModalOpen}>
+            <StyledChannelsRow.A>Join channel</StyledChannelsRow.A>
+          </StyledChannelsRow.LI>
+        </StyledChannelsRow>
         <Join
           open={open}
           joinModalOpen={joinModalOpen}

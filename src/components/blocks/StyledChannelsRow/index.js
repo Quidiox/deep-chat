@@ -1,8 +1,8 @@
 import styled from 'styled-components/macro'
-import A from './A'
-import LI from './LI'
+import A from '../StyledTabRow/A'
+import LI from '../StyledTabRow/LI'
 
-const StyledTabRow = styled.ul`
+const StyledChannelsRow = styled.ul`
   margin-inline-end: 6px;
   margin-inline-start: 6px;
   padding-inline-start: 5px;
@@ -22,7 +22,7 @@ const StyledTabRow = styled.ul`
   flex-shrink: 0;
 `
 
-StyledTabRow.A = A
-StyledTabRow.LI = LI
+StyledChannelsRow.A = A
+StyledChannelsRow.LI = LI
 
-export default StyledTabRow
+export default StyledChannelsRow
