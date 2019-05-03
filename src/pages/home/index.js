@@ -6,9 +6,10 @@ import P from '../../components/elements/P'
 const Home = () => (
   <StyledColumn>
     <H1>Home</H1>
-    <P>
-      You can create and join new channels from here. Currently you have joined
-      5 channels of which you have created 3.
+    <P style={{ padding: '0 40px' }}>
+      Welcome to Deep Chat application! Deep Chat is a chat application where
+      you can join channels created by others or create new channels and chat
+      with people who have joined the same channel.
     </P>
   </StyledColumn>
 )
