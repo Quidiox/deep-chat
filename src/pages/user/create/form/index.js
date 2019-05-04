@@ -12,37 +12,48 @@ const Form = ({
 }) => {
   return (
     <StyledForm>
-      <StyledForm.Input
-        name="name"
-        value={name}
-        placeholder="name"
-        onChange={handleFieldChange}
-        required
-      />
-      <StyledForm.Input
-        name="username"
-        placeholder="username"
-        value={username}
-        onChange={handleFieldChange}
-        required
-      />
-      <StyledForm.Input
-        name="password"
-        type="password"
-        value={password}
-        placeholder="password"
-        onChange={handleFieldChange}
-        required
-      />
-      <StyledForm.Input
-        name="passwordConfirm"
-        type="password"
-        value={passwordConfirm}
-        placeholder="password confirm"
-        onChange={handleFieldChange}
-        required
-      />
-
+      <StyledForm.Label>
+        Name:
+        <StyledForm.Input
+          name="name"
+          value={name}
+          placeholder="name"
+          onChange={handleFieldChange}
+          required
+        />
+      </StyledForm.Label>
+      <StyledForm.Label>
+        Username:
+        <StyledForm.Input
+          name="username"
+          placeholder="username"
+          value={username}
+          onChange={handleFieldChange}
+          required
+        />
+      </StyledForm.Label>
+      <StyledForm.Label>
+        Password:
+        <StyledForm.Input
+          name="password"
+          type="password"
+          value={password}
+          placeholder="password"
+          onChange={handleFieldChange}
+          required
+        />
+      </StyledForm.Label>
+      <StyledForm.Label>
+        Password confirm:
+        <StyledForm.Input
+          name="passwordConfirm"
+          type="password"
+          value={passwordConfirm}
+          placeholder="password confirm"
+          onChange={handleFieldChange}
+          required
+        />
+      </StyledForm.Label>
       <div style={{ display: 'inline-block' }}>
         <StyledForm.Button name="submit" onClick={create} type="submit">
           Submit

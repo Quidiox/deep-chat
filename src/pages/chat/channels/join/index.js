@@ -20,13 +20,28 @@ const Join = ({ joinChannel, joinModalOpen, open }) => {
   return (
     <StyledModal open={open}>
       <StyledModal.PopUp>
+        <StyledModal.H2>Join channel</StyledModal.H2>
         <StyledForm>
-          <StyledForm.Input onChange={handleChange} value={name} />
-          <StyledForm.Button type="submit" onClick={handleSubmit}>
-            submit
-          </StyledForm.Button>
-          <StyledForm.Button onClick={closeModal}>close</StyledForm.Button>
+          <StyledForm.Label>
+            Channel name:
+            <StyledForm.Input
+              onChange={handleChange}
+              value={name}
+              placeholder="Channel name"
+            />
+          </StyledForm.Label>
         </StyledForm>
+        <StyledModal.Button
+          backgroundColor="lightgreen"
+          bottom="-60px"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          submit
+        </StyledModal.Button>
+        <StyledModal.Button bottom="-60px" onClick={closeModal}>
+          close
+        </StyledModal.Button>
       </StyledModal.PopUp>
     </StyledModal>
   )

@@ -5,7 +5,7 @@ const Button = styled.button`
   position: relative;
   border: none;
   cursor: pointer;
-  outline: solid black 0.1em;
+  outline: solid #adadad 1px;
   padding: 2px 2px;
 `
 

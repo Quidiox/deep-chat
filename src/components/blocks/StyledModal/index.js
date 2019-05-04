@@ -1,6 +1,8 @@
 import styled from 'styled-components/macro'
 import PopUp from './PopUp'
 import Button from './Button'
+import P from './P'
+import H2 from './H2'
 
 const StyledModal = styled.div`
   display: ${props => (props.open ? 'block' : 'none')};
@@ -15,5 +17,7 @@ const StyledModal = styled.div`
 
 StyledModal.PopUp = PopUp
 StyledModal.Button = Button
+StyledModal.P = P
+StyledModal.H2 = H2
 
 export default StyledModal

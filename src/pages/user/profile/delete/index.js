@@ -21,19 +21,17 @@ const Delete = ({ user, requestDeleteUser }) => {
       <StyledColumn>
         <H1>Delete user</H1>
         <P>
-          Deleting your user account is permanent and will also remove <br />{' '}
-          all channels you have created. Your messages to other channels
-          <br /> will stay.
+          Deleting your user account is permanent. Messages you have written
+          won't be deleted.
         </P>
-        <Button onClick={handleModal}>Delete user</Button>
+        <Button onClick={handleModal}>Delete user account</Button>
       </StyledColumn>
       <StyledModal open={open}>
         <StyledModal.PopUp>
-          <H1>Delete user confirmation</H1>
-          <P>
+          <H1>Delete user account confirmation</H1>
+          <StyledModal.P>
             To permanently delete your user account press the delete button.
-            Otherwise press close.
-          </P>
+          </StyledModal.P>
           <StyledModal.Button onClick={remove} backgroundColor="red">
             Delete
           </StyledModal.Button>
