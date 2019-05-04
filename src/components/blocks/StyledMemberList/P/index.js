@@ -6,7 +6,6 @@ const P = styled.p`
   padding: 0;
   color: ${props => (props.active ? 'green' : 'gray')};
   font-weight: ${props => (props.active ? 'bold' : 'normal')};
-  background: ${props => (props.active ? '#FFFFFF' : '#DDDDDD')};
 `
 
 export default P

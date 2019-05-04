@@ -14,7 +14,7 @@ const StyledMemberList = styled.ul`
   z-index: 5;
   cursor: pointer;
   overflow-y: auto;
-  border: 1px solid #000000;
+  border: 1px solid #d3d3d3;
   background: #ffffff;
 `
 
