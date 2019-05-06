@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import LoginForm from './LoginForm'
 import StyledColumn from '../../components/blocks/StyledColumn'
-import H1 from '../../components/elements/H1'
 import { requestLoginUser } from '../../reducers/userReducer'
 
 const Login = ({ user, requestLoginUser }) => {
@@ -37,7 +36,6 @@ const Login = ({ user, requestLoginUser }) => {
     <>
       {user && user.id && <Redirect to="/home" />}
       <StyledColumn>
-        <H1>Login</H1>
         <LoginForm
           handleFieldChange={handleFieldChange}
           login={login}

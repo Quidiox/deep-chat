@@ -10,31 +10,32 @@ const LoginForm = ({
 }) => {
   return (
     <StyledForm>
-      <StyledForm.Label>
-        Username:
-        <StyledForm.Input
-          name="username"
-          placeholder="username"
-          value={username}
-          onChange={handleFieldChange}
-        />
-      </StyledForm.Label>
-      <StyledForm.Label>
-        Password:
-        <StyledForm.Input
-          name="password"
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={handleFieldChange}
-        />
-      </StyledForm.Label>
-      <div style={{ display: 'inline-block' }}>
+      <StyledForm.Fieldset>
+        <StyledForm.Legend>Login</StyledForm.Legend>
+        <StyledForm.Label>
+          Username:
+          <StyledForm.Input
+            name="username"
+            placeholder="username"
+            value={username}
+            onChange={handleFieldChange}
+          />
+        </StyledForm.Label>
+        <StyledForm.Label>
+          Password:
+          <StyledForm.Input
+            name="password"
+            type="password"
+            value={password}
+            placeholder="password"
+            onChange={handleFieldChange}
+          />
+        </StyledForm.Label>
         <StyledForm.Button onClick={login} type="submit">
-          Submit
+          Login
         </StyledForm.Button>
         <StyledForm.Button onClick={clearFields}>Clear</StyledForm.Button>
-      </div>
+      </StyledForm.Fieldset>
     </StyledForm>
   )
 }
