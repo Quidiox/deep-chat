@@ -65,6 +65,7 @@ const LI = styled.li`
     props.join &&
     `
     background: lightblue;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 lightblue;
   &::before {
     left: -7px;
     border-top-right-radius: 6px;
