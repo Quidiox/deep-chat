@@ -1,5 +1,6 @@
 import styled from 'styled-components/macro'
 import LI from './LI'
+import ICON from './ICON'
 
 const StyledChannelsRow = styled.ul`
   margin-inline-end: 6px;
@@ -22,5 +23,6 @@ const StyledChannelsRow = styled.ul`
 `
 
 StyledChannelsRow.LI = LI
+StyledChannelsRow.ICON = ICON
 
 export default StyledChannelsRow

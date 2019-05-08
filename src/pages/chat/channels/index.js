@@ -30,6 +30,9 @@ const Channels = React.memo(
     const handleChannelChange = id => e => {
       changeSelected(id)
     }
+    const leaveChannel = id => () => {
+      requestUserLeaveChannel(id)
+    }
     return (
       <>
         <StyledChannelsRow ref={channelsRowRef}>
@@ -44,6 +47,11 @@ const Channels = React.memo(
                   selected={channel.id === selected ? true : false}
                 >
                   {channel.name}
+                  <StyledChannelsRow.ICON
+                    icon="times"
+                    selected={channel.id === selected ? true : false}
+                    onClick={leaveChannel(channel.id)}
+                  />
                 </StyledChannelsRow.LI>
               )
             })}

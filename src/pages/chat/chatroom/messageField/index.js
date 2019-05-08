@@ -23,7 +23,11 @@ const MessageField = React.memo(({ requestNewMessage, channelId }) => {
         placeholder="Type a new message..."
         value={text}
       />
-      <StyledMessageField.Button onClick={handleSubmit} type="submit">
+      <StyledMessageField.Button
+        margin="0 0 3px 4px"
+        onClick={handleSubmit}
+        type="submit"
+      >
         Submit
       </StyledMessageField.Button>
     </StyledMessageField>

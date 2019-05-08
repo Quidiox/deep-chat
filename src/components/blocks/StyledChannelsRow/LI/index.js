@@ -13,8 +13,8 @@ const LI = styled.li`
   border-bottom-right-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #fff;
   text-shadow: 0 1px #fff;
-  margin: 0 -5px;
-  padding: 0 12px;
+  margin: 0 -2px;
+  padding: 0 7px;
 
   &::before,
   &::after {

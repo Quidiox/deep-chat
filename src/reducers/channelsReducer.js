@@ -21,7 +21,7 @@ const channelReducer = produce((draft, action) => {
     }
     case USER_LEAVE_CHANNEL: {
       if (action.payload.notice) return
-      return draft.filter(channel => channel.name !== action.payload.name)
+      return draft.filter(channel => channel.id !== action.payload.id)
     }
   }
 }, [])
