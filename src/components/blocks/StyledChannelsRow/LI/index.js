@@ -1,9 +1,11 @@
 import styled from 'styled-components/macro'
 
 const LI = styled.li`
+  color: #555;
+  text-decoration: none;
   border: 1px solid #aaa;
   background: #d1d1d1;
-  //background: linear-gradient(top, #ececec 50%, #d1d1d1 100%);
+  background: linear-gradient(to top, #ececec 20%, #d1d1d1 100%);
   display: inline-block;
   position: relative;
   z-index: 0;
@@ -40,28 +42,42 @@ const LI = styled.li`
 
   ${props =>
     props.selected &&
-    `background-color: #fff;
-  color: #333;
-  z-index: 2;
-  border-top-color: #fff;
-  `} ${props =>
-    props.selected &&
-    `&::before {
-    box-shadow: 2px 0px 0 #ffa;
-  }`}
-  .tabrow li.selected:before {
-  }
+    `
+      background: #fff;
+      color: #333;
+      z-index: 2;
+      border-top-color: #fff;
+  `} 
   ${props =>
     props.selected &&
-    `&::after {
-    box-shadow: -2px 0px 0 #fff;
-  }`};
+    `
+      &::before {
+        box-shadow: 2px 0px 0 #ffa;
+      }`}
+  ${props =>
+    props.selected &&
+    `
+      &::after {
+        box-shadow: -2px 0px 0 #fff;
+    }
+  `}
   ${props =>
     props.join &&
     `
     background: lightblue;
-    text-shadow: unset;
-  `};
+  &::before {
+    left: -7px;
+    border-top-right-radius: 6px;
+    border-width: 1px 1px 0px 0px;
+    box-shadow: 1px 0px 0 #ececec;
+  }
+  &::after {
+    right: -7px;
+    border-top-left-radius: 6px;
+    border-width: 1px 0px 0px 1px;
+    box-shadow: -1px 0px 0 #ececec;
+  }
+  `}
 `
 
 export default LI

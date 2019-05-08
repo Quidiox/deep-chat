@@ -101,8 +101,8 @@ function* watchEvents() {
       }
     } catch (error) {
       console.error('socket error:', error)
-      socket.close()
       socketChannel.close()
+      socket.close()
     }
   }
 }
@@ -167,6 +167,7 @@ export function* watchActions() {
       }
     } catch (error) {
       console.log(error)
+      requestChannel.close()
       socket.close()
     }
   }

@@ -1,5 +1,4 @@
 import styled from 'styled-components/macro'
-import A from './A'
 import LI from './LI'
 
 const StyledChannelsRow = styled.ul`
@@ -22,7 +21,6 @@ const StyledChannelsRow = styled.ul`
   flex-shrink: 0;
 `
 
-StyledChannelsRow.A = A
 StyledChannelsRow.LI = LI
 
 export default StyledChannelsRow

@@ -2,11 +2,15 @@ import React, { useState, useRef, useEffect } from 'react'
 import { connect } from 'react-redux'
 import StyledChannelsRow from '../../../components/blocks/StyledChannelsRow'
 import Join from './join'
-import { requestUserJoinChannel } from '../../../reducers/channelsReducer'
+import {
+  requestUserJoinChannel,
+  requestUserLeaveChannel
+} from '../../../reducers/channelsReducer'
 
 const Channels = React.memo(
   ({
     requestUserJoinChannel,
+    requestUserLeaveChannel,
     channels,
     selected,
     changeSelected,
@@ -39,12 +43,12 @@ const Channels = React.memo(
                   onClick={handleChannelChange(channel.id)}
                   selected={channel.id === selected ? true : false}
                 >
-                  <StyledChannelsRow.A>{channel.name}</StyledChannelsRow.A>
+                  {channel.name}
                 </StyledChannelsRow.LI>
               )
             })}
           <StyledChannelsRow.LI key="join" join onClick={joinModalOpen}>
-            <StyledChannelsRow.A>Join channel</StyledChannelsRow.A>
+            Join channel
           </StyledChannelsRow.LI>
         </StyledChannelsRow>
         <Join
@@ -57,7 +61,7 @@ const Channels = React.memo(
   }
 )
 
-const mapDispatchToProps = { requestUserJoinChannel }
+const mapDispatchToProps = { requestUserJoinChannel, requestUserLeaveChannel }
 
 export default connect(
   null,
