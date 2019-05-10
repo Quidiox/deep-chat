@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import LoginForm from './LoginForm'
-import StyledColumn from '../../components/blocks/StyledColumn'
-import { requestLoginUser } from '../../reducers/userReducer'
+import Form from './form'
+import StyledColumn from '../../../components/blocks/StyledColumn'
+import { requestLoginUser } from '../../../reducers/userReducer'
 
 const Login = ({ user, requestLoginUser }) => {
   const [username, setUsername] = useState('')
@@ -36,7 +36,7 @@ const Login = ({ user, requestLoginUser }) => {
     <>
       {user && user.id && <Redirect to="/home" />}
       <StyledColumn>
-        <LoginForm
+        <Form
           handleFieldChange={handleFieldChange}
           login={login}
           clearFields={clearFields}

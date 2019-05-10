@@ -6,6 +6,8 @@ const Button = styled.button`
   margin: ${props => props.margin || '17px 4px 3px 4px'};
   border-radius: 3px;
   width: 45%;
+  cursor: pointer;
+  position: relative;
 `
 
 export default Button

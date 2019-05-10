@@ -14,6 +14,10 @@ const createWebSocketConnection = () => {
   })
   socket.on('disconnect', reason => {
     console.log('socket.io disconnected: ', reason)
+    // here I should check the auth cookie and if it is valid then
+    // reload channel, messages and members, otherwise logout
+    // maybe a new action for this would be needed as auth cookie
+    // check won't reload chat channel
     // dispatch({ type: 'AUTH_COOKIE_VERIFY_REQUEST' })
     socket.close()
   })

@@ -1,15 +1,15 @@
 import styled from 'styled-components/macro'
 
 const Button = styled.button`
-  margin: 5px 10px;
-  right: -170px;
-  bottom: ${props => (props.bottom ? props.bottom : '-20px')};
+  margin: 20px 4px 3px 4px;
+  padding: 4px 3px;
+  border-radius: 5px;
+  font-size: 1em;
   background-color: ${props => props.backgroundColor || 'lightgray'};
   position: relative;
-  border: none;
   cursor: pointer;
-  outline: solid #adadad 1px;
-  padding: 2px 2px;
+  width: 123px;
+  // outline: solid #adadad 1px;
 `
 
 export default Button

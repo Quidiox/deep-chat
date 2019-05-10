@@ -3,6 +3,9 @@ import PopUp from './PopUp'
 import Button from './Button'
 import P from './P'
 import H2 from './H2'
+import Form from './Form'
+import Input from './Input'
+import Label from './Label'
 
 const StyledModal = styled.div`
   display: ${props => (props.open ? 'block' : 'none')};
@@ -19,5 +22,8 @@ StyledModal.PopUp = PopUp
 StyledModal.Button = Button
 StyledModal.P = P
 StyledModal.H2 = H2
+StyledModal.Form = Form
+StyledModal.Input = Input
+StyledModal.Label = Label
 
 export default StyledModal

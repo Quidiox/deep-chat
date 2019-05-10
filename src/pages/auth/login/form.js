@@ -1,7 +1,7 @@
 import React from 'react'
-import StyledForm from '../../components/blocks/StyledForm'
+import StyledForm from '../../../components/blocks/StyledForm'
 
-const LoginForm = ({
+const Form = ({
   login,
   handleFieldChange,
   clearFields,
@@ -40,4 +40,4 @@ const LoginForm = ({
   )
 }
 
-export default LoginForm
+export default Form

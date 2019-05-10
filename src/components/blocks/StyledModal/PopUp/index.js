@@ -1,10 +1,12 @@
 import styled from 'styled-components/macro'
 
 const PopUp = styled.div`
+  text-align: center;
+  border-radius: 10px;
   padding: 5px;
   position: fixed;
-  width: 300px;
-  height: 200px;
+  width: 280px;
+  height: 180px;
   max-width: 100%;
   max-height: 100%;
   overflow: auto;

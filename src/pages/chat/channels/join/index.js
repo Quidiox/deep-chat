@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import StyledForm from '../../../../components/blocks/StyledForm'
 import StyledModal from '../../../../components/blocks/StyledModal'
 
-const Join = ({ joinChannel, joinModalOpen, open }) => {
+const Join = React.memo(({ joinChannel, joinModalOpen, open }) => {
   const [name, setName] = useState('')
   const handleChange = e => {
     setName(e.target.value)
@@ -21,30 +20,29 @@ const Join = ({ joinChannel, joinModalOpen, open }) => {
     <StyledModal open={open}>
       <StyledModal.PopUp>
         <StyledModal.H2>Join channel</StyledModal.H2>
-        <StyledForm>
-          <StyledForm.Label>
+        <StyledModal.Form>
+          <StyledModal.Label>
             Channel name:
-            <StyledForm.Input
+            <StyledModal.Input
               onChange={handleChange}
               value={name}
               placeholder="Channel name"
             />
-          </StyledForm.Label>
-        </StyledForm>
-        <StyledModal.Button
-          backgroundColor="lightgreen"
-          bottom="-60px"
-          type="submit"
-          onClick={handleSubmit}
-        >
-          submit
-        </StyledModal.Button>
-        <StyledModal.Button bottom="-60px" onClick={closeModal}>
-          close
-        </StyledModal.Button>
+          </StyledModal.Label>
+          <StyledModal.Button
+            backgroundColor="lightgreen"
+            type="submit"
+            onClick={handleSubmit}
+          >
+            Join
+          </StyledModal.Button>
+          <StyledModal.Button type="button" onClick={closeModal}>
+            Close
+          </StyledModal.Button>
+        </StyledModal.Form>
       </StyledModal.PopUp>
     </StyledModal>
   )
-}
+})
 
 export default Join
