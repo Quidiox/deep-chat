@@ -27,8 +27,8 @@ const Delete = ({ user, requestDeleteUser }) => {
         <Button onClick={handleModal}>Delete user account</Button>
       </StyledColumn>
       <StyledModal open={open}>
-        <StyledModal.PopUp>
-          <H1>Delete user account confirmation</H1>
+        <StyledModal.PopUp height="210px">
+          <H1>Delete account confirmation</H1>
           <StyledModal.P>
             To permanently delete your user account press the delete button.
           </StyledModal.P>

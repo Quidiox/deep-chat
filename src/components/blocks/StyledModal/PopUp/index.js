@@ -6,7 +6,7 @@ const PopUp = styled.div`
   padding: 5px;
   position: fixed;
   width: 280px;
-  height: 180px;
+  height: ${props => props.height || '180px'};
   max-width: 100%;
   max-height: 100%;
   overflow: auto;

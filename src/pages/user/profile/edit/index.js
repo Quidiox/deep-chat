@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import validator from 'validator'
 import Form from './form'
 import StyledColumn from '../../../../components/blocks/StyledColumn'
-import H1 from '../../../../components/elements/H1'
 import P from '../../../../components/elements/P'
 import { requestEditUser } from '../../../../reducers/userReducer'
 
@@ -76,11 +75,6 @@ const Edit = ({ requestEditUser, user }) => {
         username: usernameToValidate,
         password: passwordToValidate
       })
-      // setName('')
-      // setUsername('')
-      // setPassword('')
-      // setPasswordConfirm('')
-      // setErrors([])
     }
   }
 
@@ -102,12 +96,6 @@ const Edit = ({ requestEditUser, user }) => {
 
   return (
     <StyledColumn>
-      <H1>Edit user details</H1>
-      <P>
-        Fill in the user details you wish
-        <br /> to change and leave other fields
-        <br /> unmodified.
-      </P>
       <Form
         name={name}
         username={username}
