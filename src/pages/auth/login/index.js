@@ -5,7 +5,7 @@ import Form from './form'
 import StyledColumn from '../../../components/blocks/StyledColumn'
 import { requestLoginUser } from '../../../reducers/userReducer'
 
-const Login = ({ user, requestLoginUser }) => {
+const Login = React.memo(({ user, requestLoginUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -32,21 +32,21 @@ const Login = ({ user, requestLoginUser }) => {
     setPassword('')
   }
 
+  if (user && user.id) {
+    return <Redirect to="/home" />
+  }
   return (
-    <>
-      {user && user.id && <Redirect to="/home" />}
-      <StyledColumn>
-        <Form
-          handleFieldChange={handleFieldChange}
-          login={login}
-          clearFields={clearFields}
-          username={username}
-          password={password}
-        />
-      </StyledColumn>
-    </>
+    <StyledColumn>
+      <Form
+        handleFieldChange={handleFieldChange}
+        login={login}
+        clearFields={clearFields}
+        username={username}
+        password={password}
+      />
+    </StyledColumn>
   )
-}
+})
 
 const mapDispatchToProps = { requestLoginUser }
 

@@ -17,4 +17,5 @@ const About = () => (
     </P>
   </StyledColumn>
 )
+
 export default About
