@@ -5,10 +5,10 @@ import Form from './form'
 import StyledColumn from '../../../components/blocks/StyledColumn'
 import { requestLoginUser } from '../../../reducers/userReducer'
 
-const Login = React.memo(({ user, requestLoginUser }) => {
+const Login = React.memo(({ user, requestLoginUser, location: { from } }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
+  const [referrerPath, setReferrerPath] = useState(from)
   const login = e => {
     e.preventDefault()
     requestLoginUser({
@@ -33,7 +33,7 @@ const Login = React.memo(({ user, requestLoginUser }) => {
   }
 
   if (user && user.id) {
-    return <Redirect to="/home" />
+    return <Redirect to={referrerPath || '/home'} />
   }
   return (
     <StyledColumn>
