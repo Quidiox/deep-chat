@@ -23,16 +23,7 @@ const PrivateRoute = ({ component: Component, loggedIn, ...rest }) => (
   <Route
     {...rest}
     render={props =>
-      loggedIn ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            state: { from: props.location }
-          }}
-        />
-      )
+      loggedIn ? <Component {...props} /> : <Redirect to="/login" />
     }
   />
 )
@@ -80,29 +71,29 @@ const App = ({
         <PrivateRoute
           path="/profile"
           component={Profile}
-          loggedIn={user && user.id ? true : false}
+          loggedIn={user && user.id}
         />
         <PrivateRoute
           path="/home"
           component={Home}
-          loggedIn={user && user.id ? true : false}
+          loggedIn={user && user.id}
         />
         <PrivateRoute
           path="/chat"
           component={Chat}
           user={user}
-          loggedIn={user && user.id ? true : false}
+          loggedIn={user && user.id}
         />
         } />
         <PrivateRoute
           path="/user/edit"
           component={EditUser}
-          loggedIn={user && user.id ? true : false}
+          loggedIn={user && user.id}
         />
         <PrivateRoute
           path="/user/delete"
           component={DeleteUser}
-          loggedIn={user && user.id ? true : false}
+          loggedIn={user && user.id}
         />
         <Route path="*" component={NotFound} />
       </Switch>
