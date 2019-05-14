@@ -8,8 +8,8 @@ const About = () => (
   <StyledColumn>
     <H1>Welcome to Deep Chat application!</H1>
     <P>
-      Deep Chat is a chat application where you can create your own chat
-      channels or join chat channels created by other registered users.
+      Deep Chat is a typical chat application where you can chat on channels
+      created by you and other users.
     </P>
     <P>
       To use Deep Chat you need to <Link to="/register">register</Link>. <br />

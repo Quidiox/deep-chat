@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Login from './pages/auth/login'
 import Logout from './pages/auth/logout'
 import CreateUser from './pages/user/create'
@@ -18,6 +18,24 @@ import { requestVerifyAuthCookie } from './reducers/userReducer'
 import { requestLoadAllChannels } from './reducers/channelsReducer'
 import { watchActions } from './sagas/chatSagas'
 import { runSaga } from './reducers/store'
+
+const PrivateRoute = ({ component: Component, loggedIn, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      loggedIn ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: '/login',
+            state: { from: props.location }
+          }}
+        />
+      )
+    }
+  />
+)
 
 const App = ({
   user,
@@ -59,11 +77,33 @@ const App = ({
           render={props => <CreateUser {...props} user={user} />}
         />
         <Route path="/logout" component={Logout} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/home" component={Home} />
-        <Route path="/chat" render={props => <Chat {...props} user={user} />} />
-        <Route path="/user/edit" component={EditUser} />
-        <Route path="/user/delete" component={DeleteUser} />
+        <PrivateRoute
+          path="/profile"
+          component={Profile}
+          loggedIn={user && user.id ? true : false}
+        />
+        <PrivateRoute
+          path="/home"
+          component={Home}
+          loggedIn={user && user.id ? true : false}
+        />
+        <PrivateRoute
+          path="/chat"
+          component={Chat}
+          user={user}
+          loggedIn={user && user.id ? true : false}
+        />
+        } />
+        <PrivateRoute
+          path="/user/edit"
+          component={EditUser}
+          loggedIn={user && user.id ? true : false}
+        />
+        <PrivateRoute
+          path="/user/delete"
+          component={DeleteUser}
+          loggedIn={user && user.id ? true : false}
+        />
         <Route path="*" component={NotFound} />
       </Switch>
       <GlobalStyle />

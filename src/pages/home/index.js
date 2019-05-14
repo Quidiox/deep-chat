@@ -7,9 +7,8 @@ const Home = () => (
   <StyledColumn>
     <H1>Home</H1>
     <P>
-      Welcome to Deep Chat application! Deep Chat is a chat application where
-      you can create chat channels or join chat channels created by other
-      registered users.
+      Welcome to Deep Chat application! Deep Chat is a typical chat application
+      where you can chat on channels created by you and other users.
     </P>
   </StyledColumn>
 )
