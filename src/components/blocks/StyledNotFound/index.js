@@ -4,7 +4,6 @@ import P from './P'
 
 const StyledNotFound = styled.div`
   margin: 50px 0 0 0;
-  padding: 0 50px 0 50px;
 `
 
 StyledNotFound.Link = Link
