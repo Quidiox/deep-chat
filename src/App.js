@@ -12,7 +12,7 @@ import About from './pages/about'
 import Chat from './pages/chat'
 import Home from './pages/home'
 import Error from './pages/error'
-import NotFound from './NotFound'
+import NotFound from './pages/notfound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
 import { requestLoadAllChannels } from './reducers/channelsReducer'
@@ -90,7 +90,7 @@ const App = ({
           component={DeleteUser}
           loggedIn={loggedIn}
         />
-        <Route path="*" component={NotFound} />
+        <Route path="*" render={props => <NotFound {...props} user={user} />} />
       </Switch>
       <GlobalStyle />
     </>
