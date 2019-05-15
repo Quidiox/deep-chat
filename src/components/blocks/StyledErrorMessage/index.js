@@ -5,9 +5,9 @@ import Icon from './Icon'
 const StyledErrorMessage = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 25px;
+  height: 30px;
   width: 100%;
-  padding: 5px 0;
+  background: #d57f2a;
 `
 
 StyledErrorMessage.H3 = H3
