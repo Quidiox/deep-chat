@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Login from './pages/auth/login'
 import Logout from './pages/auth/logout'
 import CreateUser from './pages/user/create'
@@ -16,32 +16,17 @@ import NotFound from './NotFound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
 import { requestLoadAllChannels } from './reducers/channelsReducer'
+import { clearError } from './reducers/errorReducer'
 import { watchActions } from './sagas/chatSagas'
 import { runSaga } from './reducers/store'
-
-const PrivateRoute = ({ component: Component, loggedIn, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      loggedIn ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: '/login',
-            from: props.location
-          }}
-        />
-      )
-    }
-  />
-)
+import PrivateRoute from './utils/privateRoute'
 
 const App = ({
   user,
   error,
   requestVerifyAuthCookie,
-  requestLoadAllChannels
+  requestLoadAllChannels,
+  clearError
 }) => {
   const [loggedIn, setLoggedIn] = useState(false)
   useEffect(
@@ -73,7 +58,7 @@ const App = ({
   )
   return (
     <>
-      {error && <Error error={error} />}
+      {error && <Error error={error} clearError={clearError} />}
       <Header />
       <Switch>
         <Route exact path="/" component={About} />
@@ -113,7 +98,11 @@ const App = ({
 }
 
 const mapStateToProps = state => ({ user: state.user, error: state.error })
-const mapDispatchToProps = { requestVerifyAuthCookie, requestLoadAllChannels }
+const mapDispatchToProps = {
+  requestVerifyAuthCookie,
+  requestLoadAllChannels,
+  clearError
+}
 
 export default connect(
   mapStateToProps,

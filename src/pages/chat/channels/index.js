@@ -44,12 +44,12 @@ const Channels = React.memo(
                 <StyledChannelsRow.LI
                   key={channel.id}
                   onClick={handleChannelChange(channel.id)}
-                  selected={channel.id === selected ? true : false}
+                  selected={channel.id === selected}
                 >
                   {channel.name}
                   <StyledChannelsRow.Icon
                     icon="times"
-                    selected={channel.id === selected ? true : false}
+                    selected={channel.id === selected}
                     onClick={leaveChannel(channel.id)}
                   />
                 </StyledChannelsRow.LI>
