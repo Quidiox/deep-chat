@@ -8,7 +8,7 @@ const MemberBar = React.memo(
         <StyledMembersBar.P>
           There are {activeMembers} / {totalMembers} members active.
         </StyledMembersBar.P>
-        <StyledMembersBar.ICON
+        <StyledMembersBar.Icon
           icon="users"
           onClick={changeMemberListVisibility}
         />

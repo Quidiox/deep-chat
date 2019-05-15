@@ -47,7 +47,7 @@ const Channels = React.memo(
                   selected={channel.id === selected ? true : false}
                 >
                   {channel.name}
-                  <StyledChannelsRow.ICON
+                  <StyledChannelsRow.Icon
                     icon="times"
                     selected={channel.id === selected ? true : false}
                     onClick={leaveChannel(channel.id)}

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const ICON = styled(FontAwesomeIcon)`
+const Icon = styled(FontAwesomeIcon)`
   padding: 2px 0 0 0;
   right: 10px;
   position: fixed;
@@ -9,4 +9,4 @@ const ICON = styled(FontAwesomeIcon)`
   user-select: none;
 `
 
-export default ICON
+export default Icon
