@@ -20,16 +20,18 @@ import {
   USER_DELETE_ERROR,
   AUTH_COOKIE_VERIFY_REQUEST,
   AUTH_COOKIE_VERIFY,
-  AUTH_COOKIE_NOT_VALID
+  AUTH_COOKIE_NOT_VALID,
+  CLEAR_ERROR
 } from '../reducers/actionTypes'
 
 function* login(action) {
   try {
     const user = yield call(authApiService.login, action.payload)
+    yield put(genericActionCreator(CLEAR_ERROR))
     yield put(genericActionCreator(USER_LOGIN, user))
   } catch (error) {
     console.log(error)
-    yield put(genericActionCreator(USER_LOGIN_ERROR, error.error))
+    yield put(genericActionCreator(USER_LOGIN_ERROR, error))
   }
 }
 
@@ -40,10 +42,11 @@ function* watchLogin() {
 function* logout(action) {
   try {
     yield call(authApiService.logout, action.payload)
+    yield put(genericActionCreator(CLEAR_ERROR))
     yield put(genericActionCreator(USER_LOGOUT))
   } catch (error) {
     console.log(error)
-    yield put(genericActionCreator(USER_LOGOUT_ERROR, error.error))
+    yield put(genericActionCreator(USER_LOGOUT_ERROR, error))
   }
 }
 
@@ -67,10 +70,11 @@ function* watchAuthCookieVerify() {
 function* createUser(action) {
   try {
     const user = yield call(userApiService.create, action.payload)
+    yield put(genericActionCreator(CLEAR_ERROR))
     yield put(genericActionCreator(USER_CREATE, user))
   } catch (error) {
     console.log(error)
-    yield put(genericActionCreator(USER_CREATE_ERROR, error.error))
+    yield put(genericActionCreator(USER_CREATE_ERROR, error))
   }
 }
 
@@ -81,10 +85,11 @@ function* watchCreateUser() {
 function* editUser(action) {
   try {
     const user = yield call(userApiService.edit, action.payload)
+    yield put(genericActionCreator(CLEAR_ERROR))
     yield put(genericActionCreator(USER_EDIT, user))
   } catch (error) {
     console.log(error)
-    yield put(genericActionCreator(USER_EDIT_ERROR, error.error))
+    yield put(genericActionCreator(USER_EDIT_ERROR, error))
   }
 }
 
@@ -95,6 +100,7 @@ function* watchEditUser() {
 function* deleteUser(action) {
   try {
     yield call(userApiService.remove, action.payload)
+    yield put(genericActionCreator(CLEAR_ERROR))
     yield put(genericActionCreator(USER_DELETE))
   } catch (error) {
     console.log(error)

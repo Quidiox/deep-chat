@@ -8,7 +8,7 @@ import { requestLoginUser } from '../../../reducers/userReducer'
 const Login = React.memo(({ user, requestLoginUser, location: { from } }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [referrerPath, setReferrerPath] = useState(from)
+  const [referrerPath] = useState(from)
   const login = e => {
     e.preventDefault()
     requestLoginUser({

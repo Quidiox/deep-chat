@@ -12,8 +12,8 @@ const About = () => (
       created by you and other users.
     </P>
     <P>
-      To use Deep Chat you need to <Link to="/register">register</Link>. <br />
-      If you already have an user account please <Link to="/login">login</Link>.
+      To use Deep Chat you need to <Link to="/register">register</Link>. If you
+      already have an user account please <Link to="/login">login</Link>.
     </P>
   </StyledColumn>
 )

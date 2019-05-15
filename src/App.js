@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import Login from './pages/auth/login'
@@ -43,6 +43,7 @@ const App = ({
   requestVerifyAuthCookie,
   requestLoadAllChannels
 }) => {
+  const [loggedIn, setLoggedIn] = useState(false)
   useEffect(
     () => {
       async function init() {
@@ -62,6 +63,14 @@ const App = ({
     },
     [requestLoadAllChannels]
   )
+  useEffect(
+    () => {
+      if (user && user.id) {
+        setLoggedIn(true)
+      }
+    },
+    [user]
+  )
   return (
     <>
       {error && <Error error={error} />}
@@ -77,32 +86,24 @@ const App = ({
           render={props => <CreateUser {...props} user={user} />}
         />
         <Route path="/logout" component={Logout} />
-        <PrivateRoute
-          path="/profile"
-          component={Profile}
-          loggedIn={user && user.id}
-        />
-        <PrivateRoute
-          path="/home"
-          component={Home}
-          loggedIn={user && user.id}
-        />
+        <PrivateRoute path="/profile" component={Profile} loggedIn={loggedIn} />
+        <PrivateRoute path="/home" component={Home} loggedIn={loggedIn} />
         <PrivateRoute
           path="/chat"
           component={Chat}
           user={user}
-          loggedIn={user && user.id}
+          loggedIn={loggedIn}
         />
         } />
         <PrivateRoute
           path="/user/edit"
           component={EditUser}
-          loggedIn={user && user.id}
+          loggedIn={loggedIn}
         />
         <PrivateRoute
           path="/user/delete"
           component={DeleteUser}
-          loggedIn={user && user.id}
+          loggedIn={loggedIn}
         />
         <Route path="*" component={NotFound} />
       </Switch>

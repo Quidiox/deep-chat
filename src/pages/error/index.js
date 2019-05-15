@@ -1,9 +1,8 @@
 import React from 'react'
-import H2 from '../../components/elements/H2'
+import StyledErrorMessage from '../../components/blocks/StyledErrorMessage'
 
-const Error = ({ error }) => {
-  console.log(error)
-  return <H2>Error: {error}</H2>
-}
+const Error = ({ error }) => (
+  <StyledErrorMessage>Error: {error}</StyledErrorMessage>
+)
 
 export default Error
