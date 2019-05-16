@@ -3,12 +3,13 @@ import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 
 const MemberList = React.memo(
   ({ members, changeMemberListVisibility, activeMembers }) => {
+    console.log(members, activeMembers)
     const memberLine = member => {
       return (
         <StyledMemberList.P
-          active={activeMembers.find(username => member.name === username)}
+          active={activeMembers.find(nickname => member.nickname === nickname)}
         >
-          {member.name}
+          {member.nickname}
         </StyledMemberList.P>
       )
     }

@@ -7,12 +7,12 @@ import StyledColumn from '../../../components/blocks/StyledColumn'
 import P from '../../../components/elements/P'
 import { requestCreateUser } from '../../../reducers/userReducer'
 
-const inputValidation = (name, username, password, passwordConfirm) => {
+const inputValidation = (nickname, username, password, passwordConfirm) => {
   const errors = []
-  if (!validator.matches(name, /^[a-zA-Z\s]+$/))
-    errors.push('Name must contain only alphabetic characters.')
-  if (!validator.isLength(name, { min: 3, max: 30 }))
-    errors.push('Name must be between 3-30 characters long.')
+  if (!validator.isAlphanumeric(nickname))
+    errors.push('Nickname must contain only alphabetic characters.')
+  if (!validator.isLength(nickname, { min: 3, max: 30 }))
+    errors.push('Nickname must be between 3-30 characters long.')
   if (!validator.isAlphanumeric(username))
     errors.push('Username must contain only alphanumeric characters.')
   if (!validator.isLength(username, { min: 3, max: 30 }))
@@ -25,7 +25,7 @@ const inputValidation = (name, username, password, passwordConfirm) => {
 }
 
 const Create = ({ user, requestCreateUser }) => {
-  const [name, setName] = useState('')
+  const [nickname, setNickname] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -33,17 +33,22 @@ const Create = ({ user, requestCreateUser }) => {
 
   const create = e => {
     e.preventDefault()
-    const errors = inputValidation(name, username, password, passwordConfirm)
+    const errors = inputValidation(
+      nickname,
+      username,
+      password,
+      passwordConfirm
+    )
     if (errors.length !== 0) {
       setErrors(errors)
     } else {
       requestCreateUser({
-        name,
+        nickname,
         username,
         password
       })
       if (user.id) {
-        setName('')
+        setNickname('')
         setUsername('')
         setPassword('')
         setPasswordConfirm('')
@@ -53,7 +58,7 @@ const Create = ({ user, requestCreateUser }) => {
   }
 
   const handleFieldChange = e => {
-    if (e.target.name === 'name') setName(e.target.value)
+    if (e.target.name === 'nickname') setNickname(e.target.value)
     else if (e.target.name === 'username') setUsername(e.target.value)
     else if (e.target.name === 'password') setPassword(e.target.value)
     else if (e.target.name === 'passwordConfirm')
@@ -61,7 +66,7 @@ const Create = ({ user, requestCreateUser }) => {
   }
 
   const clearFields = () => {
-    setName('')
+    setNickname('')
     setUsername('')
     setPassword('')
     setPasswordConfirm('')
@@ -73,7 +78,7 @@ const Create = ({ user, requestCreateUser }) => {
       {user && user.id && <Redirect to="/home" />}
       <StyledColumn>
         <Form
-          name={name}
+          nickname={nickname}
           username={username}
           password={password}
           passwordConfirm={passwordConfirm}

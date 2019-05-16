@@ -1,8 +1,8 @@
 import React from 'react'
-import StyledForm from '../../../../components/blocks/StyledForm'
+import StyledForm from '../../../../../components/blocks/StyledForm'
 
 const Form = ({
-  name,
+  nickname,
   username,
   password,
   passwordConfirm,
@@ -15,11 +15,11 @@ const Form = ({
       <StyledForm.Fieldset>
         <StyledForm.Legend>Edit</StyledForm.Legend>
         <StyledForm.Label>
-          Name:
+          Nickname:
           <StyledForm.Input
-            name="name"
-            value={name}
-            placeholder="name"
+            name="nickname"
+            value={nickname}
+            placeholder="nickname"
             onChange={handleFieldChange}
           />
         </StyledForm.Label>

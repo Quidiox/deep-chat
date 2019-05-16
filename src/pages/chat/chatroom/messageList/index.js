@@ -35,8 +35,8 @@ const MessageList = React.memo(({ messages }) => {
         rowIndex={index}
       >
         <StyledMessageList.LI key={key} style={style}>
-          {format(parseISO(messages[index].created), 'kk:mm:ss dd/MM')} &lt;
-          {messages[index].author.name}
+          {format(parseISO(messages[index].createdAt), 'kk:mm:ss dd/MM')} &lt;
+          {messages[index].author.nickname}
           &gt; {messages[index].text}
         </StyledMessageList.LI>
       </CellMeasurer>

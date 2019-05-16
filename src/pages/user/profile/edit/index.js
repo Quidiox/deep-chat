@@ -6,20 +6,20 @@ import StyledColumn from '../../../../components/blocks/StyledColumn'
 import P from '../../../../components/elements/P'
 import { requestEditUser } from '../../../../reducers/userReducer'
 
-const inputValidation = (name, username, password, passwordConfirm) => {
+const inputValidation = (nickname, username, password, passwordConfirm) => {
   const errors = []
   if (
-    name &&
-    !validator.isEmpty(name) &&
-    !validator.matches(name, /^[a-zA-Z\s]+$/)
+    nickname &&
+    !validator.isEmpty(nickname) &&
+    !validator.isAlphanumeric(nickname)
   )
-    errors.push('Name must contain only alphabetic characters.')
+    errors.push('Nickname must contain only alphabetic characters.')
   if (
-    name &&
-    !validator.isEmpty(name) &&
-    !validator.isLength(name, { min: 3, max: 30 })
+    nickname &&
+    !validator.isEmpty(nickname) &&
+    !validator.isLength(nickname, { min: 3, max: 30 })
   )
-    errors.push('Name must be between 3-30 characters long.')
+    errors.push('Nickname must be between 3-30 characters long.')
   if (
     username &&
     !validator.isEmpty(username) &&
@@ -47,7 +47,7 @@ const inputValidation = (name, username, password, passwordConfirm) => {
 }
 
 const Edit = ({ requestEditUser, user }) => {
-  const [name, setName] = useState(user.name)
+  const [nickname, setNickname] = useState(user.nickname)
   const [username, setUsername] = useState(user.username)
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
@@ -55,13 +55,13 @@ const Edit = ({ requestEditUser, user }) => {
 
   const edit = async e => {
     e.preventDefault()
-    const nameToValidate = name !== user.name ? name : undefined
+    const nicknameToValidate = nickname !== user.nickname ? nickname : undefined
     const usernameToValidate = username !== user.username ? username : undefined
     const passwordToValidate = password.length > 0 ? password : undefined
     const passwordConfirmToValidate =
       passwordConfirm.length > 0 ? passwordConfirm : undefined
     const errors = inputValidation(
-      nameToValidate,
+      nicknameToValidate,
       usernameToValidate,
       passwordToValidate,
       passwordConfirmToValidate
@@ -71,7 +71,7 @@ const Edit = ({ requestEditUser, user }) => {
     } else {
       await requestEditUser({
         id: user.id,
-        name: nameToValidate,
+        nickname: nicknameToValidate,
         username: usernameToValidate,
         password: passwordToValidate
       })
@@ -79,7 +79,7 @@ const Edit = ({ requestEditUser, user }) => {
   }
 
   const handleFieldChange = e => {
-    if (e.target.name === 'name') setName(e.target.value)
+    if (e.target.name === 'nickname') setNickname(e.target.value)
     else if (e.target.name === 'username') setUsername(e.target.value)
     else if (e.target.name === 'password') setPassword(e.target.value)
     else if (e.target.name === 'passwordConfirm')
@@ -87,7 +87,7 @@ const Edit = ({ requestEditUser, user }) => {
   }
 
   const clearFields = () => {
-    setName('')
+    setNickname('')
     setUsername('')
     setPassword('')
     setPasswordConfirm('')
@@ -97,7 +97,7 @@ const Edit = ({ requestEditUser, user }) => {
   return (
     <StyledColumn>
       <Form
-        name={name}
+        nickname={nickname}
         username={username}
         password={password}
         passwordConfirm={passwordConfirm}
