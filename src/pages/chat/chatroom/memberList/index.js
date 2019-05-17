@@ -4,18 +4,18 @@ import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 const MemberList = React.memo(
   ({ members, changeMemberListVisibility, activeMembers }) => {
     const memberLine = member => {
-      const occurrences = activeMembers.reduce(
+      // if same user has many clients connected at the same time
+      const activeMemberOccurrences = activeMembers.reduce(
         (acc, val) => acc.set(val, 1 + (acc.get(val) || 0)),
         new Map()
       )
-      console.log(occurrences)
       return (
         <StyledMemberList.P
           active={activeMembers.find(nickname => member.nickname === nickname)}
         >
           {member.nickname}{' '}
-          {occurrences.get(member.nickname) > 1 &&
-            occurrences.get(member.nickname)}
+          {activeMemberOccurrences.get(member.nickname) > 1 &&
+            activeMemberOccurrences.get(member.nickname)}
         </StyledMemberList.P>
       )
     }
