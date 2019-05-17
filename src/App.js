@@ -64,7 +64,6 @@ const App = ({ user, error, requestVerifyAuthCookie, clearError }) => {
         <PrivateRoute
           path="/chat"
           component={Chat}
-          user={user}
           loggedIn={user && user.id}
         />
         } />

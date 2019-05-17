@@ -9,7 +9,11 @@ import {
   USER_LOGOUT_REQUEST,
   USER_DELETE_REQUEST,
   AUTH_COOKIE_VERIFY_REQUEST,
-  AUTH_COOKIE_VERIFY
+  AUTH_COOKIE_VERIFY,
+  USER_SET_ACTIVE_CHANNEL_REQUEST,
+  USER_SET_ACTIVE_CHANNEL,
+  USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST,
+  USER_SET_LAST_VISIT_ON_CHANNEL
 } from './actionTypes'
 /* user logout, user delete and invalid auth cookie are handled in rootReducer 
    because all state becomes invalid when they happen so whole state is set to 
@@ -28,6 +32,12 @@ const userReducer = produce((draft, action) => {
       return action.payload
     }
     case AUTH_COOKIE_VERIFY: {
+      return action.payload
+    }
+    case USER_SET_ACTIVE_CHANNEL: {
+      return action.payload
+    }
+    case USER_SET_LAST_VISIT_ON_CHANNEL: {
       return action.payload
     }
   }
@@ -59,6 +69,16 @@ export const requestDeleteUser = payload => ({
 
 export const requestVerifyAuthCookie = () => ({
   type: AUTH_COOKIE_VERIFY_REQUEST
+})
+
+export const requestUserSetActiveChannel = payload => ({
+  type: USER_SET_ACTIVE_CHANNEL_REQUEST,
+  payload
+})
+
+export const requestUsetSetLastVisitOnChannel = payload => ({
+  type: USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST,
+  payload
 })
 
 export default userReducer

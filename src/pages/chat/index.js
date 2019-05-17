@@ -5,7 +5,7 @@ import Chatroom from './chatroom'
 import Channels from './channels'
 import { requestLoadAllChannels } from '../../reducers/channelsReducer'
 
-const Chat = ({ requestLoadAllChannels, channels }) => {
+const Chat = ({ requestLoadAllChannels, channels, user }) => {
   const [selected, setSelected] = useState()
   const [channelsRowHeight, setChannelsRowHeight] = useState(21)
   useEffect(
@@ -19,11 +19,13 @@ const Chat = ({ requestLoadAllChannels, channels }) => {
   )
   useEffect(
     () => {
-      setSelected(
-        channels && channels[0] && channels[0].id ? channels[0].id : ''
-      )
+      if (user && user.id && user.activeChannel) {
+        setSelected(user.activeChannel)
+      } else if (!user && !user.id && channels && channels[0]) {
+        setSelected(channels[0].id)
+      }
     },
-    [channels]
+    [user, channels]
   )
   const getChannelsRowHeight = height => {
     setChannelsRowHeight(height)
@@ -45,7 +47,8 @@ const Chat = ({ requestLoadAllChannels, channels }) => {
 }
 
 const mapStateToProps = state => ({
-  channels: state.channels
+  channels: state.channels,
+  user: state.user
 })
 const mapDispatchToProps = { requestLoadAllChannels }
 

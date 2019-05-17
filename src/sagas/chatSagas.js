@@ -21,7 +21,13 @@ import {
   LOAD_CHANNEL_MESSAGES,
   LOAD_CHANNEL_MEMBERS_REQUEST,
   LOAD_CHANNEL_MEMBERS_RESPONSE,
-  LOAD_CHANNEL_MEMBERS
+  LOAD_CHANNEL_MEMBERS,
+  USER_SET_ACTIVE_CHANNEL_REQUEST,
+  USER_SET_ACTIVE_CHANNEL_RESPONSE,
+  USER_SET_ACTIVE_CHANNEL,
+  USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST,
+  USER_SET_LAST_VISIT_ON_CHANNEL_RESPONSE,
+  USER_SET_LAST_VISIT_ON_CHANNEL
 } from '../reducers/actionTypes'
 import { runSaga } from '../reducers/store'
 
@@ -48,12 +54,16 @@ function createSocketChannel(socket) {
     const loadChannelMembersHandler = event => {
       emit(event)
     }
+    const userSetActiveChannelHandler = event => {
+      emit(event)
+    }
     socket.on(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
     socket.on(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
     socket.on(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
     socket.on(NEW_MESSAGE_RESPONSE, newMessageHandler)
     socket.on(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
     socket.on(LOAD_CHANNEL_MEMBERS_RESPONSE, loadChannelMembersHandler)
+    socket.on(USER_SET_ACTIVE_CHANNEL_RESPONSE, userSetActiveChannelHandler)
     const unsubscribe = () => {
       socket.off(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
       socket.off(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
@@ -61,6 +71,7 @@ function createSocketChannel(socket) {
       socket.off(NEW_MESSAGE_RESPONSE, newMessageHandler)
       socket.off(LOAD_CHANNEL_MESSAGES_RESPONSE, loadChannelMessagesHandler)
       socket.off(LOAD_CHANNEL_MEMBERS_RESPONSE, loadChannelMembersHandler)
+      socket.off(USER_SET_ACTIVE_CHANNEL_RESPONSE, userSetActiveChannelHandler)
     }
     return unsubscribe
   })
@@ -94,6 +105,19 @@ function* watchEvents() {
         }
         case LOAD_CHANNEL_MEMBERS_RESPONSE: {
           yield put(genericActionCreator(LOAD_CHANNEL_MEMBERS, event.payload))
+          break
+        }
+        case USER_SET_ACTIVE_CHANNEL_RESPONSE: {
+          console.log(event.payload)
+          yield put(
+            genericActionCreator(USER_SET_ACTIVE_CHANNEL, event.payload)
+          )
+          break
+        }
+        case USER_SET_LAST_VISIT_ON_CHANNEL_RESPONSE: {
+          yield put(
+            genericActionCreator(USER_SET_LAST_VISIT_ON_CHANNEL, event.payload)
+          )
           break
         }
         default:
@@ -154,6 +178,20 @@ export function* watchActions() {
         case LOAD_CHANNEL_MEMBERS_REQUEST: {
           yield apply(socket, socket.emit, [
             LOAD_CHANNEL_MEMBERS_REQUEST,
+            action.payload
+          ])
+          break
+        }
+        case USER_SET_ACTIVE_CHANNEL_REQUEST: {
+          yield apply(socket, socket.emit, [
+            USER_SET_ACTIVE_CHANNEL_REQUEST,
+            action.payload
+          ])
+          break
+        }
+        case USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST: {
+          yield apply(socket, socket.emit, [
+            USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST,
             action.payload
           ])
           break

@@ -6,11 +6,17 @@ import {
   requestUserJoinChannel,
   requestUserLeaveChannel
 } from '../../../reducers/channelsReducer'
+import {
+  requestUserSetActiveChannel,
+  requestUsetSetLastVisitOnChannel
+} from '../../../reducers/userReducer'
 
 const Channels = React.memo(
   ({
     requestUserJoinChannel,
     requestUserLeaveChannel,
+    requestUserSetActiveChannel,
+    requestUsetSetLastVisitOnChannel,
     channels,
     selected,
     changeSelected,
@@ -27,11 +33,15 @@ const Channels = React.memo(
     const joinChannel = name => {
       requestUserJoinChannel(name)
     }
-    const handleChannelChange = id => e => {
-      changeSelected(id)
+    const handleChannelChange = channelId => async () => {
+      changeSelected(channelId)
+      await requestUserSetActiveChannel(channelId)
     }
-    const leaveChannel = id => () => {
-      requestUserLeaveChannel(id)
+    const leaveChannel = channelId => async () => {
+      requestUserLeaveChannel(channelId)
+      await requestUserSetActiveChannel(
+        channels && channels[0] ? channels[0].id : undefined
+      )
     }
     return (
       <>
@@ -69,7 +79,12 @@ const Channels = React.memo(
   }
 )
 
-const mapDispatchToProps = { requestUserJoinChannel, requestUserLeaveChannel }
+const mapDispatchToProps = {
+  requestUserJoinChannel,
+  requestUserLeaveChannel,
+  requestUserSetActiveChannel,
+  requestUsetSetLastVisitOnChannel
+}
 
 export default connect(
   null,
