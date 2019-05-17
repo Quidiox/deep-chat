@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Switch, Route } from 'react-router-dom'
 import Login from './pages/auth/login'
@@ -15,20 +15,12 @@ import Error from './pages/error'
 import NotFound from './pages/notfound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
-import { requestLoadAllChannels } from './reducers/channelsReducer'
 import { clearError } from './reducers/errorReducer'
 import { watchActions } from './sagas/chatSagas'
 import { runSaga } from './reducers/store'
 import PrivateRoute from './utils/privateRoute'
 
-const App = ({
-  user,
-  error,
-  requestVerifyAuthCookie,
-  requestLoadAllChannels,
-  clearError
-}) => {
-  const [loggedIn, setLoggedIn] = useState(false)
+const App = ({ user, error, requestVerifyAuthCookie, clearError }) => {
   useEffect(
     () => {
       async function init() {
@@ -38,24 +30,12 @@ const App = ({
     },
     [requestVerifyAuthCookie]
   )
-  useEffect(
-    () => {
-      async function init() {
-        await runSaga(watchActions)
-        await requestLoadAllChannels()
-      }
-      init()
-    },
-    [requestLoadAllChannels]
-  )
-  useEffect(
-    () => {
-      if (user && user.id) {
-        setLoggedIn(true)
-      }
-    },
-    [user]
-  )
+  useEffect(() => {
+    async function init() {
+      await runSaga(watchActions)
+    }
+    init()
+  }, [])
   return (
     <>
       {error && <Error error={error} clearError={clearError} />}
@@ -71,24 +51,32 @@ const App = ({
           render={props => <CreateUser {...props} user={user} />}
         />
         <Route path="/logout" component={Logout} />
-        <PrivateRoute path="/profile" component={Profile} loggedIn={loggedIn} />
-        <PrivateRoute path="/home" component={Home} loggedIn={loggedIn} />
+        <PrivateRoute
+          path="/profile"
+          component={Profile}
+          loggedIn={user && user.id}
+        />
+        <PrivateRoute
+          path="/home"
+          component={Home}
+          loggedIn={user && user.id}
+        />
         <PrivateRoute
           path="/chat"
           component={Chat}
           user={user}
-          loggedIn={loggedIn}
+          loggedIn={user && user.id}
         />
         } />
         <PrivateRoute
           path="/user/edit"
           component={EditUser}
-          loggedIn={loggedIn}
+          loggedIn={user && user.id}
         />
         <PrivateRoute
           path="/user/delete"
           component={DeleteUser}
-          loggedIn={loggedIn}
+          loggedIn={user && user.id}
         />
         <Route path="*" render={props => <NotFound {...props} user={user} />} />
       </Switch>
@@ -100,7 +88,6 @@ const App = ({
 const mapStateToProps = state => ({ user: state.user, error: state.error })
 const mapDispatchToProps = {
   requestVerifyAuthCookie,
-  requestLoadAllChannels,
   clearError
 }
 

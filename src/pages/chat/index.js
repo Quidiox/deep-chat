@@ -10,7 +10,10 @@ const Chat = ({ requestLoadAllChannels, channels }) => {
   const [channelsRowHeight, setChannelsRowHeight] = useState(21)
   useEffect(
     () => {
-      requestLoadAllChannels()
+      async function init() {
+        await requestLoadAllChannels()
+      }
+      init()
     },
     [requestLoadAllChannels]
   )

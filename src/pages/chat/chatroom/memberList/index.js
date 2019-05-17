@@ -3,13 +3,19 @@ import StyledMemberList from '../../../../components/blocks/StyledMemberList'
 
 const MemberList = React.memo(
   ({ members, changeMemberListVisibility, activeMembers }) => {
-    console.log(members, activeMembers)
     const memberLine = member => {
+      const occurrences = activeMembers.reduce(
+        (acc, val) => acc.set(val, 1 + (acc.get(val) || 0)),
+        new Map()
+      )
+      console.log(occurrences)
       return (
         <StyledMemberList.P
           active={activeMembers.find(nickname => member.nickname === nickname)}
         >
-          {member.nickname}
+          {member.nickname}{' '}
+          {occurrences.get(member.nickname) > 1 &&
+            occurrences.get(member.nickname)}
         </StyledMemberList.P>
       )
     }
