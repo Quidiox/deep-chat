@@ -16,8 +16,6 @@ import NotFound from './pages/notfound'
 import GlobalStyle from './theme/globalStyles'
 import { requestVerifyAuthCookie } from './reducers/userReducer'
 import { clearError } from './reducers/errorReducer'
-import { watchActions } from './sagas/chatSagas'
-import { runSaga } from './reducers/store'
 import PrivateRoute from './utils/privateRoute'
 
 const App = ({ user, error, requestVerifyAuthCookie, clearError }) => {
@@ -30,12 +28,6 @@ const App = ({ user, error, requestVerifyAuthCookie, clearError }) => {
     },
     [requestVerifyAuthCookie]
   )
-  useEffect(() => {
-    async function init() {
-      await runSaga(watchActions)
-    }
-    init()
-  }, [])
   return (
     <>
       {error && <Error error={error} clearError={clearError} />}

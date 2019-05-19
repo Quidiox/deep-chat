@@ -4,16 +4,16 @@ import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
 import Channels from './channels'
 import { requestLoadAllChannels } from '../../reducers/channelsReducer'
+import { watchActions } from '../../sagas/chatSagas'
+import { runSaga } from '../../reducers/store'
 
 const Chat = ({ requestLoadAllChannels, channels, user }) => {
   const [selected, setSelected] = useState()
   const [channelsRowHeight, setChannelsRowHeight] = useState(21)
   useEffect(
     () => {
-      async function init() {
-        await requestLoadAllChannels()
-      }
-      init()
+      runSaga(watchActions)
+      requestLoadAllChannels()
     },
     [requestLoadAllChannels]
   )

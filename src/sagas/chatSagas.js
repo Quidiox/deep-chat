@@ -27,7 +27,9 @@ import {
   USER_SET_ACTIVE_CHANNEL,
   USER_SET_LAST_VISIT_ON_CHANNEL_REQUEST,
   USER_SET_LAST_VISIT_ON_CHANNEL_RESPONSE,
-  USER_SET_LAST_VISIT_ON_CHANNEL
+  USER_SET_LAST_VISIT_ON_CHANNEL,
+  SERVER_CONNECT,
+  SERVER_CONNECT_RESPONSE
 } from '../reducers/actionTypes'
 import { runSaga } from '../reducers/store'
 
@@ -57,6 +59,10 @@ function createSocketChannel(socket) {
     const userSetActiveChannelHandler = event => {
       emit(event)
     }
+    const serverConnected = event => {
+      emit(event)
+    }
+    socket.on(SERVER_CONNECT_RESPONSE, serverConnected)
     socket.on(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
     socket.on(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
     socket.on(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
@@ -65,6 +71,7 @@ function createSocketChannel(socket) {
     socket.on(LOAD_CHANNEL_MEMBERS_RESPONSE, loadChannelMembersHandler)
     socket.on(USER_SET_ACTIVE_CHANNEL_RESPONSE, userSetActiveChannelHandler)
     const unsubscribe = () => {
+      socket.off(SERVER_CONNECT_RESPONSE, serverConnected)
       socket.off(LOAD_ALL_CHANNELS_RESPONSE, loadAllChannelsHandler)
       socket.off(USER_JOIN_CHANNEL_RESPONSE, userJoinChannelHandler)
       socket.off(USER_LEAVE_CHANNEL_RESPONSE, userLeaveChannelHandler)
@@ -83,6 +90,10 @@ function* watchEvents() {
     try {
       const event = yield take(socketChannel)
       switch (event.type) {
+        case SERVER_CONNECT_RESPONSE: {
+          yield put(genericActionCreator(SERVER_CONNECT))
+          break
+        }
         case LOAD_ALL_CHANNELS_RESPONSE: {
           yield put(genericActionCreator(LOAD_ALL_CHANNELS, event.payload))
           break
@@ -108,7 +119,6 @@ function* watchEvents() {
           break
         }
         case USER_SET_ACTIVE_CHANNEL_RESPONSE: {
-          console.log(event.payload)
           yield put(
             genericActionCreator(USER_SET_ACTIVE_CHANNEL, event.payload)
           )
@@ -132,19 +142,21 @@ function* watchEvents() {
 }
 // to server
 export function* watchActions() {
-  socket = yield call(createWebSocketConnection)
   const requestChannel = yield actionChannel('*')
-  yield call(runSaga, watchEvents)
   while (true) {
     try {
       const action = yield take(requestChannel)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
-          if (!socket.connected) {
+          if (!socket || !socket.connected) {
             socket = yield call(createWebSocketConnection)
             yield call(runSaga, watchEvents)
+            yield take(SERVER_CONNECT)
           }
           yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
+          // This will stop sagas until below event is put and
+          // is needed so socket server has time to create rooms.
+          yield take(LOAD_ALL_CHANNELS)
           break
         }
         case USER_JOIN_CHANNEL_REQUEST: {

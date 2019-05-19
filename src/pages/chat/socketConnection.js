@@ -1,4 +1,5 @@
 import io from 'socket.io-client'
+import { CLIENT_CONNECT_REQUEST } from '../../reducers/actionTypes'
 // import { dispatch } from '../../reducers/store'
 
 const createWebSocketConnection = () => {
@@ -8,7 +9,7 @@ const createWebSocketConnection = () => {
   })
   socket.on('connect', () => {
     socket.emit(
-      'clientConnected',
+      CLIENT_CONNECT_REQUEST,
       `Client with id: ${socket.id} connected successfully`
     )
   })

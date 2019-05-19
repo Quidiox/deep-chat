@@ -9,6 +9,7 @@ const StyledMessageField = styled(StyledForm)`
   flex-direction: row;
   align-items: center;
   width: 100%;
+  outline: none;
 `
 
 const formInput = styled(Input)`

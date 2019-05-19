@@ -35,7 +35,7 @@ const Chatroom = ({
   )
   useEffect(
     () => {
-      if (channelId && channelId.length > 10) {
+      if (channelId) {
         requestLoadChannelMessages({ channelId })
         requestLoadChannelMembers({ channelId })
       }

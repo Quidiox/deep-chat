@@ -8,6 +8,7 @@ const StyledMessageList = styled(List)`
   padding: 0 5px 5px 10px;
   margin: 3px 0 0 0;
   z-index: 2;
+  outline: none;
 `
 
 StyledMessageList.LI = LI

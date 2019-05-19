@@ -33,13 +33,13 @@ const Channels = React.memo(
     const joinChannel = name => {
       requestUserJoinChannel(name)
     }
-    const handleChannelChange = channelId => async () => {
+    const handleChannelChange = channelId => () => {
       changeSelected(channelId)
-      await requestUserSetActiveChannel(channelId)
+      requestUserSetActiveChannel(channelId)
     }
-    const leaveChannel = channelId => async () => {
+    const leaveChannel = channelId => () => {
       requestUserLeaveChannel(channelId)
-      await requestUserSetActiveChannel(
+      requestUserSetActiveChannel(
         channels && channels[0] ? channels[0].id : undefined
       )
     }
