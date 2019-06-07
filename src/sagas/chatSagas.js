@@ -154,8 +154,8 @@ export function* watchActions() {
             yield take(SERVER_CONNECT)
           }
           yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
-          // This will stop sagas until below event is put and
-          // is needed so socket server has time to create rooms.
+          // This will stop sagas until below event is put so
+          // socket server has time to join users channels to rooms.
           yield take(LOAD_ALL_CHANNELS)
           break
         }
