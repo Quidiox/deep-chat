@@ -3,19 +3,25 @@ import { connect } from 'react-redux'
 import StyledChatPage from '../../components/blocks/StyledChatPage'
 import Chatroom from './chatroom'
 import Channels from './channels'
-import { requestLoadAllChannels } from '../../reducers/channelsReducer'
+import {
+  requestLoadAllChannels,
+  closeSocket
+} from '../../reducers/channelsReducer'
 import { watchActions } from '../../sagas/chatSagas'
 import { runSaga } from '../../reducers/store'
 
-const Chat = ({ requestLoadAllChannels, channels, user }) => {
+const Chat = ({ requestLoadAllChannels, closeSocket, channels, user }) => {
   const [selected, setSelected] = useState()
   const [channelsRowHeight, setChannelsRowHeight] = useState(21)
   useEffect(
     () => {
       runSaga(watchActions)
       requestLoadAllChannels()
+      return () => {
+        closeSocket()
+      }
     },
-    [requestLoadAllChannels]
+    [requestLoadAllChannels, closeSocket]
   )
   useEffect(
     () => {
@@ -50,7 +56,7 @@ const mapStateToProps = state => ({
   channels: state.channels,
   user: state.user
 })
-const mapDispatchToProps = { requestLoadAllChannels }
+const mapDispatchToProps = { requestLoadAllChannels, closeSocket }
 
 export default connect(
   mapStateToProps,

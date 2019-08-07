@@ -5,7 +5,8 @@ import {
   USER_LEAVE_CHANNEL_REQUEST,
   USER_LEAVE_CHANNEL,
   LOAD_ALL_CHANNELS_REQUEST,
-  LOAD_ALL_CHANNELS
+  LOAD_ALL_CHANNELS,
+  CLOSE_SOCKET
 } from './actionTypes'
 
 const channelReducer = produce((draft, action) => {
@@ -38,6 +39,10 @@ export const requestUserLeaveChannel = payload => ({
 
 export const requestLoadAllChannels = () => ({
   type: LOAD_ALL_CHANNELS_REQUEST
+})
+
+export const closeSocket = () => ({
+  type: CLOSE_SOCKET
 })
 
 export default channelReducer

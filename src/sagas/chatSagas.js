@@ -29,7 +29,8 @@ import {
   USER_SET_LAST_VISIT_ON_CHANNEL_RESPONSE,
   USER_SET_LAST_VISIT_ON_CHANNEL,
   SERVER_CONNECT,
-  SERVER_CONNECT_RESPONSE
+  SERVER_CONNECT_RESPONSE,
+  CLOSE_SOCKET
 } from '../reducers/actionTypes'
 import { runSaga } from '../reducers/store'
 
@@ -143,19 +144,15 @@ function* watchEvents() {
 // to server
 export function* watchActions() {
   const requestChannel = yield actionChannel('*')
+  socket = yield call(createWebSocketConnection)
+  yield call(runSaga, watchEvents)
+  yield take(SERVER_CONNECT)
   while (true) {
     try {
       const action = yield take(requestChannel)
       switch (action.type) {
         case LOAD_ALL_CHANNELS_REQUEST: {
-          if (!socket || !socket.connected) {
-            socket = yield call(createWebSocketConnection)
-            yield call(runSaga, watchEvents)
-            yield take(SERVER_CONNECT)
-          }
           yield apply(socket, socket.emit, [LOAD_ALL_CHANNELS_REQUEST])
-          // This will stop sagas until below event is put so
-          // socket server has time to join users channels to rooms.
           yield take(LOAD_ALL_CHANNELS)
           break
         }
@@ -210,6 +207,11 @@ export function* watchActions() {
         }
         case USER_LOGOUT: {
           yield apply(socket, socket.disconnect)
+          break
+        }
+        case CLOSE_SOCKET: {
+          requestChannel.close()
+          socket.close()
           break
         }
         default:

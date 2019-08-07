@@ -58,11 +58,24 @@ const Create = ({ user, requestCreateUser }) => {
   }
 
   const handleFieldChange = e => {
-    if (e.target.name === 'nickname') setNickname(e.target.value)
-    else if (e.target.name === 'username') setUsername(e.target.value)
-    else if (e.target.name === 'password') setPassword(e.target.value)
-    else if (e.target.name === 'passwordConfirm')
-      setPasswordConfirm(e.target.value)
+    const name = e.target.name
+    const value = e.target.value
+    switch (name) {
+      case 'nickname':
+        setNickname(value)
+        break
+      case 'username':
+        setUsername(value)
+        break
+      case 'password':
+        setPassword(value)
+        break
+      case 'passwordConfirm':
+        setPasswordConfirm(value)
+        break
+      default:
+        break
+    }
   }
 
   const clearFields = () => {
