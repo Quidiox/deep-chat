@@ -37,7 +37,7 @@
     "redux-saga": "1.0.3",
     "socket.io-client": "2.2.0",
     "styled-components": "4.3.1",
-    "validator": "11.0.0"
+    "validator": "13.7.0"
   },
   "devDependencies": {
     "cypress": "3.4.1",
